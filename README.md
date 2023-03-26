@@ -15,5 +15,6 @@ Micro-J interfaces
 | `WithName`       |                `string`                | `getName`, `hasName*`                                                                                         |
 | `WithTime`       |               `instant`                | `getTime`, `getTimeEpochSeconds*`,<br/>`getTimeEpochMilli*`, `formatTimeISOInstant*`                          |
  | `WithByteBody`   |                `byte[]`                | `getBody`, `isBodyEmpty*`,<br/>`isBodyPresent*`, `getBodyString*`,<br>`getBodyBase64*`, `getBodyInputStream*` |
+| `WithDataClass`  |                `class`                 | `getDataClass`                                                                                                |
 
 - Marked with `*` are default implementations.
