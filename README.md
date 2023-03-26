@@ -1,6 +1,10 @@
 Micro-J interfaces
 ==================
 
+Easy to adopt zero-dependency collection of helpful common interfaces,
+sugared with some consistent default methods.
+
+
 | Name             |                Supports                | Methods                                                                                                       |
 |------------------|:--------------------------------------:|---------------------------------------------------------------------------------------------------------------|
 | `WithActive`     |               `boolean`                | `isActive`, `isNotActive*`                                                                                    |
