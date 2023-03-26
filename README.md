@@ -1,12 +1,15 @@
 Micro-J interfaces
 ==================
 
-| Name             |                Support                 | Methods                                                                                                       |
+| Name             |                Supports                | Methods                                                                                                       |
 |------------------|:--------------------------------------:|---------------------------------------------------------------------------------------------------------------|
 | `WithActive`     |               `boolean`                | `isActive`, `isNotActive*`                                                                                    |
 | `WithDeleted`    |               `boolean`                | `isDeleted`, `isNotDeleted*`                                                                                  |
 | `WithEnabled`    |               `boolean`                | `isEnabled`, `isNotEnabled*`, `isDisabled*`                                                                   |
 | `WithVisible`    |               `boolean`                | `isVisible`, `isNotVisible*`, `isHidden*`                                                                     |
+| `WithState`      |                 `enum`                 | `getState`, `hasState*`, `hasStateOneOf*`                                                                     |
+| `WithStatus`     |                 `enum`                 | `getStatus`, `hasStatus*`, `hasStatusOneOf*`                                                                  |
+| `WithType`       |                 `enum`                 | `getType`, `hasType*`, `hasTypeOneOf*`                                                                        |
 | `WithId`         | `int`,`long`,`short`,`string`,`byte[]` | `getId`, `hasId*`, `getIdBase64`                                                                              |
 | `WithOptionalId` |     `int`,`long`,`short`,`string`      | `getId`, `hasId*`                                                                                             |
 | `WithName`       |                `string`                | `getName`, `hasName*`                                                                                         |
