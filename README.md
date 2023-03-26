@@ -6,32 +6,38 @@ sugared with some consistent default methods.
 
 ## Basic interfaces
 
-| Name              |                Supports                | Methods                                                                                                         |
-|-------------------|:--------------------------------------:|-----------------------------------------------------------------------------------------------------------------|
-| `WithActive`      |               `boolean`                | `isActive`, `isNotActive*`                                                                                      |
-| `WithDeleted`     |               `boolean`                | `isDeleted`, `isNotDeleted*`                                                                                    |
-| `WithEnabled`     |               `boolean`                | `isEnabled`, `isNotEnabled*`, `isDisabled*`                                                                     |
-| `WithPublich`     |               `boolean`                | `isPublic`, `isNotPublic*`                                                                                      |
-| `WithVisible`     |               `boolean`                | `isVisible`, `isNotVisible*`, `isHidden*`                                                                       |
-| `WithState`       |                 `enum`                 | `getState`, `hasState*`, `hasStateOneOf*`                                                                       |
-| `WithStatus`      |                 `enum`                 | `getStatus`, `hasStatus*`, `hasStatusOneOf*`                                                                    |
-| `WithType`        |                 `enum`                 | `getType`, `hasType*`, `hasTypeOneOf*`                                                                          |
-| `WithId`          | `int`,`long`,`short`,`string`,`byte[]` | `getId`, `hasId*`, `getIdBase64`                                                                                |
-| `WithOptionalId`  |     `int`,`long`,`short`,`string`      | `getId`, `hasId*`                                                                                               |
-| `WithName`        |                `string`                | `getName`, `hasName*`                                                                                           |
-| `WithElapsed`     |               `duration`               | `getElapsed`, `getElapsedSeconds*`,<br/>`getElapsedMillis*`, `getElapsedNanos*`                                 |
-| `WithTime`        |               `instant`                | `getTime`, `getTimeEpochSeconds*`,<br/>`getTimeEpochMilli*`, `formatTimeISOInstant*`                            |
-| `WithCreatedAt`   |               `instant`                | `getCreatedAt`, `getCreatedAtEpochSeconds*`,<br/>`getCreatedAtEpochMilli*`,`formatCreatedAtISOInstant*`         |
-| `WithExpiryAt`    |               `instant`                | `getExpiryAt`, `getExpiryAtEpochSeconds*`,<br/>`getExpiryAtEpochMilli*`,`formatExpiryAtISOInstant*`             |
-| `WithModifiedAt`  |               `instant`                | `getModifiedAt`, `getModifiedAtEpochSeconds*`,<br/>`getModifiedAtEpochMilli*`,`formatModifiedAtISOInstant*`     |
-| `WithScheduledAt` |               `instant`                | `getScheduledAt`, `getScheduledAtEpochSeconds*`,<br/>`getScheduledAtEpochMilli*`,`formatScheduledAtISOInstant*` |
-| `WithUpdatedAt`   |               `instant`                | `getUpdatedAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*`         |
-| `WithByteBody`    |                `byte[]`                | `getBody`, `isBodyEmpty*`,<br/>`isBodyPresent*`, `getBodyString*`,<br>`getBodyBase64*`, `getBodyInputStream*`   |
-| `WithDataClass`   |                `class`                 | `getDataClass`                                                                                                  |
+| Name                      |                Supports                | Methods                                                                                                                                              |
+|---------------------------|:--------------------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `WithActive`              |               `boolean`                | `isActive`, `isNotActive*`                                                                                                                           |
+| `WithDeleted`             |               `boolean`                | `isDeleted`, `isNotDeleted*`                                                                                                                         |
+| `WithEnabled`             |               `boolean`                | `isEnabled`, `isNotEnabled*`, `isDisabled*`                                                                                                          |
+| `WithPublich`             |               `boolean`                | `isPublic`, `isNotPublic*`                                                                                                                           |
+| `WithVisible`             |               `boolean`                | `isVisible`, `isNotVisible*`, `isHidden*`                                                                                                            |
+| `WithState`               |                 `enum`                 | `getState`, `hasState*`, `hasStateOneOf*`                                                                                                            |
+| `WithStatus`              |                 `enum`                 | `getStatus`, `hasStatus*`, `hasStatusOneOf*`                                                                                                         |
+| `WithType`                |                 `enum`                 | `getType`, `hasType*`, `hasTypeOneOf*`                                                                                                               |
+| `WithId`                  | `int`,`long`,`short`,`string`,`byte[]` | `getId`, `hasId*`, `getIdBase64`                                                                                                                     |
+| `WithOptionalId`          |     `int`,`long`,`short`,`string`      | `getId`, `hasId*`                                                                                                                                    |
+| `WithName`                |                `string`                | `getName`, `hasName*`                                                                                                                                |
+| `WithElapsed`             |               `duration`               | `getElapsed`, `getElapsedSeconds*`,<br/>`getElapsedMillis*`, `getElapsedNanos*`                                                                      |
+| `WithTime`                |               `instant`                | `getTime`, `getTimeEpochSeconds*`,<br/>`getTimeEpochMilli*`, `formatTimeISOInstant*`                                                                 |
+| `WithCreatedAt`           |               `instant`                | `getCreatedAt`, `getCreatedAtEpochSeconds*`,<br/>`getCreatedAtEpochMilli*`,`formatCreatedAtISOInstant*`                                              |
+| `WithExpiryAt`            |               `instant`                | `getExpiryAt`, `getExpiryAtEpochSeconds*`,<br/>`getExpiryAtEpochMilli*`,`formatExpiryAtISOInstant*`                                                  |
+| `WithModifiedAt`          |               `instant`                | `getModifiedAt`, `getModifiedAtEpochSeconds*`,<br/>`getModifiedAtEpochMilli*`,`formatModifiedAtISOInstant*`                                          |
+| `WithScheduledAt`         |               `instant`                | `getScheduledAt`, `getScheduledAtEpochSeconds*`,<br/>`getScheduledAtEpochMilli*`,`formatScheduledAtISOInstant*`                                      |
+| `WithUpdatedAt`           |               `instant`                | `getUpdatedAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*`                                              |
+| `WithOptionalExpiryAt`    |               `instant`                | `getUpdatedAt`, `hasExpiryAt*`,<br/>`mustGetExpiryAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*`       |
+| `WithOptionalModifiedAt`  |               `instant`                | `getUpdatedAt`, `hasModifiedAt*`,<br/>`mustGetModifiedAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*`   |
+| `WithOptionalScheduledAt` |               `instant`                | `getUpdatedAt`, `hasScheduledAt*`,<br/>`mustGetScheduledAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*` |
+| `WithOptionalUpdatedAt`   |               `instant`                | `getUpdatedAt`, `hasUpdatedAt*`,<br/>`mustGetUpdatedAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*`     |
+| `WithByteBody`            |                `byte[]`                | `getBody`, `isBodyEmpty*`,<br/>`isBodyPresent*`, `getBodyString*`,<br>`getBodyBase64*`, `getBodyInputStream*`                                        |
+| `WithDataClass`           |                `class`                 | `getDataClass`                                                                                                                                       |
 
 - Marked with `*` are default implementations.
 
 ## Design hints
 
 - Any interface with `get*` has corresponding `has*` returning `boolean`
-- Any interface with `get*` returning `Optional<?>` has corresponding `mustGet*` getter
+- Any interface with `get*` returning `Optional<?>`:
+    - Has corresponding `mustGet*` getter
+    - Has corresponding `has*` method with no arguments

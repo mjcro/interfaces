@@ -5,26 +5,26 @@ import java.time.format.DateTimeFormatter;
 
 public interface WithScheduledAt {
     /**
-     * @return Entity expiration time.
+     * @return Entity schedule time.
      */
     Instant getScheduledAt();
 
     /**
-     * @return Entity expiration time in epoch seconds.
+     * @return Entity schedule time in epoch seconds.
      */
     default long getScheduledAtEpochSeconds() {
         return getScheduledAt().getEpochSecond();
     }
 
     /**
-     * @return Entity expiration time in epoch milliseconds.
+     * @return Entity schedule time in epoch milliseconds.
      */
     default long getScheduledAtEpochMilli() {
         return getScheduledAt().toEpochMilli();
     }
 
     /**
-     * @return Entity expiration time in ISO_INSTANT string representation.
+     * @return Entity schedule time in ISO_INSTANT string representation.
      */
     default String formatScheduledAtISOInstant() {
         return DateTimeFormatter.ISO_INSTANT.format(getScheduledAt());

@@ -10,6 +10,13 @@ public interface WithOptionalId {
     Optional<Integer> getId();
 
     /**
+     * @return True if entity has id.
+     */
+    default boolean hasId() {
+        return getId().isPresent();
+    }
+
+    /**
      * Checks if entity identifier equals to given one.
      *
      * @param given Identifier to compare to.
