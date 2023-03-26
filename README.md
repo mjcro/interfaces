@@ -22,6 +22,7 @@ sugared with some consistent default methods.
 | `WithElapsed`     |               `duration`               | `getElapsed`, `getElapsedSeconds*`,<br/>`getElapsedMillis*`, `getElapsedNanos*`                                 |
 | `WithTime`        |               `instant`                | `getTime`, `getTimeEpochSeconds*`,<br/>`getTimeEpochMilli*`, `formatTimeISOInstant*`                            |
 | `WithCreatedAt`   |               `instant`                | `getCreatedAt`, `getCreatedAtEpochSeconds*`,<br/>`getCreatedAtEpochMilli*`,`formatCreatedAtISOInstant*`         |
+| `WithExpiryAt`    |               `instant`                | `getExpiryAt`, `getExpiryAtEpochSeconds*`,<br/>`getExpiryAtEpochMilli*`,`formatExpiryAtISOInstant*`             |
 | `WithModifiedAt`  |               `instant`                | `getModifiedAt`, `getModifiedAtEpochSeconds*`,<br/>`getModifiedAtEpochMilli*`,`formatModifiedAtISOInstant*`     |
 | `WithScheduledAt` |               `instant`                | `getScheduledAt`, `getScheduledAtEpochSeconds*`,<br/>`getScheduledAtEpochMilli*`,`formatScheduledAtISOInstant*` |
 | `WithUpdatedAt`   |               `instant`                | `getUpdatedAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*`         |
