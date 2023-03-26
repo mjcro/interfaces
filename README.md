@@ -19,6 +19,7 @@ sugared with some consistent default methods.
 | `WithId`          | `int`,`long`,`short`,`string`,`byte[]` | `getId`, `hasId*`, `getIdBase64`                                                                                |
 | `WithOptionalId`  |     `int`,`long`,`short`,`string`      | `getId`, `hasId*`                                                                                               |
 | `WithName`        |                `string`                | `getName`, `hasName*`                                                                                           |
+| `WithElapsed`     |               `duration`               | `getElapsed`, `getElapsedSeconds*`,<br/>`getElapsedMillis*`, `getElapsedNanos*`                                 |
 | `WithTime`        |               `instant`                | `getTime`, `getTimeEpochSeconds*`,<br/>`getTimeEpochMilli*`, `formatTimeISOInstant*`                            |
 | `WithCreatedAt`   |               `instant`                | `getCreatedAt`, `getCreatedAtEpochSeconds*`,<br/>`getCreatedAtEpochMilli*`,`formatCreatedAtISOInstant*`         |
 | `WithModifiedAt`  |               `instant`                | `getModifiedAt`, `getModifiedAtEpochSeconds*`,<br/>`getModifiedAtEpochMilli*`,`formatModifiedAtISOInstant*`     |
