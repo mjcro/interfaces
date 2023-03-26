@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces.longs;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public interface WithOptionalId {
@@ -17,5 +18,14 @@ public interface WithOptionalId {
     default boolean hasId(long given) {
         Optional<Long> id = getId();
         return id.isPresent() && id.get() == given;
+    }
+
+    /**
+     * @return Identifier of entity
+     * @throws NoSuchElementException If no id present.
+     */
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
+    default long mustGetId() {
+        return getId().get();
     }
 }

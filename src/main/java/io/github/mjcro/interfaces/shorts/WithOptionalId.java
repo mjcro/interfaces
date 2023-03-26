@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces.shorts;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public interface WithOptionalId {
@@ -17,5 +18,14 @@ public interface WithOptionalId {
     default boolean hasId(short given) {
         Optional<Short> id = getId();
         return id.isPresent() && id.get() == given;
+    }
+
+    /**
+     * @return Identifier of entity
+     * @throws NoSuchElementException If no id present.
+     */
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
+    default short mustGetId() {
+        return getId().get();
     }
 }

@@ -5,6 +5,8 @@ Easy to adopt zero-dependency collection of helpful common interfaces,
 sugared with some consistent default methods.
 
 
+## Basic interfaces
+
 | Name              |                Supports                | Methods                                                                                                         |
 |-------------------|:--------------------------------------:|-----------------------------------------------------------------------------------------------------------------|
 | `WithActive`      |               `boolean`                | `isActive`, `isNotActive*`                                                                                      |
@@ -26,3 +28,8 @@ sugared with some consistent default methods.
 | `WithDataClass`   |                `class`                 | `getDataClass`                                                                                                  |
 
 - Marked with `*` are default implementations.
+
+## Design hints
+
+- Any interface with `get*` has corresponding `has*` returning `boolean`
+- Any interface with `get*` returning `Optional<?>` has corresponding `mustGet*` getter
