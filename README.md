@@ -4,7 +4,6 @@ Micro-J interfaces
 Easy to adopt zero-dependency collection of helpful common interfaces,
 sugared with some consistent default methods.
 
-
 ## Basic interfaces
 
 | Name              |                Supports                | Methods                                                                                                         |
@@ -12,6 +11,7 @@ sugared with some consistent default methods.
 | `WithActive`      |               `boolean`                | `isActive`, `isNotActive*`                                                                                      |
 | `WithDeleted`     |               `boolean`                | `isDeleted`, `isNotDeleted*`                                                                                    |
 | `WithEnabled`     |               `boolean`                | `isEnabled`, `isNotEnabled*`, `isDisabled*`                                                                     |
+| `WithPublich`     |               `boolean`                | `isPublic`, `isNotPublic*`                                                                                      |
 | `WithVisible`     |               `boolean`                | `isVisible`, `isNotVisible*`, `isHidden*`                                                                       |
 | `WithState`       |                 `enum`                 | `getState`, `hasState*`, `hasStateOneOf*`                                                                       |
 | `WithStatus`      |                 `enum`                 | `getStatus`, `hasStatus*`, `hasStatusOneOf*`                                                                    |
