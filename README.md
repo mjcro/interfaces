@@ -52,6 +52,8 @@ sugared with some consistent default methods.
 | `WithOptionalUpdatedAt`   |               `instant`                | `getUpdatedAt`, `hasUpdatedAt*`,<br/>`mustGetUpdatedAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*`     |
 | `WithByteBody`            |                `byte[]`                | `getBody`, `isBodyEmpty*`,<br/>`isBodyPresent*`, `getBodyString*`,<br>`getBodyBase64*`, `getBodyInputStream*`                                        |
 | `WithDataClass`           |                `class`                 | `getDataClass`                                                                                                                                       |
+| `WithException`           |              `exception`               | `getException`                                                                                                                                       |
+| `WithOptionalException`   |              `exception`               | `getException`, `hasException*`, `hasNoException*`                                                                                                   | 
 
 - Marked with `*` are default implementations.
 

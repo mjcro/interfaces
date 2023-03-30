@@ -1,4 +1,4 @@
-package io.github.mjcro.interfaces.duration;
+package io.github.mjcro.interfaces.durations;
 
 import java.time.Duration;
 
