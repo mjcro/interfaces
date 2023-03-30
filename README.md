@@ -1,8 +1,22 @@
 Micro-J interfaces
 ==================
 
+![Java8](https://img.shields.io/badge/Java-8-brightgreen)
+![GitHub](https://img.shields.io/github/license/mjcro/interfaces)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/mjcro/interfaces)
+
 Easy to adopt zero-dependency collection of helpful common interfaces,
 sugared with some consistent default methods.
+
+## Distribution
+
+```xml
+<dependency>
+    <groupId>io.github.mjcro</groupId>
+    <artifactId>interfaces</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
 
 ## Basic interfaces
 
