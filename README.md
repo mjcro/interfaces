@@ -8,6 +8,11 @@ Micro-J interfaces
 Easy to adopt zero-dependency collection of helpful common interfaces,
 sugared with some consistent default methods.
 
+## Motivation
+
+1. Interoperability. Utilizing this library increases chances of writing interoperable software.
+2. Sugar. This library contains some utility default method for interfaces it provides.
+
 ## Distribution
 
 ```xml
