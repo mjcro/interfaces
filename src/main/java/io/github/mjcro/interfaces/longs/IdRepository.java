@@ -19,6 +19,11 @@ public interface IdRepository<T extends WithId> {
      */
     List<T> findById(long[] ids);
 
+
+
+
+    /* Collection aliases block */
+
     /**
      * Fetches collection of entities with given identifiers.
      *
@@ -30,24 +35,45 @@ public interface IdRepository<T extends WithId> {
             return Collections.emptyList();
         }
 
-        return findById(ids.stream().mapToLong($ -> $).toArray());
+        return findById(ids.stream().mapToLong($ -> $).distinct().toArray());
     }
 
     /**
-     * Returns entry by it's IDs.
+     * Returns all entities for requested identifiers.
      *
-     * @param ids IDs to find
-     * @return List of entries
+     * @param ids Identifiers to find.
+     * @return List of identifier.
+     * @throws RuntimeException If one or more entities with requested identifiers missing.
      */
-    default List<T> mustFindByIds(long[] ids) {
+    default List<T> mustFindById(long[] ids) {
         List<T> results = findById(ids);
         if (results.size() != ids.length && results.size() != Arrays.stream(ids).distinct().count()) {
             Set<Long> requested = Arrays.stream(ids).boxed().collect(Collectors.toSet());
             requested.removeAll(results.stream().map(WithId::getId).collect(Collectors.toList()));
-            throw new RuntimeException();
+            throw this.exceptionForMissingEntities(requested.stream().mapToLong($ -> $).toArray());
         }
         return results;
     }
+
+    /**
+     * Returns all entities for requested identifiers.
+     *
+     * @param ids Identifiers to find.
+     * @return List of entities.
+     * @throws RuntimeException If one or more entities with requested identifiers missing.
+     */
+    default List<T> mustFindById(Collection<Long> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        return mustFindById(ids.stream().mapToLong($ -> $).toArray());
+    }
+
+
+
+
+    /* Single ID block */
 
     /**
      * Returns entity by its identifier.
@@ -56,49 +82,86 @@ public interface IdRepository<T extends WithId> {
      * @return Optional entity.
      */
     default Optional<T> findById(long id) {
-        List<T> results = findById(new long[]{id});
-        if (results.size() == 0) {
-            return Optional.empty();
-        } else if (results.size() > 1) {
-            throw new RuntimeException("Received multiple entries for single entry request");
-        } else if (results.get(0).getId() != id) {
-            throw new RuntimeException(String.format(
-                    "Fatal inconsistency. For ID %d received entry with ID %d",
-                    id,
-                    results.get(0).getId()
-            ));
-        }
-
-        return Optional.of(results.get(0));
+        return findById(new long[]{id}).stream().findFirst();
     }
 
     /**
-     * Returns entry by it's ID.
+     * Returns entity by its identifier.
      *
-     * @param id ID to locate
-     * @return Found entry
+     * @param id Identifier to find.
+     * @return Entity.
+     * @throws RuntimeException If entity not found.
      */
     default T mustFindById(long id) {
-        return findById(id).get();
+        Optional<T> found = findById(id);
+        if (found.isPresent()) {
+            return found.get();
+        }
+        throw exceptionForMissingEntities(new long[]{id});
     }
 
+
+
+
+    /* Maps block */
+
     /**
-     * Returns maps of entries classified by id.
+     * Returns map of entities classified by id.
      *
-     * @param ids Identifiers to search
-     * @return Data map
+     * @param ids Identifiers to find.
+     * @return Map of entities, where keys are entity ids.
      */
     default Map<Long, T> mapById(long[] ids) {
         return findById(ids).stream().collect(Collectors.toMap(WithId::getId, Function.identity()));
     }
 
     /**
-     * Returns maps of entries classified by id.
+     * Returns map of entities classified by id.
      *
-     * @param ids Identifiers to search
-     * @return Data map
+     * @param ids Identifiers to find.
+     * @return Map of entities, where keys are entity ids.
      */
-    default Map<Long, T> mapById(final Collection<Long> ids) {
-        return findById(ids).stream().collect(Collectors.toMap(WithId::getId, Function.identity()));
+    default Map<Long, T> mapById(Collection<Long> ids) {
+        return mapById(ids.stream().mapToLong($ -> $).toArray());
+    }
+
+    /**
+     * Returns map of entities classified by id.
+     *
+     * @param ids Identifiers to find.
+     * @return Map of entities, where keys are entity ids.
+     * @throws RuntimeException If one or more entities with requested identifiers missing.
+     */
+    default Map<Long, T> mustMapById(long[] ids) {
+        return mustFindById(ids).stream().collect(Collectors.toMap(WithId::getId, Function.identity()));
+    }
+
+    /**
+     * Returns map of entities classified by id.
+     *
+     * @param ids Identifiers to find.
+     * @return Map of entities, where keys are entity ids.
+     * @throws RuntimeException If one or more entities with requested identifiers missing.
+     */
+    default Map<Long, T> mustMapById(Collection<Long> ids) {
+        return mustMapById(ids.stream().mapToLong($ -> $).toArray());
+    }
+
+
+
+
+    /* Utility block */
+
+    /**
+     * Constructs exception to throw when one or more identifiers was not
+     * matched.
+     *
+     * @param ids Missing identifiers.
+     * @return Exception to throw.
+     */
+    default RuntimeException exceptionForMissingEntities(long[] ids) {
+        return ids.length == 1
+                ? new RuntimeException("Unable to find entity with id " + ids[0])
+                : new RuntimeException("Unable to find entities with ids " + Arrays.stream(ids).boxed().map(Object::toString).collect(Collectors.joining(",")));
     }
 }
