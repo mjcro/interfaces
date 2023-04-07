@@ -20,6 +20,16 @@ public interface WithType<T extends Enum<T>> {
     }
 
     /**
+     * Checks if entity type is not equal to given one.
+     *
+     * @param given State to compare with.
+     * @return True is types are not equal.
+     */
+    default boolean notHasType(T given) {
+        return !hasType(given);
+    }
+
+    /**
      * Checks if entity type is equal to given one.
      *
      * @param given State container to compare with.
@@ -30,6 +40,16 @@ public interface WithType<T extends Enum<T>> {
     }
 
     /**
+     * Checks if entity type is not equal to given one.
+     *
+     * @param given State container to compare with.
+     * @return True is types are not equal.
+     */
+    default boolean notHasType(WithType<T> given) {
+        return !hasType(given);
+    }
+
+    /**
      * Checks if entity's types contains in given types collection.
      *
      * @param collection Collection of types to match against.
@@ -37,5 +57,15 @@ public interface WithType<T extends Enum<T>> {
      */
     default boolean hasTypeOneOf(Collection<T> collection) {
         return collection != null && collection.contains(getType());
+    }
+
+    /**
+     * Checks if entity's types not contains in given types collection.
+     *
+     * @param collection Collection of types to match against.
+     * @return True if entity's type not contains in given collection.
+     */
+    default boolean notHasTypeOneOf(Collection<T> collection) {
+        return !hasTypeOneOf(collection);
     }
 }

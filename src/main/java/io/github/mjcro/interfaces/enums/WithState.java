@@ -20,6 +20,16 @@ public interface WithState<T extends Enum<T>> {
     }
 
     /**
+     * Checks if entity state is not equal to given one.
+     *
+     * @param given State to compare with.
+     * @return True is states are not equal.
+     */
+    default boolean notHasState(T given) {
+        return !hasState(given);
+    }
+
+    /**
      * Checks if entity state is equal to given one.
      *
      * @param given State container to compare with.
@@ -30,6 +40,16 @@ public interface WithState<T extends Enum<T>> {
     }
 
     /**
+     * Checks if entity state is not equal to given one.
+     *
+     * @param given State container to compare with.
+     * @return True is states are not equal.
+     */
+    default boolean notHasState(WithState<T> given) {
+        return !hasState(given);
+    }
+
+    /**
      * Checks if entity's state contains in given states collection.
      *
      * @param collection Collection of states to match against.
@@ -37,5 +57,15 @@ public interface WithState<T extends Enum<T>> {
      */
     default boolean hasStateOneOf(Collection<T> collection) {
         return collection != null && collection.contains(getState());
+    }
+
+    /**
+     * Checks if entity's state not contains in given states collection.
+     *
+     * @param collection Collection of states to match against.
+     * @return True if entity's state contains in given collection.
+     */
+    default boolean notHasStateOneOf(Collection<T> collection) {
+        return !hasStateOneOf(collection);
     }
 }
