@@ -1,9 +1,9 @@
 package io.github.mjcro.interfaces.integration.http.simple;
 
 import io.github.mjcro.interfaces.durations.WithElapsed;
-import io.github.mjcro.interfaces.integration.Envelope;
+import io.github.mjcro.interfaces.integration.Packet;
 
-public interface SimpleHttpResponse extends Envelope, WithElapsed {
+public interface SimpleHttpResponse extends Packet, WithElapsed {
     /**
      * @return HTTP response status code.
      */

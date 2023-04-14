@@ -8,7 +8,7 @@ import java.time.Duration;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public interface Telemetry<Req extends Envelope, Res extends Envelope & WithElapsed, Meta> extends WithOptionalException, WithCreatedAt {
+public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed, Meta> extends WithOptionalException, WithCreatedAt {
     /**
      * @return Request.
      */

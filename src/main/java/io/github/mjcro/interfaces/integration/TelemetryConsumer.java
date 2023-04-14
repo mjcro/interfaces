@@ -11,6 +11,6 @@ import java.util.function.Consumer;
  * @param <Res>  Response type.
  * @param <Meta> Metadata type.
  */
-public interface TelemetryConsumer<Req extends Envelope, Res extends Envelope & WithElapsed, Meta>
+public interface TelemetryConsumer<Req extends Packet, Res extends Packet & WithElapsed, Meta>
         extends Consumer<Telemetry<? extends Req, ? extends Res, ? extends Meta>> {
 }

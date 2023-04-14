@@ -11,7 +11,7 @@ import java.util.concurrent.Future;
  * @param <Res> Response type.
  * @param <T>   Future type.
  */
-public interface AsyncTransport<Req extends Envelope, Res extends Envelope & WithElapsed, T extends Future<Res>> {
+public interface AsyncTransport<Req extends Packet, Res extends Packet & WithElapsed, T extends Future<Res>> {
     /**
      * Sends request producing future with response.
      *

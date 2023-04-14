@@ -1,8 +1,8 @@
 package io.github.mjcro.interfaces.integration.http.simple;
 
-import io.github.mjcro.interfaces.integration.Envelope;
+import io.github.mjcro.interfaces.integration.Packet;
 
-public interface SimpleHttpRequest extends Envelope {
+public interface SimpleHttpRequest extends Packet {
     String
             GET = "GET",
             PUT = "PUT",
