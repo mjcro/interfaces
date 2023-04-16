@@ -1,8 +1,6 @@
 package io.github.mjcro.interfaces.integration;
 
-import io.github.mjcro.interfaces.durations.WithElapsed;
-
-public interface Transport<Req extends Packet, Res extends Packet & WithElapsed> {
+public interface Transport<Req, Res> {
     /**
      * Sends request producing response.
      *

@@ -1,7 +1,5 @@
 package io.github.mjcro.interfaces.integration;
 
-import io.github.mjcro.interfaces.durations.WithElapsed;
-
 import java.util.concurrent.Future;
 
 /**
@@ -11,7 +9,7 @@ import java.util.concurrent.Future;
  * @param <Res> Response type.
  * @param <T>   Future type.
  */
-public interface AsyncTransport<Req extends Packet, Res extends Packet & WithElapsed, T extends Future<Res>> {
+public interface AsyncTransport<Req, Res, T extends Future<Res>> {
     /**
      * Sends request producing future with response.
      *
