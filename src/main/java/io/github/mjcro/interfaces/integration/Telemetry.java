@@ -25,6 +25,13 @@ public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed,
     Optional<Res> getResponse();
 
     /**
+     * @return True if metadata is present.
+     */
+    default boolean hasMetadata() {
+        return getMetadata().isPresent();
+    }
+
+    /**
      * @return True if response is present.
      */
     default boolean hasResponse() {

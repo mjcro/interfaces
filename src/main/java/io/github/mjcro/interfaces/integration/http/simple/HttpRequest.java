@@ -4,7 +4,10 @@ import io.github.mjcro.interfaces.integration.Packet;
 
 import java.util.concurrent.Future;
 
-public interface SimpleHttpRequest extends Packet {
+/**
+ * HTTP request to send using HTTP transports.
+ */
+public interface HttpRequest extends Packet {
     String
             GET = "GET",
             PUT = "PUT",
@@ -28,7 +31,7 @@ public interface SimpleHttpRequest extends Packet {
      * @param transport Transport to use.
      * @return Response.
      */
-    default SimpleHttpResponse sendTo(SimpleHttpTransport transport) {
+    default HttpResponse sendTo(HttpTransport transport) {
         return transport.send(this);
     }
 
@@ -38,7 +41,7 @@ public interface SimpleHttpRequest extends Packet {
      * @param transport Transport to use.
      * @return Future response.
      */
-    default <T extends Future<SimpleHttpResponse>> T sendTo(SimpleHttpAsyncTransport<T> transport) {
+    default <T extends Future<HttpResponse>> T sendTo(HttpAsyncTransport<T> transport) {
         return transport.sendAsync(this);
     }
 }

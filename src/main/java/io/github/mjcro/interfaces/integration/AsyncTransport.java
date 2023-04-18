@@ -3,11 +3,14 @@ package io.github.mjcro.interfaces.integration;
 import java.util.concurrent.Future;
 
 /**
- * Integration transport (HTTP, TCP, etc.) working over futures.
+ * Defines transport able to send requests and receive responses,
+ * working over futures.
+ * Every implementation of this interface should be immutable and thread safe.
  *
  * @param <Req> Request type.
  * @param <Res> Response type.
- * @param <T>   Future type.
+ * @param <T>   Should be either {@link Future} or {@link java.util.concurrent.CompletableFuture},
+ *              or other implementors of {@link Future} interface.
  */
 public interface AsyncTransport<Req, Res, T extends Future<Res>> {
     /**
