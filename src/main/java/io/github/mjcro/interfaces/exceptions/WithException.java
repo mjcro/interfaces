@@ -4,5 +4,5 @@ public interface WithException {
     /**
      * @return Exception.
      */
-    Exception getException();
+    Throwable getException();
 }

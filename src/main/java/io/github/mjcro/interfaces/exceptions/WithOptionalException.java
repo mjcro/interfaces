@@ -6,7 +6,7 @@ public interface WithOptionalException {
     /**
      * @return Exception, optional.
      */
-    Optional<Exception> getException();
+    Optional<Throwable> getException();
 
     /**
      * @return True if exception present.
