@@ -13,7 +13,7 @@ public interface HttpRequestPreProcessor {
      * @param function Function.
      * @return HTTP request pre-processor.
      */
-    static HttpRequestPreProcessor ofFunction(Function<HttpRequest, HttpRequest> function) {
+    static HttpRequestPreProcessor fromFunction(Function<HttpRequest, HttpRequest> function) {
         Objects.requireNonNull(function, "function");
         return function::apply;
     }
@@ -24,7 +24,7 @@ public interface HttpRequestPreProcessor {
      * @param unaryOperator Unary operator.
      * @return HTTP request pre-processor.
      */
-    static HttpRequestPreProcessor ofUnary(UnaryOperator<HttpRequest> unaryOperator) {
+    static HttpRequestPreProcessor fromUnary(UnaryOperator<HttpRequest> unaryOperator) {
         Objects.requireNonNull(unaryOperator, "unaryOperator");
         return unaryOperator::apply;
     }
@@ -37,7 +37,7 @@ public interface HttpRequestPreProcessor {
      * @param consumer Consumer to pass HTTP request into.
      * @return HTTP request pre-processor.
      */
-    static HttpRequestPreProcessor ofConsumer(Consumer<HttpRequest> consumer) {
+    static HttpRequestPreProcessor fromConsumer(Consumer<HttpRequest> consumer) {
         Objects.requireNonNull(consumer, "consumer");
         return request -> {
             consumer.accept(request);
