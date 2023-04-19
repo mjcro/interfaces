@@ -12,6 +12,7 @@ import java.util.concurrent.Future;
  * @param <T>   Should be either {@link Future} or {@link java.util.concurrent.CompletableFuture},
  *              or other implementors of {@link Future} interface.
  */
+@FunctionalInterface
 public interface AsyncTransport<Req, Res, T extends Future<Res>> {
     /**
      * Sends request producing future with response.

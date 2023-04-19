@@ -7,6 +7,7 @@ package io.github.mjcro.interfaces.integration;
  * @param <Req> Request type.
  * @param <Res> Response type.
  */
+@FunctionalInterface
 public interface Transport<Req, Res> {
     /**
      * Sends request producing response.
