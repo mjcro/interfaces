@@ -3,8 +3,6 @@ package io.github.mjcro.interfaces.sql;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Objects;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 @FunctionalInterface
@@ -47,7 +45,7 @@ public interface ConnectionProvider {
      * @param <T>      Response type.
      * @return Function response.
      */
-    default <T> T invokeWithConnection(Function<Connection, T> function) throws SQLException {
+    default <T> T invokeWithConnection(ConnectionFunction<Connection, T> function) throws SQLException {
         try (Connection connection = getConnection()) {
             return function.apply(connection);
         }
@@ -59,7 +57,7 @@ public interface ConnectionProvider {
      *
      * @param consumer Consumer to invoke.
      */
-    default void invokeWithConnection(Consumer<Connection> consumer) throws SQLException {
+    default void invokeWithConnection(ConnectionConsumer<Connection> consumer) throws SQLException {
         this.invokeWithConnection(connection -> {
             consumer.accept(connection);
             return null;
