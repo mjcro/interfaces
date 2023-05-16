@@ -1,4 +1,4 @@
-package io.github.mjcro.interfaces.integration;
+package io.github.mjcro.interfaces.experimental.integration;
 
 import io.github.mjcro.interfaces.durations.WithElapsed;
 import io.github.mjcro.interfaces.exceptions.WithOptionalException;

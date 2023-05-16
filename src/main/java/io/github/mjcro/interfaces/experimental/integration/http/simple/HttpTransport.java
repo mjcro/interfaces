@@ -1,6 +1,6 @@
-package io.github.mjcro.interfaces.integration.http.simple;
+package io.github.mjcro.interfaces.experimental.integration.http.simple;
 
-import io.github.mjcro.interfaces.integration.Transport;
+import io.github.mjcro.interfaces.experimental.integration.Transport;
 
 /**
  * Synchronous HTTP transport.

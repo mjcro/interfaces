@@ -1,4 +1,4 @@
-package io.github.mjcro.interfaces.integration;
+package io.github.mjcro.interfaces.experimental.integration;
 
 /**
  * Defines transport able to send requests and receive responses.

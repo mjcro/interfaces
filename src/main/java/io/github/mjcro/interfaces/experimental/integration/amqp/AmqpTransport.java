@@ -1,6 +1,6 @@
-package io.github.mjcro.interfaces.integration.amqp;
+package io.github.mjcro.interfaces.experimental.integration.amqp;
 
-import io.github.mjcro.interfaces.integration.Transport;
+import io.github.mjcro.interfaces.experimental.integration.Transport;
 
 public interface AmqpTransport extends Transport<AmqpRequest, AmqpResponse> {
     /**

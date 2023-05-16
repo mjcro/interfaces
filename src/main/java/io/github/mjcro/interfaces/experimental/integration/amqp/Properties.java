@@ -1,4 +1,4 @@
-package io.github.mjcro.interfaces.integration.amqp;
+package io.github.mjcro.interfaces.experimental.integration.amqp;
 
 import java.util.Map;
 import java.util.Optional;

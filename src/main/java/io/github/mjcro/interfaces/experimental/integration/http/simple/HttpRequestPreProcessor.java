@@ -1,4 +1,4 @@
-package io.github.mjcro.interfaces.integration.http.simple;
+package io.github.mjcro.interfaces.experimental.integration.http.simple;
 
 import java.util.Objects;
 import java.util.function.Consumer;

@@ -1,4 +1,4 @@
-package io.github.mjcro.interfaces.integration;
+package io.github.mjcro.interfaces.experimental.integration;
 
 import java.util.concurrent.Future;
 

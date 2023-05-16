@@ -1,7 +1,7 @@
-package io.github.mjcro.interfaces.integration.http.simple;
+package io.github.mjcro.interfaces.experimental.integration.http.simple;
 
 import io.github.mjcro.interfaces.durations.WithElapsed;
-import io.github.mjcro.interfaces.integration.Packet;
+import io.github.mjcro.interfaces.experimental.integration.Packet;
 
 public interface HttpResponse extends Packet, WithElapsed {
     /**

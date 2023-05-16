@@ -1,6 +1,6 @@
-package io.github.mjcro.interfaces.integration.http.simple;
+package io.github.mjcro.interfaces.experimental.integration.http.simple;
 
-import io.github.mjcro.interfaces.integration.Packet;
+import io.github.mjcro.interfaces.experimental.integration.Packet;
 
 import java.util.concurrent.Future;
 
