@@ -86,9 +86,12 @@ exceptionals.
 
 - `ExceptionalBiConsumer<T, U>`
 - `ExceptionalBiFunction<T, U, R>`
+- `ExceptionalBiPredicate<T, U>`
 - `ExceptionalConsumer<T>`
 - `ExceptionalFunction<T, R>`
+- `ExceptionalPredicate<T>`
 - `ExceptionalSupplier<T>`
 - `ExceptionalTriConsumer<A, B, C>`
 - `ExceptionalTriFunction<A, B, C, R>`
+- `ExceptionalTriPredicate<A, B, C>`
 - `ExceptionalUnaryOperator<T>`
