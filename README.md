@@ -74,6 +74,12 @@ sugared with some consistent default methods.
 
 ## Functional interfaces
 
+- `TriConsumer<A, B, C>` - like `BiConsumer` but with three arguments
+- `TriFunction<A, B, C, R>` - like `BiFunction` but with three arguments
+- `TriPredicate<A, B, C>` - like `BiPredicate` but with three arguments
+
+### Exceptional
+
 Set of interfaces mirroring `java.util.function.*` but able to throw checked exceptions.
 All of them are `@FunctionalInterface`, all have `from*` static methods to convert plain Java functions into
 exceptionals.
@@ -83,4 +89,6 @@ exceptionals.
 - `ExceptionalConsumer<T>`
 - `ExceptionalFunction<T, R>`
 - `ExceptionalSupplier<T>`
+- `ExceptionalTriConsumer<A, B, C>`
+- `ExceptionalTriFunction<A, B, C, R>`
 - `ExceptionalUnaryOperator<T>`
