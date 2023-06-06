@@ -71,3 +71,16 @@ sugared with some consistent default methods.
 - Any interface with `get*` returning `Optional<?>`:
     - Has corresponding `mustGet*` getter
     - Has corresponding `has*` method with no arguments
+
+## Functional interfaces
+
+Set of interfaces mirroring `java.util.function.*` but able to throw checked exceptions.
+All of them are `@FunctionalInterface`, all have `from*` static methods to convert plain Java functions into
+exceptionals.
+
+- `ExceptionalBiConsumer<T, U>`
+- `ExceptionalBiFunction<T, U, R>`
+- `ExceptionalConsumer<T>`
+- `ExceptionalFunction<T, R>`
+- `ExceptionalSupplier<T>`
+- `ExceptionalUnaryOperator<T>`
