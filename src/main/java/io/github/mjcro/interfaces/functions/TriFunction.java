@@ -1,4 +1,4 @@
-package io.github.mjcro.interfaces.function;
+package io.github.mjcro.interfaces.functions;
 
 /**
  * Extension of {@link java.util.function.BiFunction} design but with three arguments.

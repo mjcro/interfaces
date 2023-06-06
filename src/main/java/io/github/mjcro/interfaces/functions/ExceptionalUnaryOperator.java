@@ -1,4 +1,4 @@
-package io.github.mjcro.interfaces.function;
+package io.github.mjcro.interfaces.functions;
 
 import java.util.Objects;
 import java.util.function.UnaryOperator;
