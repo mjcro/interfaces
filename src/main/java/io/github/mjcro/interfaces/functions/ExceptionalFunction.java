@@ -8,7 +8,7 @@ import java.util.function.Function;
  */
 @FunctionalInterface
 public interface ExceptionalFunction<T, R> {
-    static <T, R> ExceptionalFunction<T, R> ofFunction(Function<T, R> function) {
+    static <T, R> ExceptionalFunction<T, R> fromFunction(Function<T, R> function) {
         Objects.requireNonNull(function, "function");
         return function::apply;
     }

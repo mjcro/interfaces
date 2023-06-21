@@ -9,7 +9,7 @@ import java.util.function.Function;
  */
 @FunctionalInterface
 public interface ExceptionalBiFunction<T, U, R> {
-    static <T, U, R> ExceptionalBiFunction<T, U, R> ofBiFunction(BiFunction<T, U, R> biFunction) {
+    static <T, U, R> ExceptionalBiFunction<T, U, R> fromBiFunction(BiFunction<T, U, R> biFunction) {
         Objects.requireNonNull(biFunction, "biFunction");
         return biFunction::apply;
     }
