@@ -1,6 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
 import java.util.Objects;
+import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 
 /**
@@ -13,5 +14,14 @@ public interface ExceptionalSupplier<T> {
         return supplier::get;
     }
 
+    static <T> ExceptionalSupplier<T> fromCallable(Callable<T> callable) {
+        Objects.requireNonNull(callable, "callable");
+        return callable::call;
+    }
+
     T get() throws Exception;
+
+    default Callable<T> toCallable() {
+        return this::get;
+    }
 }
