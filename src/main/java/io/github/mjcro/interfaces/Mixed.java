@@ -2,7 +2,6 @@ package io.github.mjcro.interfaces;
 
 import io.github.mjcro.interfaces.booleans.WithEmpty;
 
-import java.util.Collection;
 import java.util.Optional;
 
 /**
@@ -13,9 +12,19 @@ public interface Mixed extends WithEmpty {
     /**
      * Returns raw unprocessed value from mixed.
      *
-     * @return Value, nullable.
+     * @return Optional value.
      */
-    Object get();
+    Optional<Object> get();
+
+    @Override
+    default boolean isEmpty() {
+        return !isNotEmpty();
+    }
+
+    @Override
+    default boolean isNotEmpty() {
+        return get().isPresent();
+    }
 
     /**
      * Converts stored in mixed container value.
@@ -24,14 +33,6 @@ public interface Mixed extends WithEmpty {
      * @return Optional converted value.
      */
     <T> Optional<T> getAs(Class<T> clazz);
-
-    /**
-     * Converts stored in mixed container value.
-     *
-     * @param clazz Class to convert to.
-     * @return Collection of items.
-     */
-    <T> Collection<T> getAsCollection(Class<T> clazz);
 
     /**
      * Converts stored in mixed container value.
@@ -58,12 +59,5 @@ public interface Mixed extends WithEmpty {
     default double mustGetAsDouble() { return mustGetAs(Double.class); }
     default float mustGetAsFloat() { return mustGetAs(Float.class); }
     default boolean mustGetAsBoolean() { return mustGetAs(Boolean.class); }
-
-    default Collection<String> getAsStringCollection() { return getAsCollection(String.class); }
-    default Collection<Long> getAsLongCollection() { return getAsCollection(Long.class); }
-    default Collection<Integer> getAsIntegerCollection() { return getAsCollection(Integer.class); }
-    default Collection<Double> getAsDoubleCollection() { return getAsCollection(Double.class); }
-    default Collection<Float> getAsFloatCollection() { return getAsCollection(Float.class); }
-    default Collection<Boolean> getAsBooleanCollection() { return getAsCollection(Boolean.class); }
     // @formatter:on
 }
