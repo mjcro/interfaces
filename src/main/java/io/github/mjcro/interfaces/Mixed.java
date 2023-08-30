@@ -18,12 +18,7 @@ public interface Mixed extends WithEmpty {
 
     @Override
     default boolean isEmpty() {
-        return !isNotEmpty();
-    }
-
-    @Override
-    default boolean isNotEmpty() {
-        return get().isPresent();
+        return !get().isPresent();
     }
 
     /**
