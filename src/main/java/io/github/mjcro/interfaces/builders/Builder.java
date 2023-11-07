@@ -1,4 +1,4 @@
-package io.github.mjcro.interfaces;
+package io.github.mjcro.interfaces.builders;
 
 /**
  * Generic builder.
