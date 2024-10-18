@@ -2,31 +2,39 @@ package io.github.mjcro.interfaces.instants;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 
-public interface WithModifiedAt {
+public interface WithModifiedAt<T extends TemporalAccessor> {
     /**
      * @return Entity modification time.
      */
-    Instant getModifiedAt();
+    T getModifiedAt();
+
+    /**
+     * @return Entity modification time as instant.
+     */
+    default Instant getModifiedAtInstant() {
+        return Instant.from(getModifiedAt());
+    }
 
     /**
      * @return Entity modification time in epoch seconds.
      */
     default long getModifiedAtEpochSeconds() {
-        return getModifiedAt().getEpochSecond();
+        return getModifiedAtInstant().getEpochSecond();
     }
 
     /**
      * @return Entity modification time in epoch milliseconds.
      */
     default long getModifiedAtEpochMilli() {
-        return getModifiedAt().toEpochMilli();
+        return getModifiedAtInstant().toEpochMilli();
     }
 
     /**
      * @return Entity modification time in ISO_INSTANT string representation.
      */
     default String formatModifiedAtISOInstant() {
-        return DateTimeFormatter.ISO_INSTANT.format(getModifiedAt());
+        return DateTimeFormatter.ISO_INSTANT.format(getModifiedAtInstant());
     }
 }

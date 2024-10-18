@@ -2,14 +2,22 @@ package io.github.mjcro.interfaces.instants;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public interface WithOptionalExpiryAt {
+public interface WithOptionalExpiryAt<T extends TemporalAccessor> {
     /**
      * @return Entity expiration time.
      */
-    Optional<Instant> getExpiryAt();
+    Optional<T> getExpiryAt();
+
+    /**
+     * @return Entity expiration time as instant.
+     */
+    default Optional<Instant> getExpiryAtInstant() {
+        return getExpiryAt().map(Instant::from);
+    }
 
     /**
      * @return True if entity has expiration time.
@@ -23,7 +31,7 @@ public interface WithOptionalExpiryAt {
      * @throws NoSuchElementException If no id present.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
-    default Instant mustGetExpiryAt() {
+    default T mustGetExpiryAt() {
         return getExpiryAt().get();
     }
 
@@ -31,20 +39,20 @@ public interface WithOptionalExpiryAt {
      * @return Entity expiration time in epoch seconds.
      */
     default Optional<Long> getExpiryAtEpochSeconds() {
-        return getExpiryAt().map(Instant::getEpochSecond);
+        return getExpiryAtInstant().map(Instant::getEpochSecond);
     }
 
     /**
      * @return Entity expiration time in epoch milliseconds.
      */
     default Optional<Long> getExpiryAtEpochMilli() {
-        return getExpiryAt().map(Instant::toEpochMilli);
+        return getExpiryAtInstant().map(Instant::toEpochMilli);
     }
 
     /**
      * @return Entity expiration time in ISO_INSTANT string representation.
      */
     default Optional<String> formatExpiryAtISOInstant() {
-        return getExpiryAt().map(DateTimeFormatter.ISO_INSTANT::format);
+        return getExpiryAtInstant().map(DateTimeFormatter.ISO_INSTANT::format);
     }
 }

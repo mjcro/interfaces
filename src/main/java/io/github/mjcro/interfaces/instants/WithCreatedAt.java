@@ -2,31 +2,39 @@ package io.github.mjcro.interfaces.instants;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 
-public interface WithCreatedAt {
+public interface WithCreatedAt<T extends TemporalAccessor> {
     /**
      * @return Entity creation time.
      */
-    Instant getCreatedAt();
+    T getCreatedAt();
+
+    /**
+     * @return Entity creation time as instant.
+     */
+    default Instant getCreatedAtInstant() {
+        return Instant.from(getCreatedAt());
+    }
 
     /**
      * @return Entity creation time in epoch seconds.
      */
     default long getCreatedAtEpochSeconds() {
-        return getCreatedAt().getEpochSecond();
+        return getCreatedAtInstant().getEpochSecond();
     }
 
     /**
      * @return Entity creation time in epoch milliseconds.
      */
     default long getCreatedAtEpochMilli() {
-        return getCreatedAt().toEpochMilli();
+        return getCreatedAtInstant().toEpochMilli();
     }
 
     /**
      * @return Entity creation time in ISO_INSTANT string representation.
      */
     default String formatCreatedAtISOInstant() {
-        return DateTimeFormatter.ISO_INSTANT.format(getCreatedAt());
+        return DateTimeFormatter.ISO_INSTANT.format(getCreatedAtInstant());
     }
 }

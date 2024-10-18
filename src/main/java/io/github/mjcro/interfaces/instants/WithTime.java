@@ -2,31 +2,39 @@ package io.github.mjcro.interfaces.instants;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 
-public interface WithTime {
+public interface WithTime<T extends TemporalAccessor> {
     /**
      * @return Entity time.
      */
-    Instant getTime();
+    T getTime();
+
+    /**
+     * @return Entity time as instant.
+     */
+    default Instant getTimeInstant() {
+        return Instant.from(getTime());
+    }
 
     /**
      * @return Entity time in epoch seconds.
      */
     default long getTimeEpochSeconds() {
-        return getTime().getEpochSecond();
+        return getTimeInstant().getEpochSecond();
     }
 
     /**
      * @return Entity time in epoch milliseconds.
      */
     default long getTimeEpochMilli() {
-        return getTime().toEpochMilli();
+        return getTimeInstant().toEpochMilli();
     }
 
     /**
      * @return Entity time in ISO_INSTANT string representation.
      */
     default String formatTimeISOInstant() {
-        return DateTimeFormatter.ISO_INSTANT.format(getTime());
+        return DateTimeFormatter.ISO_INSTANT.format(getTimeInstant());
     }
 }

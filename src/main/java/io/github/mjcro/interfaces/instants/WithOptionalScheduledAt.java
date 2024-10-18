@@ -2,14 +2,22 @@ package io.github.mjcro.interfaces.instants;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public interface WithOptionalScheduledAt {
+public interface WithOptionalScheduledAt<T extends TemporalAccessor> {
     /**
      * @return Entity schedule time.
      */
-    Optional<Instant> getScheduledAt();
+    Optional<T> getScheduledAt();
+
+    /**
+     * @return Entity schedule time as instant.
+     */
+    default Optional<Instant> getScheduledAtInstant() {
+        return getScheduledAt().map(Instant::from);
+    }
 
     /**
      * @return True if entity has schedule time.
@@ -23,7 +31,7 @@ public interface WithOptionalScheduledAt {
      * @throws NoSuchElementException If no id present.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
-    default Instant mustGetScheduledAt() {
+    default T mustGetScheduledAt() {
         return getScheduledAt().get();
     }
 
@@ -31,20 +39,20 @@ public interface WithOptionalScheduledAt {
      * @return Entity schedule time in epoch seconds.
      */
     default Optional<Long> getScheduledAtEpochSeconds() {
-        return getScheduledAt().map(Instant::getEpochSecond);
+        return getScheduledAtInstant().map(Instant::getEpochSecond);
     }
 
     /**
      * @return Entity schedule time in epoch milliseconds.
      */
     default Optional<Long> getScheduledAtEpochMilli() {
-        return getScheduledAt().map(Instant::toEpochMilli);
+        return getScheduledAtInstant().map(Instant::toEpochMilli);
     }
 
     /**
      * @return Entity schedule time in ISO_INSTANT string representation.
      */
     default Optional<String> formatScheduledAtISOInstant() {
-        return getScheduledAt().map(DateTimeFormatter.ISO_INSTANT::format);
+        return getScheduledAtInstant().map(DateTimeFormatter.ISO_INSTANT::format);
     }
 }

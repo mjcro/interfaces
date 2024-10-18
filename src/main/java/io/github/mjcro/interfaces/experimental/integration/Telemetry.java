@@ -5,10 +5,11 @@ import io.github.mjcro.interfaces.exceptions.WithOptionalException;
 import io.github.mjcro.interfaces.instants.WithCreatedAt;
 
 import java.time.Duration;
+import java.time.temporal.TemporalAccessor;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed, Meta> extends WithOptionalException, WithCreatedAt {
+public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed, Meta, T extends TemporalAccessor> extends WithOptionalException, WithCreatedAt<T> {
     /**
      * @return Request.
      */
@@ -51,7 +52,7 @@ public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed,
      *
      * @param consumer Telemetry consumer.
      */
-    default void sendTo(Consumer<Telemetry<? super Req, ? super Res, ? super Meta>> consumer) {
+    default void sendTo(Consumer<Telemetry<? super Req, ? super Res, ? super Meta, ?>> consumer) {
         if (consumer != null) {
             consumer.accept(this);
         }

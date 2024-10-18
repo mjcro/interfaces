@@ -2,14 +2,22 @@ package io.github.mjcro.interfaces.instants;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public interface WithOptionalUpdatedAt {
+public interface WithOptionalUpdatedAt<T extends TemporalAccessor> {
     /**
      * @return Entity modification time.
      */
-    Optional<Instant> getUpdatedAt();
+    Optional<T> getUpdatedAt();
+
+    /**
+     * @return Entity modification time as instant.
+     */
+    default Optional<Instant> getUpdatedAtInstant() {
+        return getUpdatedAt().map(Instant::from);
+    }
 
     /**
      * @return True if entity has modification time.
@@ -23,7 +31,7 @@ public interface WithOptionalUpdatedAt {
      * @throws NoSuchElementException If no id present.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
-    default Instant mustGetUpdatedAt() {
+    default T mustGetUpdatedAt() {
         return getUpdatedAt().get();
     }
 
@@ -31,20 +39,20 @@ public interface WithOptionalUpdatedAt {
      * @return Entity modification time in epoch seconds.
      */
     default Optional<Long> getUpdatedAtEpochSeconds() {
-        return getUpdatedAt().map(Instant::getEpochSecond);
+        return getUpdatedAtInstant().map(Instant::getEpochSecond);
     }
 
     /**
      * @return Entity modification time in epoch milliseconds.
      */
     default Optional<Long> getUpdatedAtEpochMilli() {
-        return getUpdatedAt().map(Instant::toEpochMilli);
+        return getUpdatedAtInstant().map(Instant::toEpochMilli);
     }
 
     /**
      * @return Entity modification time in ISO_INSTANT string representation.
      */
     default Optional<String> formatUpdatedAtISOInstant() {
-        return getUpdatedAt().map(DateTimeFormatter.ISO_INSTANT::format);
+        return getUpdatedAtInstant().map(DateTimeFormatter.ISO_INSTANT::format);
     }
 }
