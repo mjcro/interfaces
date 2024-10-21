@@ -8,7 +8,7 @@ public interface WithExpiryAt<T extends TemporalAccessor> {
     /**
      * @return Entity expiration time.
      */
-    Instant getExpiryAt();
+    T getExpiryAt();
 
     /**
      * @return Entity expiration time as instant.
