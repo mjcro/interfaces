@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces.experimental.integration.amqp;
 
+import io.github.mjcro.interfaces.experimental.integration.Option;
 import io.github.mjcro.interfaces.experimental.integration.Packet;
 
 import java.util.Optional;
@@ -24,18 +25,20 @@ public interface AmqpRequest extends Packet {
      * Sends this request using given transport.
      *
      * @param transport Transport to use.
+     * @param options   Transport options.
      * @return Response.
      */
-    default AmqpResponse sendTo(AmqpTransport transport) {
-        return transport.send(this);
+    default AmqpResponse sendTo(AmqpTransport transport, Option... options) {
+        return transport.send(this, options);
     }
 
     /**
      * Publishes request to given transport.
      *
      * @param transport Transport to use.
+     * @param options   Transport options.
      */
-    default void publishTo(AmqpTransport transport) {
-        transport.publish(this);
+    default void publishTo(AmqpTransport transport, Option... options) {
+        transport.publish(this, options);
     }
 }

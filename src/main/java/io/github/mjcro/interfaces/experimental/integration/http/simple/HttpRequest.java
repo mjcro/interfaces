@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces.experimental.integration.http.simple;
 
+import io.github.mjcro.interfaces.experimental.integration.Option;
 import io.github.mjcro.interfaces.experimental.integration.Packet;
 
 import java.util.concurrent.Future;
@@ -29,19 +30,21 @@ public interface HttpRequest extends Packet {
      * Sends current request to using transport.
      *
      * @param transport Transport to use.
+     * @param options   Transport options.
      * @return Response.
      */
-    default HttpResponse sendTo(HttpTransport transport) {
-        return transport.send(this);
+    default HttpResponse sendTo(HttpTransport transport, Option... options) {
+        return transport.send(this, options);
     }
 
     /**
      * Sends current request to using async transport transport.
      *
      * @param transport Transport to use.
+     * @param options   Transport options.
      * @return Future response.
      */
-    default <T extends Future<HttpResponse>> T sendTo(HttpAsyncTransport<T> transport) {
+    default <T extends Future<HttpResponse>> T sendTo(HttpAsyncTransport<T> transport, Option... options) {
         return transport.sendAsync(this);
     }
 }

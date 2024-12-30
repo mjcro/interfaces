@@ -17,8 +17,9 @@ public interface AsyncTransport<Req, Res, T extends Future<Res>> {
     /**
      * Sends request producing future with response.
      *
-     * @param req Request to send.
+     * @param req     Request to send.
+     * @param options Transport options.
      * @return Response future.
      */
-    T sendAsync(Req req);
+    T sendAsync(Req req, Option... options);
 }

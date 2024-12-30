@@ -12,8 +12,9 @@ public interface Transport<Req, Res> {
     /**
      * Sends request producing response.
      *
-     * @param req Request to send.
+     * @param req     Request to send.
+     * @param options Transport options.
      * @return Response.
      */
-    Res send(Req req);
+    Res send(Req req, Option... options);
 }
