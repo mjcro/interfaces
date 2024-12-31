@@ -2,8 +2,9 @@ package io.github.mjcro.interfaces.experimental.integration.http.simple;
 
 import io.github.mjcro.interfaces.durations.WithElapsed;
 import io.github.mjcro.interfaces.experimental.integration.Packet;
+import io.github.mjcro.interfaces.strings.WithUrl;
 
-public interface HttpResponse extends Packet, WithElapsed {
+public interface HttpResponse extends Packet, WithElapsed, WithUrl {
     /**
      * @return HTTP response status code.
      */

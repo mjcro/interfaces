@@ -2,13 +2,14 @@ package io.github.mjcro.interfaces.experimental.integration.http.simple;
 
 import io.github.mjcro.interfaces.experimental.integration.Option;
 import io.github.mjcro.interfaces.experimental.integration.Packet;
+import io.github.mjcro.interfaces.strings.WithUrl;
 
 import java.util.concurrent.Future;
 
 /**
  * HTTP request to send using HTTP transports.
  */
-public interface HttpRequest extends Packet {
+public interface HttpRequest extends Packet, WithUrl {
     String
             GET = "GET",
             PUT = "PUT",
@@ -20,11 +21,6 @@ public interface HttpRequest extends Packet {
      * @return HTTP request method.
      */
     String getMethod();
-
-    /**
-     * @return URL.
-     */
-    String getURL();
 
     /**
      * Sends current request to using transport.
