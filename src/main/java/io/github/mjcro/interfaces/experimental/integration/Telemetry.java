@@ -40,6 +40,15 @@ public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed,
     }
 
     /**
+     * Invokes consumer if telemetry contains response.
+     *
+     * @param consumer Response consumer.
+     */
+    default void ifHasResponse(Consumer<? super Res> consumer) {
+        getResponse().ifPresent(consumer);
+    }
+
+    /**
      * @return Elapsed time.
      */
     default Optional<Duration> getElapsed() {
@@ -52,7 +61,7 @@ public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed,
      *
      * @param consumer Telemetry consumer.
      */
-    default void sendTo(Consumer<Telemetry<? super Req, ? super Res, ? super Meta, ?>> consumer) {
+    default void sendTo(Consumer<? super Telemetry<Req, Res, Meta, T>> consumer) {
         if (consumer != null) {
             consumer.accept(this);
         }

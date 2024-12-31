@@ -13,5 +13,5 @@ import java.util.function.Consumer;
  * @param <Meta> Metadata type.
  */
 public interface TelemetryConsumer<Req extends Packet, Res extends Packet & WithElapsed, Meta, T extends TemporalAccessor>
-        extends Consumer<Telemetry<? extends Req, ? extends Res, ? extends Meta, T>> {
+        extends Consumer<Telemetry<? extends Req, ? extends Res, ? extends Meta, ? extends T>> {
 }
