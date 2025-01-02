@@ -10,7 +10,12 @@ public interface DistributedLockExecutor<T> {
      * @param lockingKey Lock key to obtain.
      * @param runnable   Runnable to run when lock is obtained.
      */
-    void executeLocked(T lockingKey, Runnable runnable);
+    default void executeLocked(T lockingKey, Runnable runnable) {
+        executeLocked(lockingKey, () -> {
+            runnable.run();
+            return null;
+        });
+    }
 
     /**
      * Executes given supplier only when exclusive
