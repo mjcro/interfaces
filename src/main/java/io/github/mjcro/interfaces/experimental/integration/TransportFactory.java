@@ -5,14 +5,13 @@ package io.github.mjcro.interfaces.experimental.integration;
  *
  * @param <Req> Request type.
  * @param <Res> Response type.
- * @param <T>   Transport type.
  */
-public interface TransportFactory<Req, Res, T extends Transport<Req, Res>> {
+public interface TransportFactory<Req, Res> {
     /**
      * Constructs transport instance.
      *
      * @param options Addition transport options.
      * @return Transport instance.
      */
-    T getTransport(Option... options);
+    Transport<Req, Res> getTransport(Option... options);
 }
