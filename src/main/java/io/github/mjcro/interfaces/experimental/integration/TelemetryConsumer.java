@@ -2,7 +2,7 @@ package io.github.mjcro.interfaces.experimental.integration;
 
 import io.github.mjcro.interfaces.durations.WithElapsed;
 
-import java.time.temporal.TemporalAccessor;
+import java.time.temporal.Temporal;
 import java.util.function.Consumer;
 
 /**
@@ -12,6 +12,6 @@ import java.util.function.Consumer;
  * @param <Res>  Response type.
  * @param <Meta> Metadata type.
  */
-public interface TelemetryConsumer<Req extends Packet, Res extends Packet & WithElapsed, Meta, T extends TemporalAccessor>
+public interface TelemetryConsumer<Req extends Packet, Res extends Packet & WithElapsed, Meta, T extends Temporal>
         extends Consumer<Telemetry<? extends Req, ? extends Res, ? extends Meta, ? extends T>> {
 }

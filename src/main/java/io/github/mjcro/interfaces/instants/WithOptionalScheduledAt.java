@@ -2,11 +2,11 @@ package io.github.mjcro.interfaces.instants;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
+import java.time.temporal.Temporal;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public interface WithOptionalScheduledAt<T extends TemporalAccessor> {
+public interface WithOptionalScheduledAt<T extends Temporal> {
     /**
      * @return Entity schedule time.
      */

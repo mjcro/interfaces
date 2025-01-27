@@ -2,9 +2,9 @@ package io.github.mjcro.interfaces.instants;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
+import java.time.temporal.Temporal;
 
-public interface WithCreatedAt<T extends TemporalAccessor> {
+public interface WithCreatedAt<T extends Temporal> {
     /**
      * @return Entity creation time.
      */

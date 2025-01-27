@@ -5,11 +5,11 @@ import io.github.mjcro.interfaces.exceptions.WithOptionalException;
 import io.github.mjcro.interfaces.instants.WithCreatedAt;
 
 import java.time.Duration;
-import java.time.temporal.TemporalAccessor;
+import java.time.temporal.Temporal;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed, Meta, T extends TemporalAccessor> extends WithOptionalException, WithCreatedAt<T> {
+public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed, Meta, T extends Temporal> extends WithOptionalException, WithCreatedAt<T> {
     /**
      * @return Request.
      */

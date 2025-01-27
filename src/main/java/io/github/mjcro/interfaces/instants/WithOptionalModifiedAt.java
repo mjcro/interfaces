@@ -2,11 +2,11 @@ package io.github.mjcro.interfaces.instants;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
+import java.time.temporal.Temporal;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public interface WithOptionalModifiedAt<T extends TemporalAccessor> {
+public interface WithOptionalModifiedAt<T extends Temporal> {
     /**
      * @return Entity modification time.
      */
