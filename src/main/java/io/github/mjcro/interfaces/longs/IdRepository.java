@@ -49,7 +49,7 @@ public interface IdRepository<T extends WithId> {
         List<T> results = findById(ids);
         if (results.size() != ids.length && results.size() != Arrays.stream(ids).distinct().count()) {
             Set<Long> requested = Arrays.stream(ids).boxed().collect(Collectors.toSet());
-            requested.removeAll(results.stream().map(WithId::getId).collect(Collectors.toList()));
+            results.stream().map(WithId::getId).collect(Collectors.toList()).forEach(requested::remove);
             throw this.exceptionForMissingEntities(requested.stream().mapToLong($ -> $).toArray());
         }
         return results;
