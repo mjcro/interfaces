@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.strings;
 
+/**
+ * Mixin interface for entities that carry a text body as a {@link String}.
+ */
 public interface WithText {
     /**
      * @return Entity text.

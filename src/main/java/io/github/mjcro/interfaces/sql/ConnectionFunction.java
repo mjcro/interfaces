@@ -22,5 +22,12 @@ public interface ConnectionFunction<C extends Connection, R> {
         return function::apply;
     }
 
+    /**
+     * Applies this function to the given connection.
+     *
+     * @param c Database connection.
+     * @return Result of the function.
+     * @throws SQLException If a database error occurs.
+     */
     R apply(C c) throws SQLException;
 }

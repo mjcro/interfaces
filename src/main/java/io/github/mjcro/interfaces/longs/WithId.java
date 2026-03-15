@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.longs;
 
+/**
+ * Mixin interface for entities that carry a {@code long} identifier.
+ */
 public interface WithId {
     /**
      * @return Identifier of entity

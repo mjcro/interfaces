@@ -6,6 +6,11 @@ import java.time.temporal.Temporal;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+/**
+ * Mixin interface for entities that optionally have a scheduled execution or activation time.
+ *
+ * @param <T> Temporal type used to represent the scheduled timestamp.
+ */
 public interface WithOptionalScheduledAt<T extends Temporal> {
     /**
      * @return Entity schedule time.
@@ -28,7 +33,7 @@ public interface WithOptionalScheduledAt<T extends Temporal> {
 
     /**
      * @return Entity schedule time.
-     * @throws NoSuchElementException If no id present.
+     * @throws NoSuchElementException If no scheduled time present.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     default T mustGetScheduledAt() {

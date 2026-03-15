@@ -5,6 +5,10 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+/**
+ * Provides database {@link Connection} instances, with support for invoking consumers and functions
+ * that operate on a connection and automatically close it afterward.
+ */
 @FunctionalInterface
 public interface ConnectionProvider {
     /**

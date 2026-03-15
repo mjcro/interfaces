@@ -4,6 +4,11 @@ import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
 
+/**
+ * Mixin interface for entities that track their creation time.
+ *
+ * @param <T> Temporal type used to represent the creation timestamp.
+ */
 public interface WithCreatedAt<T extends Temporal> {
     /**
      * @return Entity creation time.

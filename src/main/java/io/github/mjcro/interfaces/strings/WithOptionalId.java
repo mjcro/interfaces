@@ -3,6 +3,9 @@ package io.github.mjcro.interfaces.strings;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+/**
+ * Mixin interface for entities that optionally carry a {@link String} identifier.
+ */
 public interface WithOptionalId {
     /**
      * @return Identifier of entity

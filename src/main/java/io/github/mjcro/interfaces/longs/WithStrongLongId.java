@@ -2,6 +2,11 @@ package io.github.mjcro.interfaces.longs;
 
 import java.util.Objects;
 
+/**
+ * Mixin interface for entities that carry a strong-typed long identifier.
+ *
+ * @param <I> Strong identifier type, must implement {@link StrongLongId}.
+ */
 public interface WithStrongLongId<I extends StrongLongId> {
     /**
      * @return Identifier of entity

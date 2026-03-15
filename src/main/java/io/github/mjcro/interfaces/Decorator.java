@@ -2,15 +2,17 @@ package io.github.mjcro.interfaces;
 
 /**
  * Generic interface for decorators.
+ *
+ * @param <T> The type being decorated.
  */
 public interface Decorator<T> {
     /**
-     * @return Object been decorated.
+     * @return Object being decorated.
      */
     T getDecorated();
 
     /**
-     * @return Objects been decorated, recursively, if it's also a decorator.
+     * @return Object being decorated, recursively unwrapped if it is also a decorator.
      */
     @SuppressWarnings("unchecked")
     default T getDecoratedRoot() {

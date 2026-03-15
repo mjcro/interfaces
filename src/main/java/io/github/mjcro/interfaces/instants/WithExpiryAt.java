@@ -5,6 +5,11 @@ import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
 
+/**
+ * Mixin interface for entities that have a mandatory expiration time.
+ *
+ * @param <T> Temporal type used to represent the expiration timestamp.
+ */
 public interface WithExpiryAt<T extends Temporal> {
     /**
      * @return Entity expiration time.

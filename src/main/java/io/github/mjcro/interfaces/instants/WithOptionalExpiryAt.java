@@ -7,6 +7,11 @@ import java.time.temporal.Temporal;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+/**
+ * Mixin interface for entities that optionally have an expiration time.
+ *
+ * @param <T> Temporal type used to represent the expiration timestamp.
+ */
 public interface WithOptionalExpiryAt<T extends Temporal> {
     /**
      * @return Entity expiration time.
@@ -29,7 +34,7 @@ public interface WithOptionalExpiryAt<T extends Temporal> {
 
     /**
      * @return Entity expiration time.
-     * @throws NoSuchElementException If no id present.
+     * @throws NoSuchElementException If no expiration time present.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     default T mustGetExpiryAt() {

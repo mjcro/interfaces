@@ -1,8 +1,11 @@
 package io.github.mjcro.interfaces.strings;
 
+/**
+ * Mixin interface for entities that carry a {@link String} identifier.
+ */
 public interface WithId {
     /**
-     * @return Identifier of entity, should be not null.
+     * @return Identifier of entity.
      */
     String getId();
 

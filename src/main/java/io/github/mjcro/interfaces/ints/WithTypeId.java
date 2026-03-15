@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.ints;
 
+/**
+ * Mixin interface for entities that carry an {@code int} type identifier.
+ */
 public interface WithTypeId {
     /**
      * @return Type identifier.

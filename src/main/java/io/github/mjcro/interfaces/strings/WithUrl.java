@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.strings;
 
+/**
+ * Mixin interface for entities that carry a URL as a {@link String}.
+ */
 public interface WithUrl {
     /**
      * @return Entity URL.

@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.strings;
 
+/**
+ * Mixin interface for entities that carry a {@link String} name.
+ */
 public interface WithName {
     /**
      * @return Entity name.

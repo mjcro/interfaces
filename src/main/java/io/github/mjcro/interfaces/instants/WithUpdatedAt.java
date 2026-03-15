@@ -4,6 +4,11 @@ import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
 
+/**
+ * Mixin interface for entities that track the time they were last updated.
+ *
+ * @param <T> Temporal type used to represent the update timestamp.
+ */
 public interface WithUpdatedAt<T extends Temporal> {
     /**
      * @return Entity modification time.

@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.ints;
 
+/**
+ * Mixin interface for entities that carry an {@code int} gate identifier.
+ */
 public interface WithGateId {
     /**
      * @return Gate identifier.

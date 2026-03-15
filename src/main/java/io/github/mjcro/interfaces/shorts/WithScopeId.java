@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.shorts;
 
+/**
+ * Mixin interface for entities that carry a {@code short} scope identifier.
+ */
 public interface WithScopeId {
     /**
      * @return Scope identifier.

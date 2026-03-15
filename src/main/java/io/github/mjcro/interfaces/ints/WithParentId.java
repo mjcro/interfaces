@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.ints;
 
+/**
+ * Mixin interface for entities that carry an {@code int} parent identifier.
+ */
 public interface WithParentId {
     /**
      * @return Parent identifier.

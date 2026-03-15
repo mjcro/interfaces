@@ -10,6 +10,12 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * Generic repository for entities identified by a strong-typed long identifier.
+ *
+ * @param <I> Strong identifier type, must implement {@link StrongLongId}.
+ * @param <T> Entity type, must implement {@link WithStrongLongId}.
+ */
 public interface StrongLongIdRepository<I extends StrongLongId, T extends WithStrongLongId<I>> {
     /**
      * Fetches collection of entities with given identifiers.

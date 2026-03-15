@@ -3,6 +3,9 @@ package io.github.mjcro.interfaces.shorts;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+/**
+ * Mixin interface for entities that optionally carry a {@code short} parent identifier.
+ */
 public interface WithOptionalParentId {
     /**
      * @return Parent identifier.

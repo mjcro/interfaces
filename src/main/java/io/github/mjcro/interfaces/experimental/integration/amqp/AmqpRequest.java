@@ -5,6 +5,9 @@ import io.github.mjcro.interfaces.experimental.integration.Packet;
 
 import java.util.Optional;
 
+/**
+ * Represents an AMQP request packet that can be sent or published via an AMQP transport.
+ */
 public interface AmqpRequest extends Packet {
     /**
      * @return Exchange name to send packet to.

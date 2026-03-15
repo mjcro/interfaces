@@ -6,6 +6,11 @@ import java.time.temporal.Temporal;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+/**
+ * Mixin interface for entities that optionally track the time they were last modified.
+ *
+ * @param <T> Temporal type used to represent the modification timestamp.
+ */
 public interface WithOptionalModifiedAt<T extends Temporal> {
     /**
      * @return Entity modification time.
@@ -28,7 +33,7 @@ public interface WithOptionalModifiedAt<T extends Temporal> {
 
     /**
      * @return Entity modification time.
-     * @throws NoSuchElementException If no id present.
+     * @throws NoSuchElementException If no modification time present.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     default T mustGetModifiedAt() {

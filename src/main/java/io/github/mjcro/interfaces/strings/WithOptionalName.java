@@ -3,6 +3,9 @@ package io.github.mjcro.interfaces.strings;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+/**
+ * Mixin interface for entities that optionally carry a {@link String} name.
+ */
 public interface WithOptionalName {
     /**
      * @return Entity name.
@@ -29,7 +32,7 @@ public interface WithOptionalName {
 
     /**
      * @return Entity name.
-     * @throws NoSuchElementException If no id present.
+     * @throws NoSuchElementException If no name present.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     default String mustGetName() {

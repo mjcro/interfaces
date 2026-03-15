@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Represents HTTP/AMQP-style headers as a multi-value map of string name to list of string values.
+ */
 public interface Headers extends WithSize, Iterable<Map.Entry<String, List<String>>> {
     /**
      * Returns list of header values with given name.

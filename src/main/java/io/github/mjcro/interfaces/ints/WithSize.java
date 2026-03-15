@@ -2,6 +2,10 @@ package io.github.mjcro.interfaces.ints;
 
 import io.github.mjcro.interfaces.booleans.WithEmpty;
 
+/**
+ * Mixin interface for objects that have a discrete integer size or count.
+ * An empty object is one whose size is zero.
+ */
 public interface WithSize extends WithEmpty {
     /**
      * @return Size/count.

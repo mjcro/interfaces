@@ -22,5 +22,11 @@ public interface ConnectionConsumer<C extends Connection> {
         return consumer::accept;
     }
 
+    /**
+     * Performs this operation on the given connection.
+     *
+     * @param c Database connection.
+     * @throws SQLException If a database error occurs.
+     */
     void accept(C c) throws SQLException;
 }

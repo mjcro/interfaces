@@ -4,6 +4,11 @@ import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
 
+/**
+ * Mixin interface for entities that carry a generic temporal timestamp.
+ *
+ * @param <T> Temporal type used to represent the timestamp.
+ */
 public interface WithTime<T extends Temporal> {
     /**
      * @return Entity time.

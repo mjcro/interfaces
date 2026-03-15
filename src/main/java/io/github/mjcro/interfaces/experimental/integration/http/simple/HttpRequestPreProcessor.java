@@ -5,6 +5,10 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
+/**
+ * Functional interface for preprocessing HTTP requests before they are sent,
+ * e.g. to inject authentication headers or modify request parameters.
+ */
 @FunctionalInterface
 public interface HttpRequestPreProcessor {
     /**

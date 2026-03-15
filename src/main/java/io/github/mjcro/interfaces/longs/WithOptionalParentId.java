@@ -3,6 +3,9 @@ package io.github.mjcro.interfaces.longs;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+/**
+ * Mixin interface for entities that optionally carry a {@code long} parent identifier.
+ */
 public interface WithOptionalParentId {
     /**
      * @return Parent identifier.
