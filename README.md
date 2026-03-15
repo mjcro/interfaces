@@ -5,93 +5,183 @@ Micro-J interfaces
 ![GitHub](https://img.shields.io/github/license/mjcro/interfaces)
 ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/mjcro/interfaces)
 
-Easy to adopt zero-dependency collection of helpful common interfaces,
-sugared with some consistent default methods.
+A zero-dependency collection of lightweight Java interfaces designed for interoperability, domain modeling, and clean API contracts. Comes with useful default methods so you rarely need to write boilerplate.
 
-## Motivation
+## Features
 
-1. Interoperability. Utilizing this library increases chances of writing interoperable software.
-2. Sugar. This library contains some utility default method for interfaces it provides.
+- **Zero runtime dependencies** — only `jspecify` annotations at compile time
+- **Java 8 compatible** — tested against Java 8, 11, 17, 21, and 25
+- **Mix-in friendly** — small, single-purpose interfaces meant to be composed
+- **Rich default methods** — each interface ships with derived helpers (e.g. `isNotEmpty`, `mustGetId`, `getTimeEpochMilli`)
+- **Strong typing utilities** — `StrongType<T>`, `StrongLong`, `StrongInt` for value-object patterns
+- **Functional extras** — tri-arity and exception-aware mirrors of `java.util.function.*`
 
-## Distribution
+## Installation
 
 ```xml
 <dependency>
     <groupId>io.github.mjcro</groupId>
     <artifactId>interfaces</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.27</version>
 </dependency>
 ```
 
-## Basic interfaces
+## Contents
 
-| Name                      |                Supports                | Methods                                                                                                                                              |
-|---------------------------|:--------------------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `WithActive`              |               `boolean`                | `isActive`, `isNotActive*`                                                                                                                           |
-| `WithDeleted`             |               `boolean`                | `isDeleted`, `isNotDeleted*`                                                                                                                         |
-| `WithEmpty`               |               `boolean`                | `isEmpty`, `isNotEmpty*`                                                                                                                             |
-| `WithEnabled`             |               `boolean`                | `isEnabled`, `isNotEnabled*`, `isDisabled*`                                                                                                          |
-| `WithPublich`             |               `boolean`                | `isPublic`, `isNotPublic*`                                                                                                                           |
-| `WithVisible`             |               `boolean`                | `isVisible`, `isNotVisible*`, `isHidden*`                                                                                                            |
-| `WithState`               |                 `enum`                 | `getState`, `hasState*`, `notHasState*`,<br/>`hasStateOneOf*`, `notHasStateOneOf*`                                                                   |
-| `WithStatus`              |                 `enum`                 | `getStatus`, `hasStatus*`, `notHasStatus*`,<br/>`hasStatusOneOf*`, `notHasStatusOneOf*`                                                              |
-| `WithType`                |                 `enum`                 | `getType`, `hasType*`, `notHasType*`,<br/>`hasTypeOneOf*`, `notHasTypeOneOf*`                                                                        |
-| `WithId`                  | `int`,`long`,`short`,`string`,`byte[]` | `getId`, `hasId*`, `getIdBase64*`                                                                                                                    |
-| `WithParentId`            |          `int`,`long`,`short`          | `getParentId`, `hasParentId*`                                                                                                                        |
-| `WithGateId`              |          `int`,`long`,`short`          | `getGateId`, `hasGateId*`                                                                                                                            |
-| `WithScopeId`             |          `int`,`long`,`short`          | `getScopeId`, `hasScopeId*`                                                                                                                          |
-| `WithOptionalId`          |     `int`,`long`,`short`,`string`      | `getId`, `hasId*`, `mustGetId*`                                                                                                                      |
-| `WithOptionalParentId`    |          `int`,`long`,`short`          | `getParentId`, `hasParentId*`,<br/>`mustGetParentId`                                                                                                 |
-| `WithSize`                |                 `int`                  | `size`, `isEmpty*`, `isNotEmpty*`                                                                                                                    |
-| `WithTypeId`              |                 `int`                  | `getTypeId`, `hasTypeId*`                                                                                                                            |
-| `WithName`                |                `string`                | `getName`, `hasName*`                                                                                                                                |
-| `WithUri`                 |                `string`                | `getURI`, `hasURI*`                                                                                                                                  |
-| `WithOptionalName`        |                `string`                | `getName`, `hasName*`, `mustGetName*`                                                                                                                |
-| `WithElapsed`             |               `duration`               | `getElapsed`, `getElapsedSeconds*`,<br/>`getElapsedMillis*`, `getElapsedNanos*`                                                                      |
-| `WithTime`                |               `instant`                | `getTime`, `getTimeEpochSeconds*`,<br/>`getTimeEpochMilli*`, `formatTimeISOInstant*`                                                                 |
-| `WithCreatedAt`           |               `instant`                | `getCreatedAt`, `getCreatedAtEpochSeconds*`,<br/>`getCreatedAtEpochMilli*`,`formatCreatedAtISOInstant*`                                              |
-| `WithExpiryAt`            |               `instant`                | `getExpiryAt`, `getExpiryAtEpochSeconds*`,<br/>`getExpiryAtEpochMilli*`,`formatExpiryAtISOInstant*`                                                  |
-| `WithModifiedAt`          |               `instant`                | `getModifiedAt`, `getModifiedAtEpochSeconds*`,<br/>`getModifiedAtEpochMilli*`,`formatModifiedAtISOInstant*`                                          |
-| `WithScheduledAt`         |               `instant`                | `getScheduledAt`, `getScheduledAtEpochSeconds*`,<br/>`getScheduledAtEpochMilli*`,`formatScheduledAtISOInstant*`                                      |
-| `WithUpdatedAt`           |               `instant`                | `getUpdatedAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*`                                              |
-| `WithOptionalExpiryAt`    |               `instant`                | `getUpdatedAt`, `hasExpiryAt*`,<br/>`mustGetExpiryAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*`       |
-| `WithOptionalModifiedAt`  |               `instant`                | `getUpdatedAt`, `hasModifiedAt*`,<br/>`mustGetModifiedAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*`   |
-| `WithOptionalScheduledAt` |               `instant`                | `getUpdatedAt`, `hasScheduledAt*`,<br/>`mustGetScheduledAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*` |
-| `WithOptionalUpdatedAt`   |               `instant`                | `getUpdatedAt`, `hasUpdatedAt*`,<br/>`mustGetUpdatedAt`, `getUpdatedAtEpochSeconds*`,<br/>`getUpdatedAtEpochMilli*`,`formatUpdatedAtISOInstant*`     |
-| `WithByteBody`            |                `byte[]`                | `getBody`, `isBodyEmpty*`,<br/>`isBodyPresent*`, `getBodyString*`,<br>`getBodyBase64*`, `getBodyInputStream*`                                        |
-| `WithDataClass`           |                `class`                 | `getDataClass`                                                                                                                                       |
-| `WithException`           |              `exception`               | `getException`                                                                                                                                       |
-| `WithOptionalException`   |              `exception`               | `getException`, `hasException*`, `hasNoException*`                                                                                                   | 
+### Boolean flag interfaces (`io.github.mjcro.interfaces.booleans`)
 
-- Marked with `*` are default implementations.
+Single-method interfaces that expose a boolean property, each with complementary default helpers.
 
-## Design hints
+| Interface     | Abstract method | Default helpers                   |
+|---------------|-----------------|-----------------------------------|
+| `WithActive`  | `isActive()`    | `isNotActive()`                   |
+| `WithDeleted` | `isDeleted()`   | `isNotDeleted()`                  |
+| `WithEmpty`   | `isEmpty()`     | `isNotEmpty()`                    |
+| `WithEnabled` | `isEnabled()`   | `isNotEnabled()`, `isDisabled()`  |
+| `WithPublic`  | `isPublic()`    | `isNotPublic()`                   |
+| `WithVisible` | `isVisible()`   | `isNotVisible()`, `isHidden()`    |
 
-- Any interface with `get*` has corresponding `has*` returning `boolean`
-- Any interface with `get*` returning `Optional<?>`:
-    - Has corresponding `mustGet*` getter
-    - Has corresponding `has*` method with no arguments
+### Enum-backed state interfaces (`io.github.mjcro.interfaces.enums`)
 
-## Functional interfaces
+| Interface      | Abstract method | Default helpers                                              |
+|----------------|-----------------|--------------------------------------------------------------|
+| `WithState<E>` | `getState()`    | `hasState`, `notHasState`, `hasStateOneOf`, `notHasStateOneOf` |
+| `WithStatus<E>`| `getStatus()`   | same pattern as above                                        |
+| `WithType<E>`  | `getType()`     | same pattern as above                                        |
 
-- `TriConsumer<A, B, C>` - like `BiConsumer` but with three arguments
-- `TriFunction<A, B, C, R>` - like `BiFunction` but with three arguments
-- `TriPredicate<A, B, C>` - like `BiPredicate` but with three arguments
+### Numeric ID interfaces
 
-### Exceptional
+Available in three flavours — `ints`, `longs`, and `shorts` — each containing the same set:
 
-Set of interfaces mirroring `java.util.function.*` but able to throw checked exceptions.
-All of them are `@FunctionalInterface`, all have `from*` static methods to convert plain Java functions into
-exceptionals.
+| Interface             | Abstract method  | Default helpers               |
+|-----------------------|------------------|-------------------------------|
+| `WithId`              | `getId()`        | `hasId()`                     |
+| `WithParentId`        | `getParentId()`  | `hasParentId()`               |
+| `WithGateId`          | `getGateId()`    | `hasGateId()`                 |
+| `WithScopeId`         | `getScopeId()`   | `hasScopeId()`                |
+| `WithOptionalId`      | `getId()`        | `hasId()`, `mustGetId()`      |
+| `WithOptionalParentId`| `getParentId()`  | `hasParentId()`, `mustGetParentId()` |
+| `WithOrder`           | `getOrder()`     | —                             |
+| `WithSize`            | `size()`         | `isEmpty()`, `isNotEmpty()`   |
+| `WithTypeId`          | `getTypeId()`    | `hasTypeId()`                 |
 
-- `ExceptionalBiConsumer<T, U>`
-- `ExceptionalBiFunction<T, U, R>`
-- `ExceptionalBiPredicate<T, U>`
-- `ExceptionalConsumer<T>`
-- `ExceptionalFunction<T, R>`
-- `ExceptionalPredicate<T>`
+### String interfaces (`io.github.mjcro.interfaces.strings`)
+
+| Interface          | Abstract method | Default helpers         |
+|--------------------|-----------------|-------------------------|
+| `WithId`           | `getId()`       | `hasId()`               |
+| `WithName`         | `getName()`     | `hasName()`             |
+| `WithOptionalName` | `getName()`     | `hasName()`, `mustGetName()` |
+| `WithText`         | `getText()`     | —                       |
+| `WithUri`          | `getURI()`      | `hasURI()`              |
+| `WithUrl`          | `getURL()`      | `hasURL()`              |
+
+### Temporal interfaces (`io.github.mjcro.interfaces.instants`)
+
+All `Instant`-based interfaces expose epoch-second, epoch-milli, and ISO-8601 formatting helpers by default.
+
+| Interface               | Abstract method     |
+|-------------------------|---------------------|
+| `WithCreatedAt`         | `getCreatedAt()`    |
+| `WithUpdatedAt`         | `getUpdatedAt()`    |
+| `WithModifiedAt`        | `getModifiedAt()`   |
+| `WithScheduledAt`       | `getScheduledAt()`  |
+| `WithExpiryAt`          | `getExpiryAt()`     |
+| `WithOptionalUpdatedAt`   | `getUpdatedAt()`  |
+| `WithOptionalModifiedAt`  | `getModifiedAt()` |
+| `WithOptionalScheduledAt` | `getScheduledAt()`|
+| `WithOptionalExpiryAt`    | `getExpiryAt()`   |
+| `WithTime`              | `getTime()`         |
+
+Duration interfaces (`io.github.mjcro.interfaces.durations`):
+
+| Interface     | Abstract method  | Default helpers                                                       |
+|---------------|------------------|-----------------------------------------------------------------------|
+| `WithElapsed` | `getElapsed()`   | `getElapsedSeconds()`, `getElapsedMillis()`, `getElapsedNanos()`     |
+
+### Byte-body interface (`io.github.mjcro.interfaces.bytes`)
+
+| Interface      | Abstract method | Default helpers                                                    |
+|----------------|-----------------|-------------------------------------------------------------------|
+| `WithByteBody` | `getBody()`     | `isBodyEmpty()`, `isBodyPresent()`, `getBodyString()`, `getBodyBase64()`, `getBodyInputStream()` |
+
+### Strong types
+
+Wrap primitives or objects in named types for compile-time safety and better domain modelling.
+
+```java
+// Define once
+record UserId(long value) implements StrongLong {}
+record Email(String value) implements StrongType<String> {}
+
+// Use with confidence
+boolean same = userId.hasValue(42L);
+boolean valid = email.hasValueOneOf("a@b.com", "c@d.com");
+```
+
+| Interface          | Underlying type | Key methods                               |
+|--------------------|-----------------|-------------------------------------------|
+| `StrongType<T>`    | generic `T`     | `value()`, `hasValue()`, `hasValueOneOf()`|
+| `StrongLong`       | `long`          | `value()`, `hasValue()`                   |
+| `StrongInt`        | `int`           | `value()`, `hasValue()`                   |
+| `StrongLongId`     | `long`          | extends `StrongLong` + `WithId`           |
+| `StrongIntId`      | `int`           | extends `StrongInt` + `WithId`            |
+
+### Functional interfaces (`io.github.mjcro.interfaces.functions`)
+
+**Tri-arity extensions** of `java.util.function.*`:
+
+- `TriConsumer<A, B, C>`
+- `TriFunction<A, B, C, R>`
+- `TriPredicate<A, B, C>`
+
+**Exceptional variants** — mirrors of the standard functional interfaces that declare `throws Exception`, with static `from*` factory methods for bridging plain lambdas:
+
+- `ExceptionalConsumer<T>` / `ExceptionalBiConsumer<T, U>` / `ExceptionalTriConsumer<A, B, C>`
+- `ExceptionalFunction<T, R>` / `ExceptionalBiFunction<T, U, R>` / `ExceptionalTriFunction<A, B, C, R>`
+- `ExceptionalPredicate<T>` / `ExceptionalBiPredicate<T, U>` / `ExceptionalTriPredicate<A, B, C>`
 - `ExceptionalSupplier<T>`
-- `ExceptionalTriConsumer<A, B, C>`
-- `ExceptionalTriFunction<A, B, C, R>`
-- `ExceptionalTriPredicate<A, B, C>`
 - `ExceptionalUnaryOperator<T>`
+
+### Utility interfaces
+
+| Interface             | Package                | Purpose                                                    |
+|-----------------------|------------------------|------------------------------------------------------------|
+| `Decorator<T>`        | root                   | Wrapper pattern; `getDecoratedRoot()` recursively unwraps  |
+| `Mixed`               | root                   | Typed access to an `Object` value (`getAs(Class)`, `mustGetAs`, typed shortcuts) |
+| `Converter<F, T>`     | `convert`              | Single-method type conversion                              |
+| `ConverterFactory`    | `convert`              | Factory producing `Converter` instances                    |
+| `SelfTyped<S>`        | `builders`             | Self-referential type for fluent builders                  |
+| `SelfTypedBuilder<S>` | `builders`             | Builder variant of `SelfTyped`                             |
+| `Starter`             | `lifecycle`            | `start()` — component startup hook                        |
+| `Stopper`             | `lifecycle`            | `stop()` — component shutdown hook                        |
+| `Cache<K, V>`         | `cache`                | Simple get/put cache contract                              |
+| `Invalidator`         | `cache`                | Cache invalidation                                         |
+| `NamedCacheFactory`   | `cache`                | Creates named cache instances                              |
+| `Statement`           | `database`             | Database statement abstraction                             |
+| `ByteHasher`          | `security.hashing`     | Byte-array hashing contract                                |
+| `Tuple` / `Pair<F,S>` / `OptionalPair<F,S>` | `tuples` | Immutable tuple types                     |
+| `IdRepository<T>`     | `longs`                | CRUD repository keyed by `long` ID                         |
+
+### Experimental: integration (`io.github.mjcro.interfaces.experimental.integration`)
+
+> These interfaces are subject to change.
+
+Abstractions for synchronous and asynchronous transports:
+
+- `Transport` / `AsyncTransport`
+- `TransportFactory` / `AsyncTransportFactory`
+- `Call`, `Packet`, `Option`, `TelemetryConsumer`
+- HTTP specialisation: `HttpTransport`, `HttpAsyncTransport`, `HttpRequest`
+
+## Design conventions
+
+- Every `get*` method has a corresponding `has*` returning `boolean`.
+- Every `get*` returning `Optional<?>` has:
+  - a `mustGet*` throwing `NoSuchElementException` when empty
+  - a `has*()` boolean shortcut
+- Default implementations are additive — only the one abstract method needs implementing.
+
+## License
+
+[MIT](LICENSE)
