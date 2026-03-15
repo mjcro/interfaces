@@ -1,16 +1,21 @@
 package io.github.mjcro.interfaces.bytes;
 
+import org.jspecify.annotations.Nullable;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
+/**
+ * Mixin interface for entities that carry a raw byte body.
+ */
 public interface WithByteBody {
     /**
-     * @return Entity body as bytes, should not return null.
+     * @return Entity body as bytes, may be null or empty.
      */
-    byte[] getBody();
+    byte @Nullable [] getBody();
 
     /**
      * @return True if body is empty.
@@ -31,10 +36,10 @@ public interface WithByteBody {
      * Returns entity body as string.
      * If body bytes are null or empty, empty string will be returned.
      *
-     * @param charset String character set.
+     * @param charset String character set, may be null (falls back to platform default).
      * @return Entity body as string.
      */
-    default String getBodyString(Charset charset) {
+    default String getBodyString(@Nullable Charset charset) {
         byte[] body = this.getBody();
         return body == null || body.length == 0
                 ? ""
@@ -68,6 +73,7 @@ public interface WithByteBody {
      * @return Entity body as {@link InputStream}.
      */
     default InputStream getBodyInputStream() {
-        return new ByteArrayInputStream(getBody());
+        byte[] body = getBody();
+        return new ByteArrayInputStream(body == null ? new byte[0] : body);
     }
 }
