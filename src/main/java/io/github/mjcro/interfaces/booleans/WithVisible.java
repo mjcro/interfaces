@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.booleans;
 
+/**
+ * Mixin interface for entities that have a visible/hidden state.
+ */
 public interface WithVisible {
     /**
      * @return True if entity is marked as visible.

@@ -1,8 +1,17 @@
 package io.github.mjcro.interfaces.builders;
 
+import org.jspecify.annotations.NonNull;
+
 /**
  * Generic builder.
+ *
+ * @param <T> Type to build.
  */
 public interface Builder<T> {
-    T build();
+    /**
+     * Builds and returns the constructed object.
+     *
+     * @return Newly constructed object.
+     */
+    @NonNull T build();
 }

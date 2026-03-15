@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.booleans;
 
+/**
+ * Mixin interface for entities that support soft-delete semantics.
+ */
 public interface WithDeleted {
     /**
      * @return True if entity is marked as deleted.

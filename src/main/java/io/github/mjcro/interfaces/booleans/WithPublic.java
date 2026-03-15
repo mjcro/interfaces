@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.booleans;
 
+/**
+ * Mixin interface for entities that have a public/private visibility flag.
+ */
 public interface WithPublic {
     /**
      * @return True if entity is marked as public.

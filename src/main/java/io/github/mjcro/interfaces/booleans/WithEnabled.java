@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.booleans;
 
+/**
+ * Mixin interface for entities that can be enabled or disabled.
+ */
 public interface WithEnabled {
     /**
      * @return True if entity is marked as enabled.
