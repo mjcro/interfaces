@@ -1,8 +1,15 @@
 package io.github.mjcro.interfaces.enums;
 
+import org.jspecify.annotations.Nullable;
+
 import java.util.Collection;
 import java.util.Objects;
 
+/**
+ * Mixin interface for entities that carry an enum-based status.
+ *
+ * @param <T> Enum type representing the status.
+ */
 public interface WithStatus<T extends Enum<T>> {
     /**
      * @return Entity status.
@@ -32,40 +39,40 @@ public interface WithStatus<T extends Enum<T>> {
     /**
      * Checks if entity status is equal to given one.
      *
-     * @param given State container to compare with.
-     * @return True is statuses are equal.
+     * @param given Status container to compare with, may be null.
+     * @return True if statuses are equal.
      */
-    default boolean hasStatus(WithStatus<T> given) {
+    default boolean hasStatus(@Nullable WithStatus<T> given) {
         return given != null && given.hasStatus(getStatus());
     }
 
     /**
      * Checks if entity status is not equal to given one.
      *
-     * @param given State container to compare with.
-     * @return True is statuses are not equal.
+     * @param given Status container to compare with, may be null.
+     * @return True if statuses are not equal.
      */
-    default boolean notHasStatus(WithStatus<T> given) {
+    default boolean notHasStatus(@Nullable WithStatus<T> given) {
         return !hasStatus(given);
     }
 
     /**
-     * Checks if entity's status contains in given statuses collection.
+     * Checks if entity's status is contained in given statuses collection.
      *
-     * @param collection Collection of statuses to match against.
-     * @return True if entity's status contains in given collection.
+     * @param collection Collection of statuses to match against, may be null.
+     * @return True if entity's status is contained in the given collection.
      */
-    default boolean hasStatusOneOf(Collection<T> collection) {
+    default boolean hasStatusOneOf(@Nullable Collection<T> collection) {
         return collection != null && collection.contains(getStatus());
     }
 
     /**
-     * Checks if entity's status not contains in given statuses collection.
+     * Checks if entity's status is not contained in given statuses collection.
      *
-     * @param collection Collection of statuses to match against.
-     * @return True if entity's status not contains in given collection.
+     * @param collection Collection of statuses to match against, may be null.
+     * @return True if entity's status is not contained in the given collection.
      */
-    default boolean notHasStatusOneOf(Collection<T> collection) {
+    default boolean notHasStatusOneOf(@Nullable Collection<T> collection) {
         return !hasStatusOneOf(collection);
     }
 }

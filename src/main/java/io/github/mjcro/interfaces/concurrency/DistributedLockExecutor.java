@@ -1,7 +1,14 @@
 package io.github.mjcro.interfaces.concurrency;
 
+import org.jspecify.annotations.Nullable;
+
 import java.util.function.Supplier;
 
+/**
+ * Executes tasks under an exclusive distributed lock identified by a key.
+ *
+ * @param <T> Type of the lock key.
+ */
 public interface DistributedLockExecutor<T> {
     /**
      * Executes given runnable only when exclusive
@@ -26,5 +33,5 @@ public interface DistributedLockExecutor<T> {
      * @param <R>        Response type.
      * @return Supplier response.
      */
-    <R> R executeLocked(T lockingKey, Supplier<R> supplier);
+    <R> @Nullable R executeLocked(T lockingKey, Supplier<R> supplier);
 }

@@ -2,6 +2,9 @@ package io.github.mjcro.interfaces.durations;
 
 import java.time.Duration;
 
+/**
+ * Mixin interface for objects that track elapsed time, e.g. the duration of a request/response.
+ */
 public interface WithElapsed {
     /**
      * @return Elapsed time.

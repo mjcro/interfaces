@@ -4,6 +4,12 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
+/**
+ * Generic key-value cache interface supporting get, put, invalidation, and compute-if-absent operations.
+ *
+ * @param <K> Key type.
+ * @param <V> Value type.
+ */
 public interface Cache<K, V> extends Invalidator<K> {
     /**
      * Returns entry by key.

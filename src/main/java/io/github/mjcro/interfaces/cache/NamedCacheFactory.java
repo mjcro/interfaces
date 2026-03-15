@@ -2,6 +2,10 @@ package io.github.mjcro.interfaces.cache;
 
 import java.time.Duration;
 
+/**
+ * Factory for creating named cache instances with configurable capacity and TTL,
+ * and optionally invalidating entries across named caches.
+ */
 public interface NamedCacheFactory {
     /**
      * Builds and returns new cache instance.

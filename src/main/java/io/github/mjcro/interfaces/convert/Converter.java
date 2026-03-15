@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.convert;
 
+import org.jspecify.annotations.Nullable;
+
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
@@ -16,7 +18,9 @@ public interface Converter<S, T> {
      * Constructs converter from given function.
      *
      * @param function Conversion function.
-     * @return Converter.
+     * @param <S>      Source type.
+     * @param <T>      Target type.
+     * @return Converter wrapping the given function.
      */
     static <S, T> Converter<S, T> ofFunction(Function<S, T> function) {
         Objects.requireNonNull(function, "function");
@@ -27,24 +31,26 @@ public interface Converter<S, T> {
      * Converts source object into type T.
      *
      * @param source Source object.
-     * @return Conversion result, nullable.
+     * @return Conversion result, may be null.
      */
-    T convert(S source);
+    @Nullable T convert(S source);
 
     /**
-     * Converts source object into type T.
+     * Converts source object into an {@link Optional}.
      *
      * @param source Source object.
-     * @return Conversion result.
+     * @return Optional wrapping the conversion result.
      */
     default Optional<T> convertOptionally(S source) {
         return Optional.ofNullable(convert(source));
     }
 
     /**
-     * Constructs composed converter.
+     * Constructs a composed converter that first applies this converter and then applies {@code after}.
+     * If this converter returns null, the composed converter also returns null.
      *
-     * @param after Converter to invoke next.
+     * @param after Converter to invoke on the result of this converter.
+     * @param <U>   The output type of the composed converter.
      * @return Composed converter.
      */
     default <U> Converter<S, U> andThen(Converter<? super T, ? extends U> after) {

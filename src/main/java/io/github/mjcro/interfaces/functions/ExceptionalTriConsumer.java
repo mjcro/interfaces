@@ -2,15 +2,45 @@ package io.github.mjcro.interfaces.functions;
 
 import java.util.Objects;
 
+/**
+ * Defines behavior like {@link TriConsumer} but able to throw checked exception.
+ *
+ * @param <A> First argument type.
+ * @param <B> Second argument type.
+ * @param <C> Third argument type.
+ */
 @FunctionalInterface
 public interface ExceptionalTriConsumer<A, B, C> {
+    /**
+     * Wraps a {@link TriConsumer} as an {@link ExceptionalTriConsumer}.
+     *
+     * @param triConsumer TriConsumer to wrap.
+     * @param <A>         First argument type.
+     * @param <B>         Second argument type.
+     * @param <C>         Third argument type.
+     * @return Wrapped tri-consumer.
+     */
     static <A, B, C> ExceptionalTriConsumer<A, B, C> fromTriConsumer(TriConsumer<A, B, C> triConsumer) {
         Objects.requireNonNull(triConsumer, "triConsumer");
         return triConsumer::accept;
     }
 
+    /**
+     * Performs this operation on the given arguments.
+     *
+     * @param a First argument.
+     * @param b Second argument.
+     * @param c Third argument.
+     * @throws Exception If an error occurs during execution.
+     */
     void accept(A a, B b, C c) throws Exception;
 
+    /**
+     * Returns a composed consumer that performs, in sequence, this operation followed by {@code after}.
+     *
+     * @param after Consumer to invoke after this consumer.
+     * @return Composed consumer.
+     */
     default ExceptionalTriConsumer<A, B, C> andThen(ExceptionalTriConsumer<? super A, ? super B, ? super C> after) {
         Objects.requireNonNull(after, "after");
         return (a, b, c) -> {
@@ -19,6 +49,12 @@ public interface ExceptionalTriConsumer<A, B, C> {
         };
     }
 
+    /**
+     * Returns a composed consumer that performs, in sequence, this operation followed by the standard {@code after} consumer.
+     *
+     * @param after Standard consumer to invoke after this consumer.
+     * @return Composed consumer.
+     */
     default ExceptionalTriConsumer<A, B, C> andThen(TriConsumer<? super A, ? super B, ? super C> after) {
         Objects.requireNonNull(after, "after");
         return (a, b, c) -> {

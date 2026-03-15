@@ -4,11 +4,28 @@ import java.util.Objects;
 
 /**
  * Extension of {@link java.util.function.BiConsumer} design but with three arguments.
+ *
+ * @param <A> First argument type.
+ * @param <B> Second argument type.
+ * @param <C> Third argument type.
  */
 @FunctionalInterface
 public interface TriConsumer<A, B, C> {
+    /**
+     * Performs this operation on the given arguments.
+     *
+     * @param a First argument.
+     * @param b Second argument.
+     * @param c Third argument.
+     */
     void accept(A a, B b, C c);
 
+    /**
+     * Returns a composed consumer that performs, in sequence, this operation followed by {@code after}.
+     *
+     * @param after Consumer to invoke after this consumer.
+     * @return Composed consumer.
+     */
     default TriConsumer<A, B, C> andThen(TriConsumer<? super A, ? super B, ? super C> after) {
         Objects.requireNonNull(after, "after");
         return (a, b, c) -> {
