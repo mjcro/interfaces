@@ -3,6 +3,9 @@ package io.github.mjcro.interfaces.bytes;
 import java.util.Arrays;
 import java.util.Base64;
 
+/**
+ * Mixin interface for entities that carry a byte-array identifier.
+ */
 public interface WithId {
     /**
      * @return Identifier of entity
