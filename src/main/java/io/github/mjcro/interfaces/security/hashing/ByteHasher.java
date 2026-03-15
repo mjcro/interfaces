@@ -4,6 +4,9 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
+/**
+ * Interface for byte-level hashing operations.
+ */
 public interface ByteHasher {
     /**
      * @return Byte size length of produced hash.

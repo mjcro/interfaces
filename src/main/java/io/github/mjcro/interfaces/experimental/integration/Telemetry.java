@@ -3,12 +3,22 @@ package io.github.mjcro.interfaces.experimental.integration;
 import io.github.mjcro.interfaces.durations.WithElapsed;
 import io.github.mjcro.interfaces.exceptions.WithOptionalException;
 import io.github.mjcro.interfaces.instants.WithCreatedAt;
+import org.jspecify.annotations.Nullable;
 
 import java.time.Duration;
 import java.time.temporal.Temporal;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+/**
+ * Captures telemetry for a single request/response interaction, including the original request,
+ * optional response, optional metadata, elapsed time, and any exception that may have occurred.
+ *
+ * @param <Req>  Type of the request packet.
+ * @param <Res>  Type of the response packet, which must also carry elapsed-time information.
+ * @param <Meta> Type of arbitrary metadata associated with the telemetry entry.
+ * @param <T>    Temporal type used for the creation timestamp.
+ */
 public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed, Meta, T extends Temporal> extends WithOptionalException, WithCreatedAt<T> {
     /**
      * @return Request.
@@ -57,11 +67,11 @@ public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed,
 
     /**
      * Sends current telemetry instance to given telemetry consumer.
-     * If null given should not fail.
+     * If null is given this method does nothing.
      *
-     * @param consumer Telemetry consumer.
+     * @param consumer Telemetry consumer, may be null.
      */
-    default void sendTo(Consumer<? super Telemetry<Req, Res, Meta, T>> consumer) {
+    default void sendTo(@Nullable Consumer<? super Telemetry<Req, Res, Meta, T>> consumer) {
         if (consumer != null) {
             consumer.accept(this);
         }

@@ -1,6 +1,7 @@
 package io.github.mjcro.interfaces.tuples;
 
 import io.github.mjcro.interfaces.ints.WithSize;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Defines tuple of objects that can have different types.
@@ -16,10 +17,10 @@ public interface Tuple extends WithSize, Comparable<Tuple> {
      * Returns i-th element from tuple.
      *
      * @param i Index of element.
-     * @return Tuple element, nullable.
+     * @return Tuple element, may be null.
      * @throws ArrayIndexOutOfBoundsException If incorrect index given.
      */
-    Object get(int i);
+    @Nullable Object get(int i);
 
     /**
      * Compares this tuple to given one.

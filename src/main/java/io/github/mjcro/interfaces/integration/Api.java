@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.integration;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Represents single API call.
  * By design implementors of this interface should receive all required
@@ -17,5 +19,5 @@ public interface Api<T, R> {
      * @return API call result.
      * @throws Exception If any error occurs.
      */
-    R call(T transport) throws Exception;
+    @Nullable R call(T transport) throws Exception;
 }

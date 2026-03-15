@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.longs;
 
+import org.jspecify.annotations.Nullable;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -10,6 +12,11 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * Generic repository for entities identified by a {@code long} identifier.
+ *
+ * @param <T> Entity type, must implement {@link WithId}.
+ */
 public interface IdRepository<T extends WithId> {
     /**
      * Fetches collection of entities with given identifiers.
@@ -27,10 +34,10 @@ public interface IdRepository<T extends WithId> {
     /**
      * Fetches collection of entities with given identifiers.
      *
-     * @param ids Identifiers to find.
+     * @param ids Identifiers to find, may be null.
      * @return Non-null list of found entities. If none found empty list is returned.
      */
-    default List<T> findById(Collection<Long> ids) {
+    default List<T> findById(@Nullable Collection<Long> ids) {
         if (ids == null || ids.isEmpty()) {
             return Collections.emptyList();
         }
@@ -58,11 +65,11 @@ public interface IdRepository<T extends WithId> {
     /**
      * Returns all entities for requested identifiers.
      *
-     * @param ids Identifiers to find.
+     * @param ids Identifiers to find, may be null.
      * @return List of entities.
      * @throws RuntimeException If one or more entities with requested identifiers missing.
      */
-    default List<T> mustFindById(Collection<Long> ids) {
+    default List<T> mustFindById(@Nullable Collection<Long> ids) {
         if (ids == null || ids.isEmpty()) {
             return Collections.emptyList();
         }
