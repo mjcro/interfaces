@@ -9,6 +9,17 @@ import java.time.temporal.Temporal;
  * Mixin interface for entities that have a mandatory expiration time.
  *
  * @param <T> Temporal type used to represent the expiration timestamp.
+ *            Must support {@link java.time.temporal.ChronoField#INSTANT_SECONDS} and
+ *            {@link java.time.temporal.ChronoField#NANO_OF_SECOND} so that the default
+ *            conversion methods (e.g. {@link #getExpiryAtInstant()}) can call
+ *            {@link java.time.Instant#from(java.time.temporal.TemporalAccessor)}, and
+ *            so that {@link #isExpired(java.time.temporal.Temporal)} can compute a
+ *            {@link java.time.Duration} between two instants.
+ *            Suitable types: {@link java.time.Instant}, {@link java.time.ZonedDateTime},
+ *            {@link java.time.OffsetDateTime}.
+ *            {@link java.time.LocalDateTime}, {@link java.time.LocalDate}, and similar
+ *            zone-less types will compile but throw {@link java.time.DateTimeException}
+ *            at runtime when any conversion or expiry-check method is called.
  */
 public interface WithExpiryAt<T extends Temporal> {
     /**
@@ -51,7 +62,8 @@ public interface WithExpiryAt<T extends Temporal> {
      * @return True if expired, false otherwise.
      */
     default boolean isExpired(Temporal against) {
-        return Duration.between(against, getExpiryAt()).isNegative();
+        Duration remaining = Duration.between(against, getExpiryAt());
+        return remaining.isNegative() || remaining.isZero();
     }
 
     /**

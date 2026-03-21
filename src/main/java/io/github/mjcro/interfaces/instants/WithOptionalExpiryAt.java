@@ -11,6 +11,17 @@ import java.util.Optional;
  * Mixin interface for entities that optionally have an expiration time.
  *
  * @param <T> Temporal type used to represent the expiration timestamp.
+ *            Must support {@link java.time.temporal.ChronoField#INSTANT_SECONDS} and
+ *            {@link java.time.temporal.ChronoField#NANO_OF_SECOND} so that the default
+ *            conversion methods (e.g. {@link #getExpiryAtInstant()}) can call
+ *            {@link java.time.Instant#from(java.time.temporal.TemporalAccessor)}, and
+ *            so that {@link #isExpired(java.time.temporal.Temporal)} can compute a
+ *            {@link java.time.Duration} between two instants.
+ *            Suitable types: {@link java.time.Instant}, {@link java.time.ZonedDateTime},
+ *            {@link java.time.OffsetDateTime}.
+ *            {@link java.time.LocalDateTime}, {@link java.time.LocalDate}, and similar
+ *            zone-less types will compile but throw {@link java.time.DateTimeException}
+ *            at runtime when any conversion or expiry-check method is called.
  */
 public interface WithOptionalExpiryAt<T extends Temporal> {
     /**
@@ -36,9 +47,8 @@ public interface WithOptionalExpiryAt<T extends Temporal> {
      * @return Entity expiration time.
      * @throws NoSuchElementException If no expiration time present.
      */
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
     default T mustGetExpiryAt() {
-        return getExpiryAt().get();
+        return getExpiryAt().orElseThrow(NoSuchElementException::new);
     }
 
     /**
@@ -71,7 +81,8 @@ public interface WithOptionalExpiryAt<T extends Temporal> {
      */
     default boolean isExpired(Temporal against) {
         return getExpiryAt()
-                .map($ -> Duration.between(against, $).isNegative())
+                .map($ -> Duration.between(against, $))
+                .map(d -> d.isNegative() || d.isZero())
                 .orElse(false);
     }
 
