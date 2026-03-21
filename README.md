@@ -22,7 +22,7 @@ A zero-dependency collection of lightweight Java interfaces designed for interop
 <dependency>
     <groupId>io.github.mjcro</groupId>
     <artifactId>interfaces</artifactId>
-    <version>1.0.27</version>
+    <version>1.0.28</version>
 </dependency>
 ```
 
@@ -162,6 +162,27 @@ boolean valid = email.hasValueOneOf("a@b.com", "c@d.com");
 | `ByteHasher`          | `security.hashing`     | Byte-array hashing contract                                |
 | `Tuple` / `Pair<F,S>` / `OptionalPair<F,S>` | `tuples` | Immutable tuple types                     |
 | `IdRepository<T>`     | `longs`                | CRUD repository keyed by `long` ID                         |
+
+### Integration (`io.github.mjcro.interfaces.integration`)
+
+A layered abstraction for synchronous integration with external services built around three distinct concerns:
+
+| Interface       | Role |
+|-----------------|------|
+| `Option`        | Immutable configuration value (timeout, credentials, retry policy, …) passed to a `Transport` at construction time |
+| `Transport`     | Low-level wire layer; works exclusively with **DTOs** that mirror the remote service's wire format |
+| `Client`        | High-level facade; works exclusively with **domain entities**; converts domain → DTO before calling `Transport` and DTO → domain on the way back |
+| `Call<R, C>`    | Command object: captures all request parameters at construction time and dispatches through a `Client` via `execute(client)` |
+
+**Layering rule:** `Call` → `Client` (domain entities) → `Transport` (DTOs) → wire.
+
+```java
+// All request data bound at construction time
+Call<Order, OrderClient> call = new GetOrderCall(orderId);
+
+// Execute against any compatible client
+Order order = call.execute(client);
+```
 
 ### Experimental: integration (`io.github.mjcro.interfaces.experimental.integration`)
 
