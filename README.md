@@ -22,7 +22,7 @@ A zero-dependency collection of lightweight Java interfaces designed for interop
 <dependency>
     <groupId>io.github.mjcro</groupId>
     <artifactId>interfaces</artifactId>
-    <version>1.0.28</version>
+    <version>1.0.29</version>
 </dependency>
 ```
 
@@ -159,9 +159,21 @@ boolean valid = email.hasValueOneOf("a@b.com", "c@d.com");
 | `Invalidator`         | `cache`                | Cache invalidation                                         |
 | `NamedCacheFactory`   | `cache`                | Creates named cache instances                              |
 | `Statement`           | `database`             | Database statement abstraction                             |
-| `ByteHasher`          | `security.hashing`     | Byte-array hashing contract                                |
 | `Tuple` / `Pair<F,S>` / `OptionalPair<F,S>` | `tuples` | Immutable tuple types                     |
 | `IdRepository<T>`     | `longs`                | CRUD repository keyed by `long` ID                         |
+
+### Security (`io.github.mjcro.interfaces.security`)
+
+| Interface          | Package            | Purpose                                                                 |
+|--------------------|--------------------|-------------------------------------------------------------------------|
+| `Sensitive<T>`     | `security`         | `AutoCloseable` wrapper for sensitive values (passwords, tokens, keys); erases the underlying data on `close()` and throws `NoSuchElementException` on any subsequent `value()` call |
+| `ByteHasher`       | `security.hashing` | Byte-array hashing contract                                             |
+
+```java
+try (Sensitive<char[]> password = acquirePassword()) {
+    authenticate(password.value());
+} // underlying char[] zeroed here; further value() calls throw NoSuchElementException
+```
 
 ### Integration (`io.github.mjcro.interfaces.integration`)
 
@@ -172,7 +184,7 @@ A layered abstraction for synchronous integration with external services built a
 | `Option`        | Immutable configuration value (timeout, credentials, retry policy, …) passed to a `Transport` at construction time |
 | `Transport`     | Low-level wire layer; works exclusively with **DTOs** that mirror the remote service's wire format |
 | `Client`        | High-level facade; works exclusively with **domain entities**; converts domain → DTO before calling `Transport` and DTO → domain on the way back |
-| `Call<R, C>`    | Command object: captures all request parameters at construction time and dispatches through a `Client` via `execute(client)` |
+| `Call<R, C extends Client>` | Command object: captures all request parameters at construction time and dispatches through a `Client` via `execute(client)` |
 
 **Layering rule:** `Call` → `Client` (domain entities) → `Transport` (DTOs) → wire.
 
