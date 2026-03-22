@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.bytes;
 
+import org.jspecify.annotations.Nullable;
+
 import java.util.Arrays;
 import java.util.Base64;
 
@@ -33,6 +35,21 @@ public interface WithId {
      */
     default boolean hasId(byte[] given) {
         return Arrays.equals(getId(), given);
+    }
+
+    /**
+     * Returns whether the identifier of this object equals the identifier of the given object.
+     *
+     * <p>Delegates to {@link #hasId(byte[])} with the result of {@code other.getId()}.
+     * Comparison is content-based, not reference-based.
+     * If {@code other} is {@code null}, {@code false} is returned immediately.
+     *
+     * @param other The object whose identifier to compare against; may be {@code null}.
+     * @return {@code true} if both identifiers are equal; {@code false} otherwise,
+     *         including when {@code other} is {@code null}.
+     */
+    default boolean hasId(@Nullable WithId other) {
+        return other != null && hasId(other.getId());
     }
 
     /**
