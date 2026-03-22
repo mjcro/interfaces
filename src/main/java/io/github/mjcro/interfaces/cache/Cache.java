@@ -5,35 +5,43 @@ import java.util.Optional;
 import java.util.function.Function;
 
 /**
- * Generic key-value cache interface supporting get, put, invalidation, and compute-if-absent operations.
+ * Generic key-value cache interface supporting read, write, invalidation, and compute-if-absent operations.
  *
- * @param <K> Key type.
- * @param <V> Value type.
+ * <p>All keys and values are non-null. Methods return {@link Optional} to distinguish
+ * a missing entry from a stored {@code null} value (which is not permitted).
+ *
+ * @param <K> Key type. Must not be null.
+ * @param <V> Value type. Must not be null.
  */
 public interface Cache<K, V> extends Invalidator<K> {
     /**
-     * Returns entry by key.
+     * Returns the cached value for the given key, or an empty {@link Optional} on a cache miss.
      *
-     * @param key Key
-     * @return Optional Value
+     * @param key Cache key. Must not be null.
+     * @return Non-null {@link Optional} containing the cached value, or empty if not present.
      */
     Optional<V> get(K key);
 
     /**
-     * Stores entry to cache.
+     * Stores a key-value pair in the cache, overwriting any previously cached value for the same key.
      *
-     * @param key   Key
-     * @param value value
+     * @param key   Cache key. Must not be null.
+     * @param value Value to cache. Must not be null.
      */
     void put(K key, V value);
 
     /**
-     * Fetches entry from cache and runs mapping function if no value present for provided key
-     * Value, received by mapping function, will be stored in cache.
+     * Returns the cached value for the given key, invoking the mapping function to compute and store
+     * a value on a cache miss.
      *
-     * @param key             Cache key
-     * @param mappingFunction Function used to obtain value on cache miss
-     * @return Optional value
+     * <p>If the mapping function returns an empty {@link Optional}, nothing is stored in the cache
+     * and an empty {@link Optional} is returned to the caller.
+     *
+     * @param key             Cache key. Must not be null.
+     * @param mappingFunction Function invoked on cache miss to compute the value. Must not be null.
+     *                        Receives the cache key and returns an {@link Optional} result.
+     * @return Non-null {@link Optional} containing the value (from cache or from the mapping function),
+     *         or empty if the mapping function produced no value.
      */
     @SuppressWarnings("unchecked")
     default Optional<V> computeIfAbsent(

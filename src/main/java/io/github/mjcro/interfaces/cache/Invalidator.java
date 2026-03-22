@@ -1,15 +1,20 @@
 package io.github.mjcro.interfaces.cache;
 
 /**
- * Mixin interface for cache-like structures that support entry invalidation by key.
+ * Mixin interface for cache-like structures that support entry removal by key.
  *
- * @param <T> Key type.
+ * <p>Implement this interface to allow callers to explicitly evict a specific entry
+ * from a cache or cache-like store without clearing the entire structure.
+ *
+ * @param <T> Key type. Must not be null.
  */
 public interface Invalidator<T> {
     /**
-     * Removes entry from the cache.
+     * Removes the entry associated with the given key from the cache.
      *
-     * @param key Key
+     * <p>If no entry exists for the key, this method does nothing.
+     *
+     * @param key Cache key identifying the entry to remove. Must not be null.
      */
     void invalidate(T key);
 }
