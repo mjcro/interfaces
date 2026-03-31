@@ -164,13 +164,14 @@ boolean valid = email.hasValueOneOf("a@b.com", "c@d.com");
 
 ### Security (`io.github.mjcro.interfaces.security`)
 
-| Interface          | Package            | Purpose                                                                 |
-|--------------------|--------------------|-------------------------------------------------------------------------|
-| `Sensitive<T>`     | `security`         | `AutoCloseable` wrapper for sensitive values (passwords, tokens, keys); erases the underlying data on `close()` and throws `NoSuchElementException` on any subsequent `value()` call |
-| `ByteHasher`       | `security.hashing` | Byte-array hashing contract                                             |
+| Interface                | Package            | Purpose                                                                 |
+|--------------------------|--------------------|-------------------------------------------------------------------------|
+| `Sensitive`              | `security`         | Marker interface for any object that holds or contains sensitive data    |
+| `SensitiveStrongType<T>` | `security`        | `AutoCloseable` wrapper for sensitive values (passwords, tokens, keys); erases the underlying data on `close()` and throws `NoSuchElementException` on any subsequent `value()` call |
+| `ByteHasher`             | `security.hashing` | Byte-array hashing contract                                            |
 
 ```java
-try (Sensitive<char[]> password = acquirePassword()) {
+try (SensitiveStrongType<char[]> password = acquirePassword()) {
     authenticate(password.value());
 } // underlying char[] zeroed here; further value() calls throw NoSuchElementException
 ```
