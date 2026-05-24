@@ -22,7 +22,7 @@ A zero-dependency collection of lightweight Java interfaces designed for interop
 <dependency>
     <groupId>io.github.mjcro</groupId>
     <artifactId>interfaces</artifactId>
-    <version>1.0.29</version>
+    <version>1.0.31</version>
 </dependency>
 ```
 
