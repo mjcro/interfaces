@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 
 /**
@@ -20,7 +22,7 @@ public interface ExceptionalTriConsumer<A, B, C> {
      * @param <C>         Third argument type.
      * @return Wrapped tri-consumer.
      */
-    static <A, B, C> ExceptionalTriConsumer<A, B, C> fromTriConsumer(TriConsumer<A, B, C> triConsumer) {
+    static <A, B, C> @NonNull ExceptionalTriConsumer<@NonNull A, @NonNull B, @NonNull C> fromTriConsumer(@NonNull TriConsumer<@NonNull A, @NonNull B, @NonNull C> triConsumer) {
         Objects.requireNonNull(triConsumer, "triConsumer");
         return triConsumer::accept;
     }
@@ -33,7 +35,7 @@ public interface ExceptionalTriConsumer<A, B, C> {
      * @param c Third argument.
      * @throws Exception If an error occurs during execution.
      */
-    void accept(A a, B b, C c) throws Exception;
+    void accept(@NonNull A a, @NonNull B b, @NonNull C c) throws Exception;
 
     /**
      * Returns a composed consumer that performs, in sequence, this operation followed by {@code after}.
@@ -41,7 +43,7 @@ public interface ExceptionalTriConsumer<A, B, C> {
      * @param after Consumer to invoke after this consumer.
      * @return Composed consumer.
      */
-    default ExceptionalTriConsumer<A, B, C> andThen(ExceptionalTriConsumer<? super A, ? super B, ? super C> after) {
+    default @NonNull ExceptionalTriConsumer<@NonNull A, @NonNull B, @NonNull C> andThen(@NonNull ExceptionalTriConsumer<? super @NonNull A, ? super @NonNull B, ? super @NonNull C> after) {
         Objects.requireNonNull(after, "after");
         return (a, b, c) -> {
             this.accept(a, b, c);
@@ -55,7 +57,7 @@ public interface ExceptionalTriConsumer<A, B, C> {
      * @param after Standard consumer to invoke after this consumer.
      * @return Composed consumer.
      */
-    default ExceptionalTriConsumer<A, B, C> andThen(TriConsumer<? super A, ? super B, ? super C> after) {
+    default @NonNull ExceptionalTriConsumer<@NonNull A, @NonNull B, @NonNull C> andThen(@NonNull TriConsumer<? super @NonNull A, ? super @NonNull B, ? super @NonNull C> after) {
         Objects.requireNonNull(after, "after");
         return (a, b, c) -> {
             this.accept(a, b, c);

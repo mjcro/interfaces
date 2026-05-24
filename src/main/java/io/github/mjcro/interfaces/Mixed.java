@@ -1,6 +1,7 @@
 package io.github.mjcro.interfaces;
 
 import io.github.mjcro.interfaces.booleans.WithEmpty;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
@@ -14,7 +15,7 @@ public interface Mixed extends WithEmpty {
      *
      * @return Optional value.
      */
-    Optional<Object> get();
+    @NonNull Optional<@NonNull Object> get();
 
     @Override
     default boolean isEmpty() {
@@ -27,7 +28,7 @@ public interface Mixed extends WithEmpty {
      * @param clazz Class to convert to.
      * @return Optional converted value.
      */
-    <T> Optional<T> getAs(Class<T> clazz);
+    <T> @NonNull Optional<@NonNull T> getAs(@NonNull Class<@NonNull T> clazz);
 
     /**
      * Converts stored in mixed container value.
@@ -36,19 +37,19 @@ public interface Mixed extends WithEmpty {
      * @return Converted value, never null.
      * @throws java.util.NoSuchElementException If value was null.
      */
-    default <T> T mustGetAs(Class<T> clazz) {
+    default <T> @NonNull T mustGetAs(@NonNull Class<@NonNull T> clazz) {
         return getAs(clazz).get();
     }
 
     // @formatter:off
-    default Optional<String> getAsString() { return getAs(String.class); }
-    default Optional<Long> getAsLong() { return getAs(Long.class); }
-    default Optional<Integer> getAsInteger() { return getAs(Integer.class); }
-    default Optional<Double> getAsDouble() { return getAs(Double.class); }
-    default Optional<Float> getAsFloat() { return getAs(Float.class); }
-    default Optional<Boolean> getAsBoolean() { return getAs(Boolean.class); }
+    default @NonNull Optional<@NonNull String> getAsString() { return getAs(String.class); }
+    default @NonNull Optional<@NonNull Long> getAsLong() { return getAs(Long.class); }
+    default @NonNull Optional<@NonNull Integer> getAsInteger() { return getAs(Integer.class); }
+    default @NonNull Optional<@NonNull Double> getAsDouble() { return getAs(Double.class); }
+    default @NonNull Optional<@NonNull Float> getAsFloat() { return getAs(Float.class); }
+    default @NonNull Optional<@NonNull Boolean> getAsBoolean() { return getAs(Boolean.class); }
 
-    default String mustGetAsString() { return mustGetAs(String.class); }
+    default @NonNull String mustGetAsString() { return mustGetAs(String.class); }
     default long mustGetAsLong() { return mustGetAs(Long.class); }
     default int mustGetAsInteger() { return mustGetAs(Integer.class); }
     default double mustGetAsDouble() { return mustGetAs(Double.class); }

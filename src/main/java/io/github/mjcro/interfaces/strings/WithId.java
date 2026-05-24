@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.strings;
 
+import org.jspecify.annotations.NonNull;
+
+
 /**
  * Mixin interface for entities that carry a {@link String} identifier.
  */
@@ -7,7 +10,7 @@ public interface WithId {
     /**
      * @return Identifier of entity.
      */
-    String getId();
+    @NonNull String getId();
 
     /**
      * Checks if entity identifier equals to given one.
@@ -15,7 +18,7 @@ public interface WithId {
      * @param given Identifier to compare to.
      * @return True if identifiers are equal.
      */
-    default boolean hasId(String given) {
+    default boolean hasId(@NonNull String given) {
         return getId().equals(given);
     }
 }

@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces.bytes;
 
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Arrays;
@@ -21,7 +22,7 @@ public interface WithId {
      *
      * @return The identifier as a byte array; never {@code null}.
      */
-    byte[] getId();
+    byte @NonNull [] getId();
 
     /**
      * Returns whether the identifier of this object equals the given byte array.
@@ -33,7 +34,7 @@ public interface WithId {
      *              in which case {@code false} is returned.
      * @return {@code true} if the identifiers are equal; {@code false} otherwise.
      */
-    default boolean hasId(byte[] given) {
+    default boolean hasId(byte @NonNull [] given) {
         return Arrays.equals(getId(), given);
     }
 
@@ -46,7 +47,7 @@ public interface WithId {
      *
      * @param other The object whose identifier to compare against; may be {@code null}.
      * @return {@code true} if both identifiers are equal; {@code false} otherwise,
-     *         including when {@code other} is {@code null}.
+     * including when {@code other} is {@code null}.
      */
     default boolean hasId(@Nullable WithId other) {
         return other != null && hasId(other.getId());
@@ -61,7 +62,7 @@ public interface WithId {
      *
      * @return The Base64-encoded identifier; never {@code null}.
      */
-    default String getIdBase64() {
+    default @NonNull String getIdBase64() {
         return Base64.getEncoder().encodeToString(getId());
     }
 }

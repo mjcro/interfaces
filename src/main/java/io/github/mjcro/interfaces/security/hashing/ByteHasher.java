@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.security.hashing;
 
+import org.jspecify.annotations.NonNull;
+
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -19,7 +21,7 @@ public interface ByteHasher {
      * @param source Source bytes.
      * @return Hash.
      */
-    byte[] hash(byte[] source);
+    byte @NonNull [] hash(byte @NonNull [] source);
 
     /**
      * Performs hashing of given string.
@@ -27,7 +29,7 @@ public interface ByteHasher {
      * @param source Source string.
      * @return Hash.
      */
-    default byte[] hash(String source) {
+    default byte @NonNull [] hash(@NonNull String source) {
         return source.getBytes(getStringCharset());
     }
 
@@ -37,7 +39,7 @@ public interface ByteHasher {
      * @param source Source bytes.
      * @return Hash in Base64.
      */
-    default String hashToBase64(byte[] source) {
+    default @NonNull String hashToBase64(byte @NonNull [] source) {
         return Base64.getEncoder().encodeToString(hash(source));
     }
 
@@ -47,14 +49,14 @@ public interface ByteHasher {
      * @param source Source bytes.
      * @return Hash in Base64.
      */
-    default String hashToBase64(String source) {
+    default @NonNull String hashToBase64(@NonNull String source) {
         return Base64.getEncoder().encodeToString(hash(source));
     }
 
     /**
      * @return Charset to use
      */
-    default Charset getStringCharset() {
+    default @NonNull Charset getStringCharset() {
         return StandardCharsets.UTF_8;
     }
 }

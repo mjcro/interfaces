@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.experimental.integration.amqp;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Map;
 import java.util.Optional;
 
@@ -10,45 +12,45 @@ public interface Properties {
     /**
      * @return Custom message headers.
      */
-    Map<String, Object> getHeaders();
+    @NonNull Map<@NonNull String, @NonNull Object> getHeaders();
 
     /**
      * @return Content type of the message body.
      */
-    Optional<String> getContentType();
+    @NonNull Optional<@NonNull String> getContentType();
 
     /**
      * @return Content encoding of the message body.
      */
-    Optional<String> getContentEncoding();
+    @NonNull Optional<@NonNull String> getContentEncoding();
 
     /**
      * @return Message type identifier.
      */
-    Optional<String> getType();
+    @NonNull Optional<@NonNull String> getType();
 
     /**
      * @return Message identifier.
      */
-    Optional<String> getMessageId();
+    @NonNull Optional<@NonNull String> getMessageId();
 
     /**
      * @return Correlation identifier, used to correlate responses with requests.
      */
-    Optional<String> getCorrelationId();
+    @NonNull Optional<@NonNull String> getCorrelationId();
 
     /**
      * @return Queue name to send the reply to.
      */
-    Optional<String> getReplyTo();
+    @NonNull Optional<@NonNull String> getReplyTo();
 
     /**
      * @return Delivery mode (1 = non-persistent, 2 = persistent).
      */
-    Optional<Integer> getDeliveryMode();
+    @NonNull Optional<@NonNull Integer> getDeliveryMode();
 
     /**
      * @return Message priority.
      */
-    Optional<Integer> getPriority();
+    @NonNull Optional<@NonNull Integer> getPriority();
 }

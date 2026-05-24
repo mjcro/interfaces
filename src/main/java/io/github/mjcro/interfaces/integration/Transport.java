@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces.integration;
 
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Arrays;
@@ -29,7 +30,7 @@ public interface Transport {
      *
      * @return Array of options, or {@code null} if none were provided.
      */
-    Option @Nullable [] getOptions();
+    @NonNull Option @Nullable [] getOptions();
 
     /**
      * Returns the options this transport was configured with as an unmodifiable
@@ -40,7 +41,7 @@ public interface Transport {
      *
      * @return Immutable list of options; empty if no options were provided.
      */
-    default List<? extends Option> getOptionsList() {
+    default @NonNull List<? extends @NonNull Option> getOptionsList() {
         Option[] options = getOptions();
         return options == null || options.length == 0
                 ? Collections.emptyList()

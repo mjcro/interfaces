@@ -3,6 +3,7 @@ package io.github.mjcro.interfaces.experimental.integration.http.simple;
 import io.github.mjcro.interfaces.experimental.integration.Option;
 import io.github.mjcro.interfaces.experimental.integration.Packet;
 import io.github.mjcro.interfaces.strings.WithUrl;
+import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.Future;
 
@@ -20,7 +21,7 @@ public interface HttpRequest extends Packet, WithUrl {
     /**
      * @return HTTP request method.
      */
-    String getMethod();
+    @NonNull String getMethod();
 
     /**
      * Sends current request to using transport.
@@ -29,7 +30,7 @@ public interface HttpRequest extends Packet, WithUrl {
      * @param options   Transport options.
      * @return Response.
      */
-    default HttpResponse sendTo(HttpTransport transport, Option... options) {
+    default @NonNull HttpResponse sendTo(@NonNull HttpTransport transport, @NonNull Option... options) {
         return transport.send(this, options);
     }
 
@@ -40,7 +41,7 @@ public interface HttpRequest extends Packet, WithUrl {
      * @param options   Transport options.
      * @return Future response.
      */
-    default <T extends Future<HttpResponse>> T sendTo(HttpAsyncTransport<T> transport, Option... options) {
+    default <T extends Future<HttpResponse>> @NonNull T sendTo(@NonNull HttpAsyncTransport<@NonNull T> transport, @NonNull Option... options) {
         return transport.sendAsync(this);
     }
 }

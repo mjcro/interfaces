@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.exceptions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Optional;
 
 /**
@@ -9,7 +11,7 @@ public interface WithOptionalException {
     /**
      * @return Exception, optional.
      */
-    Optional<Throwable> getException();
+    @NonNull Optional<@NonNull Throwable> getException();
 
     /**
      * @return True if exception present.

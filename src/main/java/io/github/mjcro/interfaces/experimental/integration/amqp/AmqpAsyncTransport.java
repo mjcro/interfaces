@@ -2,6 +2,7 @@ package io.github.mjcro.interfaces.experimental.integration.amqp;
 
 import io.github.mjcro.interfaces.experimental.integration.AsyncTransport;
 import io.github.mjcro.interfaces.experimental.integration.Option;
+import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.Future;
 
@@ -17,5 +18,5 @@ public interface AmqpAsyncTransport<T extends Future<AmqpResponse>> extends Asyn
      * @param request Data to send.
      * @param options Transport options.
      */
-    void publish(AmqpRequest request, Option... options);
+    void publish(@NonNull AmqpRequest request, @NonNull Option... options);
 }

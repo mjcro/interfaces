@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 import java.util.function.Predicate;
 
@@ -17,7 +19,7 @@ public interface ExceptionalPredicate<T> {
      * @param <T>       Input type.
      * @return Wrapped predicate.
      */
-    static <T> ExceptionalPredicate<T> fromPredicate(Predicate<T> predicate) {
+    static <T> @NonNull ExceptionalPredicate<@NonNull T> fromPredicate(@NonNull Predicate<@NonNull T> predicate) {
         Objects.requireNonNull(predicate, "predicate");
         return predicate::test;
     }
@@ -29,7 +31,7 @@ public interface ExceptionalPredicate<T> {
      * @return {@code true} if the input argument matches the predicate, otherwise {@code false}.
      * @throws Exception If an error occurs during evaluation.
      */
-    boolean test(T t) throws Exception;
+    boolean test(@NonNull T t) throws Exception;
 
     /**
      * Returns a composed predicate that represents a short-circuiting logical AND of this predicate and {@code other}.
@@ -37,7 +39,7 @@ public interface ExceptionalPredicate<T> {
      * @param other Predicate to logically-AND with this predicate.
      * @return Composed predicate.
      */
-    default ExceptionalPredicate<T> and(ExceptionalPredicate<? super T> other) {
+    default @NonNull ExceptionalPredicate<@NonNull T> and(@NonNull ExceptionalPredicate<? super @NonNull T> other) {
         Objects.requireNonNull(other, "other");
         return (t) -> this.test(t) && other.test(t);
     }
@@ -48,7 +50,7 @@ public interface ExceptionalPredicate<T> {
      * @param other Standard predicate to logically-AND with this predicate.
      * @return Composed predicate.
      */
-    default ExceptionalPredicate<T> and(Predicate<? super T> other) {
+    default @NonNull ExceptionalPredicate<@NonNull T> and(@NonNull Predicate<? super @NonNull T> other) {
         Objects.requireNonNull(other, "other");
         return (t) -> this.test(t) && other.test(t);
     }
@@ -58,7 +60,7 @@ public interface ExceptionalPredicate<T> {
      *
      * @return Negated predicate.
      */
-    default ExceptionalPredicate<T> negate() {
+    default @NonNull ExceptionalPredicate<@NonNull T> negate() {
         return (t) -> !this.test(t);
     }
 
@@ -68,7 +70,7 @@ public interface ExceptionalPredicate<T> {
      * @param other Predicate to logically-OR with this predicate.
      * @return Composed predicate.
      */
-    default ExceptionalPredicate<T> or(ExceptionalPredicate<? super T> other) {
+    default @NonNull ExceptionalPredicate<@NonNull T> or(@NonNull ExceptionalPredicate<? super @NonNull T> other) {
         Objects.requireNonNull(other, "other");
         return (t) -> this.test(t) || other.test(t);
     }
@@ -79,7 +81,7 @@ public interface ExceptionalPredicate<T> {
      * @param other Standard predicate to logically-OR with this predicate.
      * @return Composed predicate.
      */
-    default ExceptionalPredicate<T> or(Predicate<? super T> other) {
+    default @NonNull ExceptionalPredicate<@NonNull T> or(@NonNull Predicate<? super @NonNull T> other) {
         Objects.requireNonNull(other, "other");
         return (t) -> this.test(t) || other.test(t);
     }

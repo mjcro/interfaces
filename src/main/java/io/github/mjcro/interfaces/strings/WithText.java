@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.strings;
 
+import org.jspecify.annotations.NonNull;
+
+
 /**
  * Mixin interface for entities that carry a text body as a {@link String}.
  */
@@ -7,7 +10,7 @@ public interface WithText {
     /**
      * @return Entity text.
      */
-    String getText();
+    @NonNull String getText();
 
     /**
      * Checks if entity text equals to given one.
@@ -15,7 +18,7 @@ public interface WithText {
      * @param given Text to compare to.
      * @return True if texts are equal.
      */
-    default boolean hasText(String given) {
+    default boolean hasText(@NonNull String given) {
         return getText().equals(given);
     }
 }

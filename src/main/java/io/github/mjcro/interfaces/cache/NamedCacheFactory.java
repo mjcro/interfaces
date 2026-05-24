@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.cache;
 
+import org.jspecify.annotations.NonNull;
+
 import java.time.Duration;
 
 /**
@@ -21,7 +23,7 @@ public interface NamedCacheFactory {
      * @param ttl      Time-to-live for each cached entry after insertion. Must not be null.
      * @return Non-null {@link Cache} instance.
      */
-    <K, V> Cache<K, V> get(String name, int capacity, Duration ttl);
+    <K, V> @NonNull Cache<@NonNull K, @NonNull V> get(@NonNull String name, int capacity, @NonNull Duration ttl);
 
     /**
      * Removes a specific entry from a named cache, if the factory supports per-cache invalidation.
@@ -32,5 +34,5 @@ public interface NamedCacheFactory {
      * @param name Name of the target cache. Must not be null.
      * @param key  Cache key identifying the entry to remove. Must not be null.
      */
-    <K> void invalidate(String name, K key);
+    <K> void invalidate(@NonNull String name, @NonNull K key);
 }

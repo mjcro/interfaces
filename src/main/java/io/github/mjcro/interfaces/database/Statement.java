@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.database;
 
+import org.jspecify.annotations.NonNull;
+
+
 /**
  * Represents database statement to make.
  */
@@ -7,16 +10,17 @@ public interface Statement {
     /**
      * @return Statement query.
      */
-    String getSql();
+    @NonNull String getSql();
 
     /**
      * @return Statement parameters.
      */
-    Object[] getParameters();
+    @NonNull Object @NonNull [] getParameters();
 
     /**
      * @return True if statement has parameters, false otherwise.
      */
+    @SuppressWarnings("ConstantValue")
     default boolean hasParameters() {
         Object[] parameters = getParameters();
         return parameters != null && parameters.length > 0;

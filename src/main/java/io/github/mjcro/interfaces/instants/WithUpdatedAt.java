@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.instants;
 
+import org.jspecify.annotations.NonNull;
+
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
@@ -22,12 +24,12 @@ public interface WithUpdatedAt<T extends Temporal> {
     /**
      * @return Entity modification time.
      */
-    T getUpdatedAt();
+    @NonNull T getUpdatedAt();
 
     /**
      * @return Entity modification time as instant.
      */
-    default Instant getUpdatedAtInstant() {
+    default @NonNull Instant getUpdatedAtInstant() {
         return Instant.from(getUpdatedAt());
     }
 
@@ -48,7 +50,7 @@ public interface WithUpdatedAt<T extends Temporal> {
     /**
      * @return Entity modification time in ISO_INSTANT string representation.
      */
-    default String formatUpdatedAtISOInstant() {
+    default @NonNull String formatUpdatedAtISOInstant() {
         return DateTimeFormatter.ISO_INSTANT.format(getUpdatedAtInstant());
     }
 }

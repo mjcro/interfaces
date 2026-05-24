@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.durations;
 
+import org.jspecify.annotations.NonNull;
+
 import java.time.Duration;
 
 /**
@@ -9,7 +11,7 @@ public interface WithElapsed {
     /**
      * @return Elapsed time.
      */
-    Duration getElapsed();
+    @NonNull Duration getElapsed();
 
     /**
      * @return Elapsed time in seconds.

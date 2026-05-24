@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces.enums;
 
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Collection;
@@ -14,7 +15,7 @@ public interface WithType<T extends Enum<T>> {
     /**
      * @return Entity type
      */
-    T getType();
+    @NonNull T getType();
 
     /**
      * Checks if entity type is equal to given one.
@@ -22,7 +23,7 @@ public interface WithType<T extends Enum<T>> {
      * @param given State to compare with.
      * @return True is types are equal.
      */
-    default boolean hasType(T given) {
+    default boolean hasType(@NonNull T given) {
         return Objects.equals(getType(), given);
     }
 
@@ -32,7 +33,7 @@ public interface WithType<T extends Enum<T>> {
      * @param given State to compare with.
      * @return True is types are not equal.
      */
-    default boolean notHasType(T given) {
+    default boolean notHasType(@NonNull T given) {
         return !hasType(given);
     }
 
@@ -42,7 +43,7 @@ public interface WithType<T extends Enum<T>> {
      * @param given Type container to compare with, may be null.
      * @return True if types are equal.
      */
-    default boolean hasType(@Nullable WithType<T> given) {
+    default boolean hasType(@Nullable WithType<@NonNull T> given) {
         return given != null && given.hasType(getType());
     }
 
@@ -52,7 +53,7 @@ public interface WithType<T extends Enum<T>> {
      * @param given Type container to compare with, may be null.
      * @return True if types are not equal.
      */
-    default boolean notHasType(@Nullable WithType<T> given) {
+    default boolean notHasType(@Nullable WithType<@NonNull T> given) {
         return !hasType(given);
     }
 
@@ -62,7 +63,7 @@ public interface WithType<T extends Enum<T>> {
      * @param collection Collection of types to match against, may be null.
      * @return True if entity's type is contained in the given collection.
      */
-    default boolean hasTypeOneOf(@Nullable Collection<T> collection) {
+    default boolean hasTypeOneOf(@Nullable Collection<@NonNull T> collection) {
         return collection != null && collection.contains(getType());
     }
 
@@ -72,7 +73,7 @@ public interface WithType<T extends Enum<T>> {
      * @param collection Collection of types to match against, may be null.
      * @return True if entity's type is not contained in the given collection.
      */
-    default boolean notHasTypeOneOf(@Nullable Collection<T> collection) {
+    default boolean notHasTypeOneOf(@Nullable Collection<@NonNull T> collection) {
         return !hasTypeOneOf(collection);
     }
 }

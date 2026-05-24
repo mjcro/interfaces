@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 
 /**
@@ -20,7 +22,7 @@ public interface ExceptionalTriPredicate<A, B, C> {
      * @return {@code true} if the arguments match the predicate, otherwise {@code false}.
      * @throws Exception If an error occurs during evaluation.
      */
-    boolean test(A a, B b, C c) throws Exception;
+    boolean test(@NonNull A a, @NonNull B b, @NonNull C c) throws Exception;
 
     /**
      * Returns a composed predicate representing a short-circuiting logical AND of this predicate and {@code other}.
@@ -28,7 +30,7 @@ public interface ExceptionalTriPredicate<A, B, C> {
      * @param other Predicate to logically-AND with this predicate.
      * @return Composed predicate.
      */
-    default ExceptionalTriPredicate<A, B, C> and(ExceptionalTriPredicate<? super A, ? super B, ? super C> other) {
+    default @NonNull ExceptionalTriPredicate<@NonNull A, @NonNull B, @NonNull C> and(@NonNull ExceptionalTriPredicate<? super @NonNull A, ? super @NonNull B, ? super @NonNull C> other) {
         Objects.requireNonNull(other, "other");
         return (a, b, c) -> this.test(a, b, c) && other.test(a, b, c);
     }
@@ -39,7 +41,7 @@ public interface ExceptionalTriPredicate<A, B, C> {
      * @param other Standard predicate to logically-AND with this predicate.
      * @return Composed predicate.
      */
-    default ExceptionalTriPredicate<A, B, C> and(TriPredicate<? super A, ? super B, ? super C> other) {
+    default @NonNull ExceptionalTriPredicate<@NonNull A, @NonNull B, @NonNull C> and(@NonNull TriPredicate<? super @NonNull A, ? super @NonNull B, ? super @NonNull C> other) {
         Objects.requireNonNull(other, "other");
         return (a, b, c) -> this.test(a, b, c) && other.test(a, b, c);
     }
@@ -49,7 +51,7 @@ public interface ExceptionalTriPredicate<A, B, C> {
      *
      * @return Negated predicate.
      */
-    default ExceptionalTriPredicate<A, B, C> negate() {
+    default @NonNull ExceptionalTriPredicate<@NonNull A, @NonNull B, @NonNull C> negate() {
         return (a, b, c) -> !this.test(a, b, c);
     }
 
@@ -59,7 +61,7 @@ public interface ExceptionalTriPredicate<A, B, C> {
      * @param other Predicate to logically-OR with this predicate.
      * @return Composed predicate.
      */
-    default ExceptionalTriPredicate<A, B, C> or(ExceptionalTriPredicate<? super A, ? super B, ? super C> other) {
+    default @NonNull ExceptionalTriPredicate<@NonNull A, @NonNull B, @NonNull C> or(@NonNull ExceptionalTriPredicate<? super @NonNull A, ? super @NonNull B, ? super @NonNull C> other) {
         Objects.requireNonNull(other, "other");
         return (a, b, c) -> this.test(a, b, c) || other.test(a, b, c);
     }
@@ -70,7 +72,7 @@ public interface ExceptionalTriPredicate<A, B, C> {
      * @param other Standard predicate to logically-OR with this predicate.
      * @return Composed predicate.
      */
-    default ExceptionalTriPredicate<A, B, C> or(TriPredicate<? super A, ? super B, ? super C> other) {
+    default @NonNull ExceptionalTriPredicate<@NonNull A, @NonNull B, @NonNull C> or(@NonNull TriPredicate<? super @NonNull A, ? super @NonNull B, ? super @NonNull C> other) {
         Objects.requireNonNull(other, "other");
         return (a, b, c) -> this.test(a, b, c) || other.test(a, b, c);
     }

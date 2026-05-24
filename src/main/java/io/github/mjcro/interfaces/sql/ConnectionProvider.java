@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.sql;
 
+import org.jspecify.annotations.NonNull;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Objects;
@@ -17,7 +19,7 @@ public interface ConnectionProvider {
      * @param supplier Java supplier.
      * @return ConnectionProvider instance.
      */
-    static ConnectionProvider ofSupplier(final Supplier<Connection> supplier) {
+    static @NonNull ConnectionProvider ofSupplier(final @NonNull Supplier<@NonNull Connection> supplier) {
         Objects.requireNonNull(supplier, "supplier");
         return supplier::get;
     }
@@ -28,7 +30,7 @@ public interface ConnectionProvider {
      * @param connection Established connection
      * @return ConnectionProvider instance.
      */
-    static ConnectionProvider ofConnection(final Connection connection) {
+    static @NonNull ConnectionProvider ofConnection(final @NonNull Connection connection) {
         Objects.requireNonNull(connection, "connection");
         return () -> connection;
     }
@@ -39,7 +41,7 @@ public interface ConnectionProvider {
      * @return Connection to use.
      * @throws SQLException On connection error.
      */
-    Connection getConnection() throws SQLException;
+    @NonNull Connection getConnection() throws SQLException;
 
     /**
      * Runs given function passing database connection to it.
@@ -49,7 +51,7 @@ public interface ConnectionProvider {
      * @param <T>      Response type.
      * @return Function response.
      */
-    default <T> T invokeWithConnection(ConnectionFunction<Connection, T> function) throws SQLException {
+    default <T> @NonNull T invokeWithConnection(@NonNull ConnectionFunction<@NonNull Connection, @NonNull T> function) throws SQLException {
         try (Connection connection = getConnection()) {
             return function.apply(connection);
         }
@@ -61,10 +63,9 @@ public interface ConnectionProvider {
      *
      * @param consumer Consumer to invoke.
      */
-    default void invokeWithConnection(ConnectionConsumer<Connection> consumer) throws SQLException {
-        this.invokeWithConnection(connection -> {
+    default void invokeWithConnection(@NonNull ConnectionConsumer<@NonNull Connection> consumer) throws SQLException {
+        try (Connection connection = getConnection()) {
             consumer.accept(connection);
-            return null;
-        });
+        }
     }
 }

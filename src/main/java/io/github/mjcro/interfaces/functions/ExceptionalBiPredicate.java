@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 import java.util.function.BiPredicate;
 
@@ -19,7 +21,7 @@ public interface ExceptionalBiPredicate<T, U> {
      * @param <U>         Second input type.
      * @return Wrapped bi-predicate.
      */
-    static <T, U> ExceptionalBiPredicate<T, U> fromBiPredicate(BiPredicate<T, U> biPredicate) {
+    static <T, U> @NonNull ExceptionalBiPredicate<@NonNull T, @NonNull U> fromBiPredicate(@NonNull BiPredicate<@NonNull T, @NonNull U> biPredicate) {
         Objects.requireNonNull(biPredicate, "biPredicate");
         return biPredicate::test;
     }
@@ -32,7 +34,7 @@ public interface ExceptionalBiPredicate<T, U> {
      * @return {@code true} if the input arguments match the predicate, otherwise {@code false}.
      * @throws Exception If an error occurs during evaluation.
      */
-    boolean test(T t, U u) throws Exception;
+    boolean test(@NonNull T t, @NonNull U u) throws Exception;
 
     /**
      * Returns a composed predicate that represents a short-circuiting logical AND of this predicate and {@code other}.
@@ -40,7 +42,7 @@ public interface ExceptionalBiPredicate<T, U> {
      * @param other Predicate to logically-AND with this predicate.
      * @return Composed predicate.
      */
-    default ExceptionalBiPredicate<T, U> and(ExceptionalBiPredicate<? super T, ? super U> other) {
+    default @NonNull ExceptionalBiPredicate<@NonNull T, @NonNull U> and(@NonNull ExceptionalBiPredicate<? super @NonNull T, ? super @NonNull U> other) {
         Objects.requireNonNull(other, "other");
         return (t, u) -> this.test(t, u) && other.test(t, u);
     }
@@ -51,7 +53,7 @@ public interface ExceptionalBiPredicate<T, U> {
      * @param other Standard predicate to logically-AND with this predicate.
      * @return Composed predicate.
      */
-    default ExceptionalBiPredicate<T, U> and(BiPredicate<? super T, ? super U> other) {
+    default @NonNull ExceptionalBiPredicate<@NonNull T, @NonNull U> and(@NonNull BiPredicate<? super @NonNull T, ? super @NonNull U> other) {
         Objects.requireNonNull(other, "other");
         return (t, u) -> this.test(t, u) && other.test(t, u);
     }
@@ -61,7 +63,7 @@ public interface ExceptionalBiPredicate<T, U> {
      *
      * @return Negated predicate.
      */
-    default ExceptionalBiPredicate<T, U> negate() {
+    default @NonNull ExceptionalBiPredicate<@NonNull T, @NonNull U> negate() {
         return (t, u) -> !this.test(t, u);
     }
 
@@ -71,7 +73,7 @@ public interface ExceptionalBiPredicate<T, U> {
      * @param other Predicate to logically-OR with this predicate.
      * @return Composed predicate.
      */
-    default ExceptionalBiPredicate<T, U> or(ExceptionalBiPredicate<? super T, ? super U> other) {
+    default @NonNull ExceptionalBiPredicate<@NonNull T, @NonNull U> or(@NonNull ExceptionalBiPredicate<? super @NonNull T, ? super @NonNull U> other) {
         Objects.requireNonNull(other, "other");
         return (t, u) -> this.test(t, u) || other.test(t, u);
     }
@@ -82,7 +84,7 @@ public interface ExceptionalBiPredicate<T, U> {
      * @param other Standard predicate to logically-OR with this predicate.
      * @return Composed predicate.
      */
-    default ExceptionalBiPredicate<T, U> or(BiPredicate<? super T, ? super U> other) {
+    default @NonNull ExceptionalBiPredicate<@NonNull T, @NonNull U> or(@NonNull BiPredicate<? super @NonNull T, ? super @NonNull U> other) {
         Objects.requireNonNull(other, "other");
         return (t, u) -> this.test(t, u) || other.test(t, u);
     }

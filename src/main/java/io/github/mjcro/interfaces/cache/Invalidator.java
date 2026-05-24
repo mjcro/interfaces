@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.cache;
 
+import org.jspecify.annotations.NonNull;
+
+
 /**
  * Mixin interface for cache-like structures that support entry removal by key.
  *
@@ -16,5 +19,5 @@ public interface Invalidator<T> {
      *
      * @param key Cache key identifying the entry to remove. Must not be null.
      */
-    void invalidate(T key);
+    void invalidate(@NonNull T key);
 }

@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces.bytes;
 
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.io.ByteArrayInputStream;
@@ -58,7 +59,7 @@ public interface WithByteBody {
      * @param charset The charset to use for decoding; may be {@code null} to use the platform default.
      * @return The decoded body string, or an empty string if the body is absent; never {@code null}.
      */
-    default String getBodyString(@Nullable Charset charset) {
+    default @NonNull String getBodyString(@Nullable Charset charset) {
         byte[] body = this.getBody();
         return body == null || body.length == 0
                 ? ""
@@ -73,7 +74,7 @@ public interface WithByteBody {
      *
      * @return The Base64-encoded body, or an empty string if the body is absent; never {@code null}.
      */
-    default String getBodyBase64() {
+    default @NonNull String getBodyBase64() {
         byte[] body = this.getBody();
         return body == null || body.length == 0
                 ? ""
@@ -89,7 +90,7 @@ public interface WithByteBody {
      *
      * @return The UTF-8 decoded body string, or an empty string if the body is absent; never {@code null}.
      */
-    default String getBodyString() {
+    default @NonNull String getBodyString() {
         return this.getBodyString(StandardCharsets.UTF_8);
     }
 
@@ -101,7 +102,7 @@ public interface WithByteBody {
      *
      * @return An {@link InputStream} over the body bytes; never {@code null}.
      */
-    default InputStream getBodyInputStream() {
+    default @NonNull InputStream getBodyInputStream() {
         byte[] body = getBody();
         return new ByteArrayInputStream(body == null ? new byte[0] : body);
     }

@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces.integration;
 
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -29,9 +30,9 @@ public interface Call<R, C extends Client> {
      * @param client Client instance through which the call is dispatched;
      *               must not be {@code null}.
      * @return The result of the call, or {@code null} when the remote endpoint
-     *         returns an explicitly empty response.
+     * returns an explicitly empty response.
      * @throws Exception If the call fails due to a network error, a non-success
      *                   status, or any other exceptional condition.
      */
-    @Nullable R execute(C client) throws Exception;
+    @Nullable R execute(@NonNull C client) throws Exception;
 }

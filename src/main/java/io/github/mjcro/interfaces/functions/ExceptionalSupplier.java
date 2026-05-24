@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.function.Supplier;
@@ -18,7 +20,7 @@ public interface ExceptionalSupplier<T> {
      * @param <T>      Result type.
      * @return Wrapped supplier.
      */
-    static <T> ExceptionalSupplier<T> fromSupplier(Supplier<T> supplier) {
+    static <T> @NonNull ExceptionalSupplier<@NonNull T> fromSupplier(@NonNull Supplier<@NonNull T> supplier) {
         Objects.requireNonNull(supplier, "supplier");
         return supplier::get;
     }
@@ -30,7 +32,7 @@ public interface ExceptionalSupplier<T> {
      * @param <T>      Result type.
      * @return Wrapped callable.
      */
-    static <T> ExceptionalSupplier<T> fromCallable(Callable<T> callable) {
+    static <T> @NonNull ExceptionalSupplier<@NonNull T> fromCallable(@NonNull Callable<@NonNull T> callable) {
         Objects.requireNonNull(callable, "callable");
         return callable::call;
     }
@@ -41,14 +43,14 @@ public interface ExceptionalSupplier<T> {
      * @return A result.
      * @throws Exception If an error occurs during execution.
      */
-    T get() throws Exception;
+    @NonNull T get() throws Exception;
 
     /**
      * Converts this supplier to a {@link Callable}.
      *
      * @return This supplier as a {@link Callable}.
      */
-    default Callable<T> toCallable() {
+    default @NonNull Callable<@NonNull T> toCallable() {
         return this::get;
     }
 }

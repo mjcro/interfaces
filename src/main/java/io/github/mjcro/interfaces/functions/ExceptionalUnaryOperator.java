@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 import java.util.function.UnaryOperator;
 
@@ -17,7 +19,7 @@ public interface ExceptionalUnaryOperator<T> extends ExceptionalFunction<T, T> {
      * @param <T>           Input and result type.
      * @return Wrapped unary operator.
      */
-    static <T> ExceptionalUnaryOperator<T> fromUnaryOperator(UnaryOperator<T> unaryOperator) {
+    static <T> @NonNull ExceptionalUnaryOperator<@NonNull T> fromUnaryOperator(@NonNull UnaryOperator<@NonNull T> unaryOperator) {
         Objects.requireNonNull(unaryOperator, "unaryOperator");
         return unaryOperator::apply;
     }
@@ -28,7 +30,7 @@ public interface ExceptionalUnaryOperator<T> extends ExceptionalFunction<T, T> {
      * @param <T> Input and result type.
      * @return Identity operator.
      */
-    static <T> ExceptionalUnaryOperator<T> identity() {
+    static <T> @NonNull ExceptionalUnaryOperator<@NonNull T> identity() {
         return (t) -> t;
     }
 }

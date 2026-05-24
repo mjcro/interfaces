@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.instants;
 
+import org.jspecify.annotations.NonNull;
+
 import java.time.Duration;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
@@ -27,12 +29,12 @@ public interface WithOptionalExpiryAt<T extends Temporal> {
     /**
      * @return Entity expiration time.
      */
-    Optional<T> getExpiryAt();
+    @NonNull Optional<@NonNull T> getExpiryAt();
 
     /**
      * @return Entity expiration time as instant.
      */
-    default Optional<Instant> getExpiryAtInstant() {
+    default @NonNull Optional<@NonNull Instant> getExpiryAtInstant() {
         return getExpiryAt().map(Instant::from);
     }
 
@@ -47,28 +49,28 @@ public interface WithOptionalExpiryAt<T extends Temporal> {
      * @return Entity expiration time.
      * @throws NoSuchElementException If no expiration time present.
      */
-    default T mustGetExpiryAt() {
+    default @NonNull T mustGetExpiryAt() {
         return getExpiryAt().orElseThrow(NoSuchElementException::new);
     }
 
     /**
      * @return Entity expiration time in epoch seconds.
      */
-    default Optional<Long> getExpiryAtEpochSeconds() {
+    default @NonNull Optional<@NonNull Long> getExpiryAtEpochSeconds() {
         return getExpiryAtInstant().map(Instant::getEpochSecond);
     }
 
     /**
      * @return Entity expiration time in epoch milliseconds.
      */
-    default Optional<Long> getExpiryAtEpochMilli() {
+    default @NonNull Optional<@NonNull Long> getExpiryAtEpochMilli() {
         return getExpiryAtInstant().map(Instant::toEpochMilli);
     }
 
     /**
      * @return Entity expiration time in ISO_INSTANT string representation.
      */
-    default Optional<String> formatExpiryAtISOInstant() {
+    default @NonNull Optional<@NonNull String> formatExpiryAtISOInstant() {
         return getExpiryAtInstant().map(DateTimeFormatter.ISO_INSTANT::format);
     }
 
@@ -79,7 +81,7 @@ public interface WithOptionalExpiryAt<T extends Temporal> {
      * @param against Time to check expiration against (for most cases - current time).
      * @return True if expired, false otherwise.
      */
-    default boolean isExpired(Temporal against) {
+    default boolean isExpired(@NonNull Temporal against) {
         return getExpiryAt()
                 .map($ -> Duration.between(against, $))
                 .map(d -> d.isNegative() || d.isZero())
@@ -93,7 +95,7 @@ public interface WithOptionalExpiryAt<T extends Temporal> {
      * @param against Time to check expiration against (for most cases - current time).
      * @return True if not expired, false otherwise.
      */
-    default boolean isNotExpired(Temporal against) {
+    default boolean isNotExpired(@NonNull Temporal against) {
         return !isExpired(against);
     }
 

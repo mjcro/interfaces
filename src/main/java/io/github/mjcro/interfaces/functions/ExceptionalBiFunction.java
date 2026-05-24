@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -22,7 +24,7 @@ public interface ExceptionalBiFunction<T, U, R> {
      * @param <R>        Result type.
      * @return Wrapped bi-function.
      */
-    static <T, U, R> ExceptionalBiFunction<T, U, R> fromBiFunction(BiFunction<T, U, R> biFunction) {
+    static <T, U, R> @NonNull ExceptionalBiFunction<@NonNull T, @NonNull U, @NonNull R> fromBiFunction(@NonNull BiFunction<@NonNull T, @NonNull U, @NonNull R> biFunction) {
         Objects.requireNonNull(biFunction, "biFunction");
         return biFunction::apply;
     }
@@ -35,7 +37,7 @@ public interface ExceptionalBiFunction<T, U, R> {
      * @return Result of the function.
      * @throws Exception If an error occurs during function execution.
      */
-    R apply(T t, U u) throws Exception;
+    @NonNull R apply(@NonNull T t, @NonNull U u) throws Exception;
 
     /**
      * Returns a composed function that first applies this function, and then applies {@code after}.
@@ -44,7 +46,7 @@ public interface ExceptionalBiFunction<T, U, R> {
      * @param <V>   Output type of the composed function.
      * @return Composed function.
      */
-    default <V> ExceptionalBiFunction<T, U, V> andThen(ExceptionalFunction<? super R, ? extends V> after) {
+    default <V> @NonNull ExceptionalBiFunction<@NonNull T, @NonNull U, @NonNull V> andThen(@NonNull ExceptionalFunction<? super @NonNull R, ? extends @NonNull V> after) {
         Objects.requireNonNull(after, "after");
         return (t, u) -> after.apply(this.apply(t, u));
     }
@@ -56,7 +58,7 @@ public interface ExceptionalBiFunction<T, U, R> {
      * @param <V>   Output type of the composed function.
      * @return Composed function.
      */
-    default <V> ExceptionalBiFunction<T, U, V> andThen(Function<? super R, ? extends V> after) {
+    default <V> @NonNull ExceptionalBiFunction<@NonNull T, @NonNull U, @NonNull V> andThen(@NonNull Function<? super @NonNull R, ? extends @NonNull V> after) {
         Objects.requireNonNull(after, "after");
         return (t, u) -> after.apply(this.apply(t, u));
     }

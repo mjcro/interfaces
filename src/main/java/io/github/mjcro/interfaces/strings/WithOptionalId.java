@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.strings;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -10,7 +12,7 @@ public interface WithOptionalId {
     /**
      * @return Identifier of entity
      */
-    Optional<String> getId();
+    @NonNull Optional<@NonNull String> getId();
 
     /**
      * @return True if entity has id.
@@ -25,7 +27,7 @@ public interface WithOptionalId {
      * @param given Identifier to compare to.
      * @return True if identifiers are equal.
      */
-    default boolean hasId(String given) {
+    default boolean hasId(@NonNull String given) {
         Optional<String> id = getId();
         return id.isPresent() && id.get().equals(given);
     }
@@ -35,7 +37,7 @@ public interface WithOptionalId {
      * @throws NoSuchElementException If no id present.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
-    default String mustGetId() {
+    default @NonNull String mustGetId() {
         return getId().get();
     }
 }

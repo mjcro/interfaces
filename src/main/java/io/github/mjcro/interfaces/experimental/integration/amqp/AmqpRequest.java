@@ -2,6 +2,7 @@ package io.github.mjcro.interfaces.experimental.integration.amqp;
 
 import io.github.mjcro.interfaces.experimental.integration.Option;
 import io.github.mjcro.interfaces.experimental.integration.Packet;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
@@ -12,17 +13,17 @@ public interface AmqpRequest extends Packet {
     /**
      * @return Exchange name to send packet to.
      */
-    Optional<String> getExchange();
+    @NonNull Optional<@NonNull String> getExchange();
 
     /**
      * @return Routing key.
      */
-    Optional<String> getRoutingKey();
+    @NonNull Optional<@NonNull String> getRoutingKey();
 
     /**
      * @return Request properties.
      */
-    Optional<Properties> getProperties();
+    @NonNull Optional<@NonNull Properties> getProperties();
 
     /**
      * Sends this request using given transport.
@@ -31,7 +32,7 @@ public interface AmqpRequest extends Packet {
      * @param options   Transport options.
      * @return Response.
      */
-    default AmqpResponse sendTo(AmqpTransport transport, Option... options) {
+    default @NonNull AmqpResponse sendTo(@NonNull AmqpTransport transport, @NonNull Option... options) {
         return transport.send(this, options);
     }
 
@@ -41,7 +42,7 @@ public interface AmqpRequest extends Packet {
      * @param transport Transport to use.
      * @param options   Transport options.
      */
-    default void publishTo(AmqpTransport transport, Option... options) {
+    default void publishTo(@NonNull AmqpTransport transport, @NonNull Option... options) {
         transport.publish(this, options);
     }
 }

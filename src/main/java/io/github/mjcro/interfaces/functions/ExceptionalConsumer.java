@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -17,7 +19,7 @@ public interface ExceptionalConsumer<T> {
      * @param <T>      Input type.
      * @return Wrapped consumer.
      */
-    static <T> ExceptionalConsumer<T> fromConsumer(Consumer<T> consumer) {
+    static <T> @NonNull ExceptionalConsumer<@NonNull T> fromConsumer(@NonNull Consumer<@NonNull T> consumer) {
         Objects.requireNonNull(consumer, "consumer");
         return consumer::accept;
     }
@@ -28,7 +30,7 @@ public interface ExceptionalConsumer<T> {
      * @param in Input argument.
      * @throws Exception If an error occurs during execution.
      */
-    void accept(T in) throws Exception;
+    void accept(@NonNull T in) throws Exception;
 
     /**
      * Returns a composed consumer that performs, in sequence, this operation followed by {@code after}.
@@ -36,7 +38,7 @@ public interface ExceptionalConsumer<T> {
      * @param after Consumer to invoke after this consumer.
      * @return Composed consumer.
      */
-    default ExceptionalConsumer<T> andThen(ExceptionalConsumer<? super T> after) {
+    default @NonNull ExceptionalConsumer<@NonNull T> andThen(@NonNull ExceptionalConsumer<? super @NonNull T> after) {
         Objects.requireNonNull(after, "after");
         return (t) -> {
             this.accept(t);
@@ -50,7 +52,7 @@ public interface ExceptionalConsumer<T> {
      * @param after Standard consumer to invoke after this consumer.
      * @return Composed consumer.
      */
-    default ExceptionalConsumer<T> andThen(Consumer<? super T> after) {
+    default @NonNull ExceptionalConsumer<@NonNull T> andThen(@NonNull Consumer<? super @NonNull T> after) {
         Objects.requireNonNull(after, "after");
         return (t) -> {
             this.accept(t);

@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.instants;
 
+import org.jspecify.annotations.NonNull;
+
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
@@ -22,12 +24,12 @@ public interface WithTime<T extends Temporal> {
     /**
      * @return Entity time.
      */
-    T getTime();
+    @NonNull T getTime();
 
     /**
      * @return Entity time as instant.
      */
-    default Instant getTimeInstant() {
+    default @NonNull Instant getTimeInstant() {
         return Instant.from(getTime());
     }
 
@@ -48,7 +50,7 @@ public interface WithTime<T extends Temporal> {
     /**
      * @return Entity time in ISO_INSTANT string representation.
      */
-    default String formatTimeISOInstant() {
+    default @NonNull String formatTimeISOInstant() {
         return DateTimeFormatter.ISO_INSTANT.format(getTimeInstant());
     }
 }

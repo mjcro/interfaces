@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 
 /**
@@ -22,7 +24,7 @@ public interface ExceptionalTriFunction<A, B, C, R> {
      * @param <R>         Result type.
      * @return Wrapped tri-function.
      */
-    static <A, B, C, R> ExceptionalTriFunction<A, B, C, R> ofTriFunction(TriFunction<A, B, C, R> triFunction) {
+    static <A, B, C, R> @NonNull ExceptionalTriFunction<@NonNull A, @NonNull B, @NonNull C, @NonNull R> ofTriFunction(@NonNull TriFunction<@NonNull A, @NonNull B, @NonNull C, @NonNull R> triFunction) {
         Objects.requireNonNull(triFunction, "triFunction");
         return triFunction::apply;
     }
@@ -36,5 +38,5 @@ public interface ExceptionalTriFunction<A, B, C, R> {
      * @return Result of the function.
      * @throws Exception If an error occurs during function execution.
      */
-    R apply(A a, B b, C c) throws Exception;
+    @NonNull R apply(@NonNull A a, @NonNull B b, @NonNull C c) throws Exception;
 }

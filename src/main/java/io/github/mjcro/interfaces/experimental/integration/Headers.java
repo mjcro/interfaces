@@ -1,6 +1,7 @@
 package io.github.mjcro.interfaces.experimental.integration;
 
 import io.github.mjcro.interfaces.ints.WithSize;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,7 @@ public interface Headers extends WithSize, Iterable<Map.Entry<String, List<Strin
      * @param name Header name.
      * @return Values.
      */
-    List<String> get(String name);
+    @NonNull List<@NonNull String> get(@NonNull String name);
 
     /**
      * Checks if headers contains one with given name.
@@ -24,7 +25,7 @@ public interface Headers extends WithSize, Iterable<Map.Entry<String, List<Strin
      * @param name Header name.
      * @return True if header exists.
      */
-    default boolean contains(String name) {
+    default boolean contains(@NonNull String name) {
         return !get(name).isEmpty();
     }
 
@@ -34,7 +35,7 @@ public interface Headers extends WithSize, Iterable<Map.Entry<String, List<Strin
      * @param name Header name.
      * @return Value, optional.
      */
-    default Optional<String> getSingle(String name) {
+    default @NonNull Optional<@NonNull String> getSingle(@NonNull String name) {
         return get(name).stream().findAny();
     }
 }

@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.instants;
 
+import org.jspecify.annotations.NonNull;
+
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
@@ -24,12 +26,12 @@ public interface WithOptionalUpdatedAt<T extends Temporal> {
     /**
      * @return Entity modification time.
      */
-    Optional<T> getUpdatedAt();
+    @NonNull Optional<@NonNull T> getUpdatedAt();
 
     /**
      * @return Entity modification time as instant.
      */
-    default Optional<Instant> getUpdatedAtInstant() {
+    default @NonNull Optional<@NonNull Instant> getUpdatedAtInstant() {
         return getUpdatedAt().map(Instant::from);
     }
 
@@ -44,28 +46,28 @@ public interface WithOptionalUpdatedAt<T extends Temporal> {
      * @return Entity modification time.
      * @throws NoSuchElementException If no update time present.
      */
-    default T mustGetUpdatedAt() {
+    default @NonNull T mustGetUpdatedAt() {
         return getUpdatedAt().orElseThrow(NoSuchElementException::new);
     }
 
     /**
      * @return Entity modification time in epoch seconds.
      */
-    default Optional<Long> getUpdatedAtEpochSeconds() {
+    default @NonNull Optional<@NonNull Long> getUpdatedAtEpochSeconds() {
         return getUpdatedAtInstant().map(Instant::getEpochSecond);
     }
 
     /**
      * @return Entity modification time in epoch milliseconds.
      */
-    default Optional<Long> getUpdatedAtEpochMilli() {
+    default @NonNull Optional<@NonNull Long> getUpdatedAtEpochMilli() {
         return getUpdatedAtInstant().map(Instant::toEpochMilli);
     }
 
     /**
      * @return Entity modification time in ISO_INSTANT string representation.
      */
-    default Optional<String> formatUpdatedAtISOInstant() {
+    default @NonNull Optional<@NonNull String> formatUpdatedAtISOInstant() {
         return getUpdatedAtInstant().map(DateTimeFormatter.ISO_INSTANT::format);
     }
 }

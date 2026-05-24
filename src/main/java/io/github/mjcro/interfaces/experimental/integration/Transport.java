@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.experimental.integration;
 
+import org.jspecify.annotations.NonNull;
+
+
 /**
  * Defines transport able to send requests and receive responses.
  * Every implementation of this interface should be immutable and thread safe.
@@ -16,5 +19,5 @@ public interface Transport<Req, Res> {
      * @param options Transport options.
      * @return Response.
      */
-    Res send(Req req, Option... options);
+    @NonNull Res send(@NonNull Req req, @NonNull Option... options);
 }

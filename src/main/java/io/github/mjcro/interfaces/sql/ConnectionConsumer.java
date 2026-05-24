@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.sql;
 
+import org.jspecify.annotations.NonNull;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Objects;
@@ -17,7 +19,7 @@ public interface ConnectionConsumer<C extends Connection> {
      * @param consumer Consumer to wrap.
      * @return Consumer that allows SQL exception to be thrown.
      */
-    static <C extends Connection> ConnectionConsumer<C> ofConsumer(Consumer<? super C> consumer) {
+    static <C extends Connection> @NonNull ConnectionConsumer<@NonNull C> ofConsumer(@NonNull Consumer<? super @NonNull C> consumer) {
         Objects.requireNonNull(consumer, "consumer");
         return consumer::accept;
     }
@@ -28,5 +30,5 @@ public interface ConnectionConsumer<C extends Connection> {
      * @param c Database connection.
      * @throws SQLException If a database error occurs.
      */
-    void accept(C c) throws SQLException;
+    void accept(@NonNull C c) throws SQLException;
 }

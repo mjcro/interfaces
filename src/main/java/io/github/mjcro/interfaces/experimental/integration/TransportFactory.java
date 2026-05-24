@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.experimental.integration;
 
+import org.jspecify.annotations.NonNull;
+
+
 /**
  * Defines factories able to produce transports.
  *
@@ -13,5 +16,5 @@ public interface TransportFactory<Req, Res> {
      * @param options Addition transport options.
      * @return Transport instance.
      */
-    Transport<Req, Res> getTransport(Option... options);
+    @NonNull Transport<@NonNull Req, @NonNull Res> getTransport(@NonNull Option... options);
 }

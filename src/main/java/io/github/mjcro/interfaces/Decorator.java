@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces;
 
+import org.jspecify.annotations.NonNull;
+
+
 /**
  * Generic interface for decorators.
  *
@@ -9,13 +12,13 @@ public interface Decorator<T> {
     /**
      * @return Object being decorated.
      */
-    T getDecorated();
+    @NonNull T getDecorated();
 
     /**
      * @return Object being decorated, recursively unwrapped if it is also a decorator.
      */
     @SuppressWarnings("unchecked")
-    default T getDecoratedRoot() {
+    default @NonNull T getDecoratedRoot() {
         T decorated = getDecorated();
         if (decorated instanceof Decorator<?>) {
             return ((Decorator<T>) decorated).getDecoratedRoot();

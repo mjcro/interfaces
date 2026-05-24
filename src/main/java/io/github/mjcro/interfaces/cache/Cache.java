@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.cache;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
@@ -20,7 +22,7 @@ public interface Cache<K, V> extends Invalidator<K> {
      * @param key Cache key. Must not be null.
      * @return Non-null {@link Optional} containing the cached value, or empty if not present.
      */
-    Optional<V> get(K key);
+    @NonNull Optional<@NonNull V> get(@NonNull K key);
 
     /**
      * Stores a key-value pair in the cache, overwriting any previously cached value for the same key.
@@ -28,7 +30,7 @@ public interface Cache<K, V> extends Invalidator<K> {
      * @param key   Cache key. Must not be null.
      * @param value Value to cache. Must not be null.
      */
-    void put(K key, V value);
+    void put(@NonNull K key, @NonNull V value);
 
     /**
      * Returns the cached value for the given key, invoking the mapping function to compute and store
@@ -41,12 +43,12 @@ public interface Cache<K, V> extends Invalidator<K> {
      * @param mappingFunction Function invoked on cache miss to compute the value. Must not be null.
      *                        Receives the cache key and returns an {@link Optional} result.
      * @return Non-null {@link Optional} containing the value (from cache or from the mapping function),
-     *         or empty if the mapping function produced no value.
+     * or empty if the mapping function produced no value.
      */
     @SuppressWarnings("unchecked")
-    default Optional<V> computeIfAbsent(
-            final K key,
-            final Function<? super K, Optional<? extends V>> mappingFunction
+    default @NonNull Optional<@NonNull V> computeIfAbsent(
+            final @NonNull K key,
+            final @NonNull Function<? super @NonNull K, @NonNull Optional<? extends @NonNull V>> mappingFunction
     ) {
         Objects.requireNonNull(mappingFunction, "mappingFunction");
 

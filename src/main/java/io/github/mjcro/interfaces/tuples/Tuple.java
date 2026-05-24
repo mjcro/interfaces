@@ -1,6 +1,7 @@
 package io.github.mjcro.interfaces.tuples;
 
 import io.github.mjcro.interfaces.ints.WithSize;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -31,13 +32,24 @@ public interface Tuple extends WithSize, Comparable<Tuple> {
      */
     @Override
     @SuppressWarnings({"rawtypes", "unchecked"})
-    default int compareTo(Tuple that) {
+    default int compareTo(@NonNull Tuple that) {
         int thisSize = this.size();
         int thatSize = that.size();
 
         for (int i = 0; i < thisSize && i < thatSize; i++) {
-            Comparable thisElement = (Comparable) this.get(i);
-            Comparable thatElement = (Comparable) that.get(i);
+            Object thisValue = this.get(i);
+            Object thatValue = that.get(i);
+            if (thisValue == thatValue) {
+                continue;
+            }
+            if (thisValue == null) {
+                return -1;
+            }
+            if (thatValue == null) {
+                return 1;
+            }
+            Comparable thisElement = (Comparable) thisValue;
+            Comparable thatElement = (Comparable) thatValue;
             int cmp = thisElement.compareTo(thatElement);
             if (cmp != 0) {
                 return cmp;

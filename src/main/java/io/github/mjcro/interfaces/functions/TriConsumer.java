@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 
 /**
@@ -18,7 +20,7 @@ public interface TriConsumer<A, B, C> {
      * @param b Second argument.
      * @param c Third argument.
      */
-    void accept(A a, B b, C c);
+    void accept(@NonNull A a, @NonNull B b, @NonNull C c);
 
     /**
      * Returns a composed consumer that performs, in sequence, this operation followed by {@code after}.
@@ -26,7 +28,7 @@ public interface TriConsumer<A, B, C> {
      * @param after Consumer to invoke after this consumer.
      * @return Composed consumer.
      */
-    default TriConsumer<A, B, C> andThen(TriConsumer<? super A, ? super B, ? super C> after) {
+    default @NonNull TriConsumer<@NonNull A, @NonNull B, @NonNull C> andThen(@NonNull TriConsumer<? super @NonNull A, ? super @NonNull B, ? super @NonNull C> after) {
         Objects.requireNonNull(after, "after");
         return (a, b, c) -> {
             this.accept(a, b, c);

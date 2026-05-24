@@ -22,7 +22,7 @@ public interface WithEmpty {
      * <p>This is a convenience negation of {@link #isEmpty()}.
      *
      * @return {@code true} if the object contains at least one element or some data;
-     *         {@code false} if it is empty.
+     * {@code false} if it is empty.
      */
     default boolean isNotEmpty() {
         return !isEmpty();

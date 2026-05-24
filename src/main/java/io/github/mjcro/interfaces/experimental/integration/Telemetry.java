@@ -3,6 +3,7 @@ package io.github.mjcro.interfaces.experimental.integration;
 import io.github.mjcro.interfaces.durations.WithElapsed;
 import io.github.mjcro.interfaces.exceptions.WithOptionalException;
 import io.github.mjcro.interfaces.instants.WithCreatedAt;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.time.Duration;
@@ -23,17 +24,17 @@ public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed,
     /**
      * @return Request.
      */
-    Req getRequest();
+    @NonNull Req getRequest();
 
     /**
      * @return Arbitrary metadata.
      */
-    Optional<Meta> getMetadata();
+    @NonNull Optional<@NonNull Meta> getMetadata();
 
     /**
      * @return Response.
      */
-    Optional<Res> getResponse();
+    @NonNull Optional<@NonNull Res> getResponse();
 
     /**
      * @return True if metadata is present.
@@ -54,14 +55,14 @@ public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed,
      *
      * @param consumer Response consumer.
      */
-    default void ifHasResponse(Consumer<? super Res> consumer) {
+    default void ifHasResponse(@NonNull Consumer<? super @NonNull Res> consumer) {
         getResponse().ifPresent(consumer);
     }
 
     /**
      * @return Elapsed time.
      */
-    default Optional<Duration> getElapsed() {
+    default @NonNull Optional<@NonNull Duration> getElapsed() {
         return getResponse().map(WithElapsed::getElapsed);
     }
 
@@ -71,7 +72,7 @@ public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed,
      *
      * @param consumer Telemetry consumer, may be null.
      */
-    default void sendTo(@Nullable Consumer<? super Telemetry<Req, Res, Meta, T>> consumer) {
+    default void sendTo(@Nullable Consumer<? super @NonNull Telemetry<@NonNull Req, @NonNull Res, @NonNull Meta, @NonNull T>> consumer) {
         if (consumer != null) {
             consumer.accept(this);
         }

@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
+
 /**
  * Extension of {@link java.util.function.BiFunction} design but with three arguments.
  *
@@ -18,5 +21,5 @@ public interface TriFunction<A, B, C, R> {
      * @param c Third argument.
      * @return Result of the function.
      */
-    R apply(A a, B b, C c);
+    @NonNull R apply(@NonNull A a, @NonNull B b, @NonNull C c);
 }

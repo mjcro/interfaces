@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.tuples;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Optional;
 
 /**
@@ -18,14 +20,14 @@ public interface OptionalPair<F, S> extends Tuple {
     /**
      * @return First element of tuple.
      */
-    default Optional<F> getFirst() {
+    default @NonNull Optional<@NonNull F> getFirst() {
         return (Optional<F>) Optional.ofNullable(get(0));
     }
 
     /**
      * @return Second element of tuple.
      */
-    default Optional<S> getSecond() {
+    default @NonNull Optional<@NonNull S> getSecond() {
         return (Optional<S>) Optional.ofNullable(get(1));
     }
 }

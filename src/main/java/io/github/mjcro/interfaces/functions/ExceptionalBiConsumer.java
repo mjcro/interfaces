@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 import java.util.function.BiConsumer;
 
@@ -19,7 +21,7 @@ public interface ExceptionalBiConsumer<T, U> {
      * @param <U>        Second input type.
      * @return Wrapped bi-consumer.
      */
-    static <T, U> ExceptionalBiConsumer<T, U> fromBiConsumer(BiConsumer<T, U> biConsumer) {
+    static <T, U> @NonNull ExceptionalBiConsumer<@NonNull T, @NonNull U> fromBiConsumer(@NonNull BiConsumer<@NonNull T, @NonNull U> biConsumer) {
         Objects.requireNonNull(biConsumer, "biConsumer");
         return biConsumer::accept;
     }
@@ -31,7 +33,7 @@ public interface ExceptionalBiConsumer<T, U> {
      * @param u Second input argument.
      * @throws Exception If an error occurs during execution.
      */
-    void accept(T t, U u) throws Exception;
+    void accept(@NonNull T t, @NonNull U u) throws Exception;
 
     /**
      * Returns a composed consumer that performs, in sequence, this operation followed by {@code after}.
@@ -39,7 +41,7 @@ public interface ExceptionalBiConsumer<T, U> {
      * @param after Consumer to invoke after this consumer.
      * @return Composed consumer.
      */
-    default ExceptionalBiConsumer<T, U> andThen(ExceptionalBiConsumer<? super T, ? super U> after) {
+    default @NonNull ExceptionalBiConsumer<@NonNull T, @NonNull U> andThen(@NonNull ExceptionalBiConsumer<? super @NonNull T, ? super @NonNull U> after) {
         Objects.requireNonNull(after, "after");
         return (l, r) -> {
             this.accept(l, r);
@@ -53,7 +55,7 @@ public interface ExceptionalBiConsumer<T, U> {
      * @param after Standard consumer to invoke after this consumer.
      * @return Composed consumer.
      */
-    default ExceptionalBiConsumer<T, U> andThen(BiConsumer<? super T, ? super U> after) {
+    default @NonNull ExceptionalBiConsumer<@NonNull T, @NonNull U> andThen(@NonNull BiConsumer<? super @NonNull T, ? super @NonNull U> after) {
         Objects.requireNonNull(after, "after");
         return (l, r) -> {
             this.accept(l, r);

@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.strings;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -10,7 +12,7 @@ public interface WithOptionalName {
     /**
      * @return Entity name.
      */
-    Optional<String> getName();
+    @NonNull Optional<@NonNull String> getName();
 
     /**
      * @return True if entity has name set.
@@ -25,7 +27,7 @@ public interface WithOptionalName {
      * @param given Name to compare to.
      * @return True if names are equal.
      */
-    default boolean hasName(String given) {
+    default boolean hasName(@NonNull String given) {
         Optional<String> name = getName();
         return name.isPresent() && name.get().equals(given);
     }
@@ -35,7 +37,7 @@ public interface WithOptionalName {
      * @throws NoSuchElementException If no name present.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
-    default String mustGetName() {
+    default @NonNull String mustGetName() {
         return getName().get();
     }
 }

@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.convert;
 
+import org.jspecify.annotations.NonNull;
+
+
 /**
  * Defines converters factory.
  *
@@ -14,5 +17,5 @@ public interface ConverterFactory<S, R> {
      * @param <T>        Target type, must be a subtype of {@code R}.
      * @return Converter for the requested target type.
      */
-    <T extends R> Converter<S, T> getConverter(Class<T> targetType);
+    <T extends R> @NonNull Converter<@NonNull S, @NonNull T> getConverter(@NonNull Class<@NonNull T> targetType);
 }

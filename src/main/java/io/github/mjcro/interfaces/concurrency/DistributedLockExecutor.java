@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces.concurrency;
 
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.function.Supplier;
@@ -17,7 +18,7 @@ public interface DistributedLockExecutor<T> {
      * @param lockingKey Lock key to obtain.
      * @param runnable   Runnable to run when lock is obtained.
      */
-    default void executeLocked(T lockingKey, Runnable runnable) {
+    default void executeLocked(@NonNull T lockingKey, @NonNull Runnable runnable) {
         executeLocked(lockingKey, () -> {
             runnable.run();
             return null;
@@ -33,5 +34,5 @@ public interface DistributedLockExecutor<T> {
      * @param <R>        Response type.
      * @return Supplier response.
      */
-    <R> @Nullable R executeLocked(T lockingKey, Supplier<R> supplier);
+    <R> @Nullable R executeLocked(@NonNull T lockingKey, @NonNull Supplier<@Nullable R> supplier);
 }

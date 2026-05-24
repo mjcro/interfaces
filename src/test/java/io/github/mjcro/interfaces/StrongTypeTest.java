@@ -2,6 +2,7 @@ package io.github.mjcro.interfaces;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -81,7 +82,7 @@ class StrongTypeTest {
         }
 
         @Override
-        public boolean hasValue(String candidate) {
+        public boolean hasValue(@Nullable String candidate) {
             return candidate != null && candidate.equalsIgnoreCase(value());
         }
     }

@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.longs;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 
 /**
@@ -11,7 +13,7 @@ public interface WithStrongLongId<I extends StrongLongId> {
     /**
      * @return Identifier of entity
      */
-    I getId();
+    @NonNull I getId();
 
     /**
      * Checks if entity identifier equals to given one.
@@ -19,7 +21,7 @@ public interface WithStrongLongId<I extends StrongLongId> {
      * @param given Identifier to compare to.
      * @return True if identifiers are equal.
      */
-    default boolean hasId(I given) {
+    default boolean hasId(@NonNull I given) {
         return Objects.equals(getId(), given);
     }
 

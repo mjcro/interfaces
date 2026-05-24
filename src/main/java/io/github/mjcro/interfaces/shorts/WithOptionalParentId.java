@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.shorts;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -10,7 +12,7 @@ public interface WithOptionalParentId {
     /**
      * @return Parent identifier.
      */
-    Optional<Short> getParentId();
+    @NonNull Optional<@NonNull Short> getParentId();
 
     /**
      * @return True if entity has parent identifier.

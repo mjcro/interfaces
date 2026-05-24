@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.experimental.integration.http.simple;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -17,7 +19,7 @@ public interface HttpRequestPreProcessor {
      * @param function Function.
      * @return HTTP request pre-processor.
      */
-    static HttpRequestPreProcessor fromFunction(Function<HttpRequest, HttpRequest> function) {
+    static @NonNull HttpRequestPreProcessor fromFunction(@NonNull Function<@NonNull HttpRequest, @NonNull HttpRequest> function) {
         Objects.requireNonNull(function, "function");
         return function::apply;
     }
@@ -28,7 +30,7 @@ public interface HttpRequestPreProcessor {
      * @param unaryOperator Unary operator.
      * @return HTTP request pre-processor.
      */
-    static HttpRequestPreProcessor fromUnary(UnaryOperator<HttpRequest> unaryOperator) {
+    static @NonNull HttpRequestPreProcessor fromUnary(@NonNull UnaryOperator<@NonNull HttpRequest> unaryOperator) {
         Objects.requireNonNull(unaryOperator, "unaryOperator");
         return unaryOperator::apply;
     }
@@ -41,7 +43,7 @@ public interface HttpRequestPreProcessor {
      * @param consumer Consumer to pass HTTP request into.
      * @return HTTP request pre-processor.
      */
-    static HttpRequestPreProcessor fromConsumer(Consumer<HttpRequest> consumer) {
+    static @NonNull HttpRequestPreProcessor fromConsumer(@NonNull Consumer<@NonNull HttpRequest> consumer) {
         Objects.requireNonNull(consumer, "consumer");
         return request -> {
             consumer.accept(request);
@@ -56,5 +58,5 @@ public interface HttpRequestPreProcessor {
      * @param request HTTP request with original data.
      * @return Altered HTTP request.
      */
-    HttpRequest preProcess(HttpRequest request);
+    @NonNull HttpRequest preProcess(@NonNull HttpRequest request);
 }

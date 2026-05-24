@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.functions;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -19,7 +21,7 @@ public interface ExceptionalFunction<T, R> {
      * @param <R>      Result type.
      * @return Wrapped function.
      */
-    static <T, R> ExceptionalFunction<T, R> fromFunction(Function<T, R> function) {
+    static <T, R> @NonNull ExceptionalFunction<@NonNull T, @NonNull R> fromFunction(@NonNull Function<@NonNull T, @NonNull R> function) {
         Objects.requireNonNull(function, "function");
         return function::apply;
     }
@@ -30,7 +32,7 @@ public interface ExceptionalFunction<T, R> {
      * @param <T> Input and result type.
      * @return Identity function.
      */
-    static <T> ExceptionalFunction<T, T> identity() {
+    static <T> @NonNull ExceptionalFunction<@NonNull T, @NonNull T> identity() {
         return (t) -> t;
     }
 
@@ -41,7 +43,7 @@ public interface ExceptionalFunction<T, R> {
      * @return Result of the function.
      * @throws Exception If an error occurs during function execution.
      */
-    R apply(T in) throws Exception;
+    @NonNull R apply(@NonNull T in) throws Exception;
 
     /**
      * Returns a composed function that first applies {@code before} to its input,
@@ -51,7 +53,7 @@ public interface ExceptionalFunction<T, R> {
      * @param <V>    Input type of the composed function.
      * @return Composed function.
      */
-    default <V> ExceptionalFunction<V, R> compose(ExceptionalFunction<? super V, ? extends T> before) {
+    default <V> @NonNull ExceptionalFunction<@NonNull V, @NonNull R> compose(@NonNull ExceptionalFunction<? super @NonNull V, ? extends @NonNull T> before) {
         Objects.requireNonNull(before, "before");
         return (v) -> this.apply(before.apply(v));
     }
@@ -64,7 +66,7 @@ public interface ExceptionalFunction<T, R> {
      * @param <V>   Output type of the composed function.
      * @return Composed function.
      */
-    default <V> ExceptionalFunction<T, V> andThen(ExceptionalFunction<? super R, ? extends V> after) {
+    default <V> @NonNull ExceptionalFunction<@NonNull T, @NonNull V> andThen(@NonNull ExceptionalFunction<? super @NonNull R, ? extends @NonNull V> after) {
         Objects.requireNonNull(after, "after");
         return (t) -> after.apply(this.apply(t));
     }
@@ -77,7 +79,7 @@ public interface ExceptionalFunction<T, R> {
      * @param <V>    Input type of the composed function.
      * @return Composed function.
      */
-    default <V> ExceptionalFunction<V, R> compose(Function<? super V, ? extends T> before) {
+    default <V> @NonNull ExceptionalFunction<@NonNull V, @NonNull R> compose(@NonNull Function<? super @NonNull V, ? extends @NonNull T> before) {
         Objects.requireNonNull(before, "before");
         return (v) -> this.apply(before.apply(v));
     }
@@ -90,7 +92,7 @@ public interface ExceptionalFunction<T, R> {
      * @param <V>   Output type of the composed function.
      * @return Composed function.
      */
-    default <V> ExceptionalFunction<T, V> andThen(Function<? super R, ? extends V> after) {
+    default <V> @NonNull ExceptionalFunction<@NonNull T, @NonNull V> andThen(@NonNull Function<? super @NonNull R, ? extends @NonNull V> after) {
         Objects.requireNonNull(after, "after");
         return (t) -> after.apply(this.apply(t));
     }

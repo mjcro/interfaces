@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.instants;
 
+import org.jspecify.annotations.NonNull;
+
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
@@ -22,12 +24,12 @@ public interface WithScheduledAt<T extends Temporal> {
     /**
      * @return Entity schedule time.
      */
-    T getScheduledAt();
+    @NonNull T getScheduledAt();
 
     /**
      * @return Entity schedule time as instant.
      */
-    default Instant getScheduledAtInstant() {
+    default @NonNull Instant getScheduledAtInstant() {
         return Instant.from(getScheduledAt());
     }
 
@@ -48,7 +50,7 @@ public interface WithScheduledAt<T extends Temporal> {
     /**
      * @return Entity schedule time in ISO_INSTANT string representation.
      */
-    default String formatScheduledAtISOInstant() {
+    default @NonNull String formatScheduledAtISOInstant() {
         return DateTimeFormatter.ISO_INSTANT.format(getScheduledAtInstant());
     }
 }

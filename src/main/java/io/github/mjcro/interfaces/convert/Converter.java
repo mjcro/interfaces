@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces.convert;
 
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Objects;
@@ -22,7 +23,7 @@ public interface Converter<S, T> {
      * @param <T>      Target type.
      * @return Converter wrapping the given function.
      */
-    static <S, T> Converter<S, T> ofFunction(Function<S, T> function) {
+    static <S, T> @NonNull Converter<@NonNull S, @NonNull T> ofFunction(@NonNull Function<@NonNull S, @Nullable T> function) {
         Objects.requireNonNull(function, "function");
         return function::apply;
     }
@@ -33,7 +34,7 @@ public interface Converter<S, T> {
      * @param source Source object.
      * @return Conversion result, may be null.
      */
-    @Nullable T convert(S source);
+    @Nullable T convert(@NonNull S source);
 
     /**
      * Converts source object into an {@link Optional}.
@@ -41,7 +42,7 @@ public interface Converter<S, T> {
      * @param source Source object.
      * @return Optional wrapping the conversion result.
      */
-    default Optional<T> convertOptionally(S source) {
+    default @NonNull Optional<@NonNull T> convertOptionally(@NonNull S source) {
         return Optional.ofNullable(convert(source));
     }
 
@@ -53,7 +54,7 @@ public interface Converter<S, T> {
      * @param <U>   The output type of the composed converter.
      * @return Composed converter.
      */
-    default <U> Converter<S, U> andThen(Converter<? super T, ? extends U> after) {
+    default <U> @NonNull Converter<@NonNull S, @NonNull U> andThen(@NonNull Converter<? super @NonNull T, ? extends @NonNull U> after) {
         Objects.requireNonNull(after, "after");
         return (s) -> {
             T initialResult = this.convert(s);

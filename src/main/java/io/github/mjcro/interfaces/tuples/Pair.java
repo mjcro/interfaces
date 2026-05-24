@@ -1,5 +1,10 @@
 package io.github.mjcro.interfaces.tuples;
 
+import org.jspecify.annotations.NonNull;
+
+import java.util.Objects;
+
+
 /**
  * Defines tuple with two elements.
  *
@@ -16,14 +21,14 @@ public interface Pair<F, S> extends Tuple {
     /**
      * @return First element of tuple.
      */
-    default F getFirst() {
-        return (F) get(0);
+    default @NonNull F getFirst() {
+        return (F) Objects.requireNonNull(get(0), "first");
     }
 
     /**
      * @return Second element of tuple.
      */
-    default S getSecond() {
-        return (S) get(1);
+    default @NonNull S getSecond() {
+        return (S) Objects.requireNonNull(get(1), "second");
     }
 }

@@ -1,5 +1,8 @@
 package io.github.mjcro.interfaces.experimental.integration;
 
+import org.jspecify.annotations.NonNull;
+
+
 /**
  * Defines a call that can be made using synchronous {@link Transport}.
  * Call encapsulates all necessary logic and options.
@@ -15,5 +18,5 @@ public interface Call<Req, Res, T> {
      * @param transport Transport to use.
      * @return Call result.
      */
-    T make(Transport<Req, Res> transport);
+    @NonNull T make(@NonNull Transport<@NonNull Req, @NonNull Res> transport);
 }

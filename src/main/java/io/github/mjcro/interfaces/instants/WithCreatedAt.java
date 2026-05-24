@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.instants;
 
+import org.jspecify.annotations.NonNull;
+
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
@@ -22,12 +24,12 @@ public interface WithCreatedAt<T extends Temporal> {
     /**
      * @return Entity creation time.
      */
-    T getCreatedAt();
+    @NonNull T getCreatedAt();
 
     /**
      * @return Entity creation time as instant.
      */
-    default Instant getCreatedAtInstant() {
+    default @NonNull Instant getCreatedAtInstant() {
         return Instant.from(getCreatedAt());
     }
 
@@ -48,7 +50,7 @@ public interface WithCreatedAt<T extends Temporal> {
     /**
      * @return Entity creation time in ISO_INSTANT string representation.
      */
-    default String formatCreatedAtISOInstant() {
+    default @NonNull String formatCreatedAtISOInstant() {
         return DateTimeFormatter.ISO_INSTANT.format(getCreatedAtInstant());
     }
 }

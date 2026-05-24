@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.longs;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -23,7 +25,7 @@ public interface StrongLongIdRepository<I extends StrongLongId, T extends WithSt
      * @param ids Identifiers to find.
      * @return Non-null list of found entities. If none found empty list is returned.
      */
-    List<T> findById(Collection<I> ids);
+    @NonNull List<@NonNull T> findById(@NonNull Collection<@NonNull I> ids);
 
     /**
      * Returns all entities for requested identifiers.
@@ -32,7 +34,7 @@ public interface StrongLongIdRepository<I extends StrongLongId, T extends WithSt
      * @return List of identifier.
      * @throws RuntimeException If one or more entities with requested identifiers missing.
      */
-    default List<T> mustFindById(Collection<I> ids) {
+    default @NonNull List<@NonNull T> mustFindById(@NonNull Collection<@NonNull I> ids) {
         List<T> results = findById(ids);
         if (results.size() != ids.size() && results.size() != ids.stream().distinct().count()) {
             Set<I> requested = new HashSet<>(ids);
@@ -53,7 +55,7 @@ public interface StrongLongIdRepository<I extends StrongLongId, T extends WithSt
      * @param id Identifier to find.
      * @return Optional entity.
      */
-    default Optional<T> findById(I id) {
+    default @NonNull Optional<@NonNull T> findById(@NonNull I id) {
         return findById(Collections.singleton(id)).stream().findFirst();
     }
 
@@ -64,7 +66,7 @@ public interface StrongLongIdRepository<I extends StrongLongId, T extends WithSt
      * @return Entity.
      * @throws RuntimeException If entity not found.
      */
-    default T mustFindById(I id) {
+    default @NonNull T mustFindById(@NonNull I id) {
         Optional<T> found = findById(id);
         if (found.isPresent()) {
             return found.get();
@@ -83,7 +85,7 @@ public interface StrongLongIdRepository<I extends StrongLongId, T extends WithSt
      * @param ids Identifiers to find.
      * @return Map of entities, where keys are entity ids.
      */
-    default Map<I, T> mapById(Collection<I> ids) {
+    default @NonNull Map<@NonNull I, @NonNull T> mapById(@NonNull Collection<@NonNull I> ids) {
         return findById(ids).stream().collect(Collectors.toMap(WithStrongLongId::getId, Function.identity()));
     }
 
@@ -94,7 +96,7 @@ public interface StrongLongIdRepository<I extends StrongLongId, T extends WithSt
      * @return Map of entities, where keys are entity ids.
      * @throws RuntimeException If one or more entities with requested identifiers missing.
      */
-    default Map<I, T> mustMapById(Collection<I> ids) {
+    default @NonNull Map<@NonNull I, @NonNull T> mustMapById(@NonNull Collection<@NonNull I> ids) {
         return mustFindById(ids).stream().collect(Collectors.toMap(WithStrongLongId::getId, Function.identity()));
     }
 
@@ -105,7 +107,7 @@ public interface StrongLongIdRepository<I extends StrongLongId, T extends WithSt
      * @param ids Missing identifiers.
      * @return Exception to throw.
      */
-    default RuntimeException exceptionForMissingEntities(Collection<I> ids) {
+    default @NonNull RuntimeException exceptionForMissingEntities(@NonNull Collection<@NonNull I> ids) {
         return ids.size() == 1
                 ? new RuntimeException("Unable to find entity with id " + ids.iterator().next())
                 : new RuntimeException("Unable to find entities with ids " + ids.stream().map(Object::toString).collect(Collectors.joining(",")));

@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.ints;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -10,7 +12,7 @@ public interface WithOptionalId {
     /**
      * @return Identifier of entity
      */
-    Optional<Integer> getId();
+    @NonNull Optional<@NonNull Integer> getId();
 
     /**
      * @return True if entity has id.

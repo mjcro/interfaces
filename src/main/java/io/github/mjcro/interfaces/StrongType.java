@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces;
 
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Objects;
@@ -18,14 +19,14 @@ public interface StrongType<T> {
     /**
      * @return Value.
      */
-    T value();
+    @NonNull T value();
 
     /**
      * Alias for {@link #value()}.
      *
      * @return Value.
      */
-    default T getValue() {
+    default @NonNull T getValue() {
         return value();
     }
 
@@ -75,7 +76,7 @@ public interface StrongType<T> {
      * @param candidates Values collection, may be null.
      * @return True if at least one element in collection has same value as this wrapper.
      */
-    default boolean hasValueOneOf(@Nullable Iterable<T> candidates) {
+    default boolean hasValueOneOf(@Nullable Iterable<@NonNull T> candidates) {
         if (candidates != null) {
             for (T candidate : candidates) {
                 if (hasValue(candidate)) {
@@ -112,7 +113,7 @@ public interface StrongType<T> {
      * @param candidates Values collection, may be null.
      * @return True if no elements in given collection are equal to value in this wrapper.
      */
-    default boolean notHasValueOneOf(@Nullable Iterable<T> candidates) {
+    default boolean notHasValueOneOf(@Nullable Iterable<@NonNull T> candidates) {
         if (candidates != null) {
             for (T candidate : candidates) {
                 if (hasValue(candidate)) {

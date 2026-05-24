@@ -1,5 +1,7 @@
 package io.github.mjcro.interfaces.experimental.integration;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.concurrent.Future;
 
 /**
@@ -21,5 +23,5 @@ public interface AsyncTransport<Req, Res, T extends Future<Res>> {
      * @param options Transport options.
      * @return Response future.
      */
-    T sendAsync(Req req, Option... options);
+    @NonNull T sendAsync(@NonNull Req req, @NonNull Option... options);
 }
