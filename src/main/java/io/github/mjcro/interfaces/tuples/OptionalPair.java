@@ -18,6 +18,8 @@ public interface OptionalPair<F, S> extends Tuple {
     }
 
     /**
+     * Returns the first tuple element.
+     *
      * @return First element of tuple.
      */
     default @NonNull Optional<@NonNull F> getFirst() {
@@ -25,6 +27,8 @@ public interface OptionalPair<F, S> extends Tuple {
     }
 
     /**
+     * Returns the second tuple element.
+     *
      * @return Second element of tuple.
      */
     default @NonNull Optional<@NonNull S> getSecond() {

@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 /**
- * Defines behavior like {@link Predicate} but able to throw checked exception.
+ * Defines {@link Predicate}-like behavior that can throw checked exceptions.
  *
  * @param <T> Input type.
  */

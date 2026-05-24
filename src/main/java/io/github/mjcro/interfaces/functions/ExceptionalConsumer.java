@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
- * Defines behavior like {@link Consumer} but able to throw checked exception.
+ * Defines {@link Consumer}-like behavior that can throw checked exceptions.
  *
  * @param <T> Input type.
  */

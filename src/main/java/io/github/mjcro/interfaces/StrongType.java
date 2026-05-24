@@ -17,45 +17,47 @@ import java.util.Objects;
  */
 public interface StrongType<T> {
     /**
-     * @return Value.
+     * Returns the wrapped value.
+     *
+     * @return Wrapped value.
      */
     @NonNull T value();
 
     /**
      * Alias for {@link #value()}.
      *
-     * @return Value.
+     * @return Wrapped value.
      */
     default @NonNull T getValue() {
         return value();
     }
 
     /**
-     * Checks if current wrapper contains same value as given one.
+     * Checks whether this wrapper contains the given value.
      *
      * @param candidate Value to compare to, may be null.
-     * @return True if values are the same.
+     * @return True if the values are the same.
      */
     default boolean hasValue(@Nullable T candidate) {
         return Objects.equals(value(), candidate);
     }
 
     /**
-     * Checks if current wrapper contains same value as given one.
+     * Checks whether this wrapper contains the given value.
      *
      * @param candidate Value to compare to, may be null.
-     * @return True if values are not same.
+     * @return True if the values are different.
      */
     default boolean notHasValue(@Nullable T candidate) {
         return !hasValue(candidate);
     }
 
     /**
-     * Checks if given collection of values contains at least one equal to
-     * the value currently holding by wrapper.
+     * Checks whether the given collection contains at least one value equal to
+     * the value currently held by this wrapper.
      *
-     * @param candidates Values collection, may be null.
-     * @return True if at least one element in collection has same value as this wrapper.
+     * @param candidates Collection of values, may be null.
+     * @return True if at least one element in the collection has the same value as this wrapper.
      */
     @SuppressWarnings("unchecked")
     default boolean hasValueOneOf(@Nullable T... candidates) {
@@ -70,11 +72,11 @@ public interface StrongType<T> {
     }
 
     /**
-     * Checks if given collection of values contains at least one equal to
-     * the value currently holding by wrapper.
+     * Checks whether the given collection contains at least one value equal to
+     * the value currently held by this wrapper.
      *
-     * @param candidates Values collection, may be null.
-     * @return True if at least one element in collection has same value as this wrapper.
+     * @param candidates Collection of values, may be null.
+     * @return True if at least one element in the collection has the same value as this wrapper.
      */
     default boolean hasValueOneOf(@Nullable Iterable<@NonNull T> candidates) {
         if (candidates != null) {
@@ -88,11 +90,11 @@ public interface StrongType<T> {
     }
 
     /**
-     * Checks if given collection of values does not contain any equal to
-     * the value currently holding by wrapper.
+     * Checks whether the given collection contains no values equal to
+     * the value currently held by this wrapper.
      *
-     * @param candidates Values collection, may be null.
-     * @return True if no elements in given collection are equal to value in this wrapper.
+     * @param candidates Collection of values, may be null.
+     * @return True if no elements in the collection are equal to this wrapper value.
      */
     @SuppressWarnings("unchecked")
     default boolean notHasValueOneOf(@Nullable T... candidates) {
@@ -107,11 +109,11 @@ public interface StrongType<T> {
     }
 
     /**
-     * Checks if given collection of values does not contain any equal to
-     * the value currently holding by wrapper.
+     * Checks whether the given collection contains no values equal to
+     * the value currently held by this wrapper.
      *
-     * @param candidates Values collection, may be null.
-     * @return True if no elements in given collection are equal to value in this wrapper.
+     * @param candidates Collection of values, may be null.
+     * @return True if no elements in the collection are equal to this wrapper value.
      */
     default boolean notHasValueOneOf(@Nullable Iterable<@NonNull T> candidates) {
         if (candidates != null) {

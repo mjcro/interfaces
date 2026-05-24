@@ -63,7 +63,7 @@ public interface WithByteBody {
         byte[] body = this.getBody();
         return body == null || body.length == 0
                 ? ""
-                : (charset == null ? new String(body) : new String(body, charset));
+                : (charset == null ? new String(body, Charset.defaultCharset()) : new String(body, charset));
     }
 
     /**

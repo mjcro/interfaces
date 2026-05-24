@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.function.UnaryOperator;
 
 /**
- * Defines behavior like {@link UnaryOperator} but able to throw checked exception.
+ * Defines {@link UnaryOperator}-like behavior that can throw checked exceptions.
  *
  * @param <T> Input and result type.
  */

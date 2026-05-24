@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 
 /**
- * Defines behavior like {@link Supplier} but able to throw checked exception.
+ * Defines {@link Supplier}-like behavior that can throw checked exceptions.
  *
  * @param <T> Result type.
  */

@@ -19,6 +19,8 @@ public interface Pair<F, S> extends Tuple {
     }
 
     /**
+     * Returns the first tuple element.
+     *
      * @return First element of tuple.
      */
     default @NonNull F getFirst() {
@@ -26,6 +28,8 @@ public interface Pair<F, S> extends Tuple {
     }
 
     /**
+     * Returns the second tuple element.
+     *
      * @return Second element of tuple.
      */
     default @NonNull S getSecond() {

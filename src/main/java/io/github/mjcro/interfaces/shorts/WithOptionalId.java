@@ -10,22 +10,26 @@ import java.util.Optional;
  */
 public interface WithOptionalId {
     /**
-     * @return Identifier of entity
+     * Returns the entity identifier.
+     *
+     * @return Entity identifier.
      */
     @NonNull Optional<@NonNull Short> getId();
 
     /**
-     * @return True if entity has id.
+     * Checks whether an identifier is present.
+     *
+     * @return True if the entity has an identifier.
      */
     default boolean hasId() {
         return getId().isPresent();
     }
 
     /**
-     * Checks if entity identifier equals to given one.
+     * Checks whether the entity identifier equals the given identifier.
      *
      * @param given Identifier to compare to.
-     * @return True if identifiers are equal.
+     * @return True if the identifiers are equal.
      */
     default boolean hasId(short given) {
         Optional<Short> id = getId();
@@ -33,8 +37,10 @@ public interface WithOptionalId {
     }
 
     /**
-     * @return Identifier of entity
-     * @throws NoSuchElementException If no id present.
+     * Returns the identifier or fails when it is absent.
+     *
+     * @return Entity identifier.
+     * @throws NoSuchElementException If no identifier is present.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     default short mustGetId() {

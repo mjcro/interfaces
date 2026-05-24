@@ -8,7 +8,9 @@ import org.jspecify.annotations.NonNull;
  */
 public interface WithException {
     /**
-     * @return Exception.
+     * Returns the associated exception.
+     *
+     * @return Associated exception.
      */
     @NonNull Throwable getException();
 }

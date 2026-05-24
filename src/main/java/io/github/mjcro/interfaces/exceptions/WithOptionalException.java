@@ -9,19 +9,25 @@ import java.util.Optional;
  */
 public interface WithOptionalException {
     /**
+     * Returns the associated exception.
+     *
      * @return Exception, optional.
      */
     @NonNull Optional<@NonNull Throwable> getException();
 
     /**
-     * @return True if exception present.
+     * Checks whether an exception is present.
+     *
+     * @return True if an exception is present.
      */
     default boolean hasException() {
         return getException().isPresent();
     }
 
     /**
-     * @return True if no exception present.
+     * Checks whether no exception is present.
+     *
+     * @return True if no exception is present.
      */
     default boolean hasNoException() {
         return !hasException();

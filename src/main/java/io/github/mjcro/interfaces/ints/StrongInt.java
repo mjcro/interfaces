@@ -8,25 +8,27 @@ package io.github.mjcro.interfaces.ints;
  */
 public interface StrongInt {
     /**
-     * @return Value.
+     * Returns the wrapped int value.
+     *
+     * @return Wrapped value.
      */
     int value();
 
     /**
-     * Checks if current wrapper contains same value as given one.
+     * Checks whether this wrapper contains the given value.
      *
      * @param candidate Value to compare to.
-     * @return True if values are the same.
+     * @return True if the values are the same.
      */
     default boolean hasValue(int candidate) {
         return value() == candidate;
     }
 
     /**
-     * Checks if current wrapper contains same value as given one.
+     * Checks whether this wrapper contains the given value.
      *
      * @param candidate Value to compare to.
-     * @return True if values are not same.
+     * @return True if the values are different.
      */
     default boolean notHasValue(int candidate) {
         return !hasValue(candidate);

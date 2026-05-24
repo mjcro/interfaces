@@ -1,16 +1,16 @@
 package io.github.mjcro.interfaces.lifecycle;
 
 /**
- * Defines component capable to start.
+ * Defines a component that can start.
  */
 @FunctionalInterface
 public interface Starter {
     /**
-     * Starts component.
-     * Under start procedure component may initialize it's state,
+     * Starts the component.
+     * During startup, the component may initialize its state,
      * establish necessary connections, read data, etc.
      *
-     * @throws Exception On exception.
+     * @throws Exception If the operation fails.
      */
     void start() throws Exception;
 }

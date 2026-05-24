@@ -7,25 +7,27 @@ package io.github.mjcro.interfaces.longs;
  */
 public interface StrongLong {
     /**
-     * @return Value.
+     * Returns the wrapped long value.
+     *
+     * @return Wrapped value.
      */
     long value();
 
     /**
-     * Checks if current wrapper contains same value as given one.
+     * Checks whether this wrapper contains the given value.
      *
      * @param candidate Value to compare to.
-     * @return True if values are the same.
+     * @return True if the values are the same.
      */
     default boolean hasValue(long candidate) {
         return value() == candidate;
     }
 
     /**
-     * Checks if current wrapper contains same value as given one.
+     * Checks whether this wrapper contains the given value.
      *
      * @param candidate Value to compare to.
-     * @return True if values are not same.
+     * @return True if the values are different.
      */
     default boolean notHasValue(long candidate) {
         return !hasValue(candidate);

@@ -5,7 +5,7 @@ import org.jspecify.annotations.NonNull;
 import java.util.concurrent.Future;
 
 /**
- * Defines factories able to produce transports.
+ * Defines factories that produce transports.
  *
  * @param <Req> Request type.
  * @param <Res> Response type.

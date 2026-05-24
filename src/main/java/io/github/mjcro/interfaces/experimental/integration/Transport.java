@@ -4,8 +4,8 @@ import org.jspecify.annotations.NonNull;
 
 
 /**
- * Defines transport able to send requests and receive responses.
- * Every implementation of this interface should be immutable and thread safe.
+ * Defines a transport that can send requests and receive responses.
+ * Every implementation of this interface should be immutable and thread-safe.
  *
  * @param <Req> Request type.
  * @param <Res> Response type.

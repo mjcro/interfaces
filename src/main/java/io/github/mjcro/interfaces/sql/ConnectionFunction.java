@@ -8,16 +8,16 @@ import java.util.Objects;
 import java.util.function.Function;
 
 /**
- * Function that allows SQL exception to be thrown.
+ * Function that can throw {@link SQLException}.
  */
 @FunctionalInterface
 public interface ConnectionFunction<C extends Connection, R> {
     /**
      * Constructs function that allows SQL exception
-     * to be thrown from common function.
+     * to be thrown from a standard function.
      *
      * @param function Function to wrap.
-     * @return Function that allows SQL exception to be thrown.
+     * @return Function that can throw {@link SQLException}.
      */
     static <C extends Connection, R> @NonNull ConnectionFunction<@NonNull C, @NonNull R> ofFunction(@NonNull Function<? super @NonNull C, ? extends @NonNull R> function) {
         Objects.requireNonNull(function, "function");

@@ -5,15 +5,17 @@ package io.github.mjcro.interfaces.ints;
  */
 public interface WithGateId {
     /**
+     * Returns the gate identifier.
+     *
      * @return Gate identifier.
      */
     int getGateId();
 
     /**
-     * Checks if entity gate equals to given one.
+     * Checks whether the entity gate equals the given gate.
      *
      * @param given Gate to compare to.
-     * @return True if gates are equal.
+     * @return True if the gates are equal.
      */
     default boolean hasGateId(int given) {
         return getGateId() == given;

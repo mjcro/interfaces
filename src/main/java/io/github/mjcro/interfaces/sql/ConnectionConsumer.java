@@ -8,16 +8,16 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
- * Consumer that allows SQL exception to be thrown.
+ * Consumer that can throw {@link SQLException}.
  */
 @FunctionalInterface
 public interface ConnectionConsumer<C extends Connection> {
     /**
      * Constructs consumer that allows SQL exception
-     * to be thrown from common consumer.
+     * to be thrown from a standard consumer.
      *
      * @param consumer Consumer to wrap.
-     * @return Consumer that allows SQL exception to be thrown.
+     * @return Consumer that can throw {@link SQLException}.
      */
     static <C extends Connection> @NonNull ConnectionConsumer<@NonNull C> ofConsumer(@NonNull Consumer<? super @NonNull C> consumer) {
         Objects.requireNonNull(consumer, "consumer");

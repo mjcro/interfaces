@@ -8,15 +8,17 @@ import org.jspecify.annotations.NonNull;
  */
 public interface WithUrl {
     /**
+     * Returns the entity URL.
+     *
      * @return Entity URL.
      */
     @NonNull String getURL();
 
     /**
-     * Checks if entity URL equals to given one.
+     * Checks whether the entity URL equals the given URL.
      *
      * @param given URL to compare to.
-     * @return True if URL are equal.
+     * @return True if the URLs are equal.
      */
     default boolean hasURL(@NonNull String given) {
         return getURL().equals(given);

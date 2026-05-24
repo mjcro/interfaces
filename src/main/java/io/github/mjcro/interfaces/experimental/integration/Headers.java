@@ -12,7 +12,7 @@ import java.util.Optional;
  */
 public interface Headers extends WithSize, Iterable<Map.Entry<String, List<String>>> {
     /**
-     * Returns list of header values with given name.
+     * Returns the header values for the given name.
      *
      * @param name Header name.
      * @return Values.
@@ -20,10 +20,10 @@ public interface Headers extends WithSize, Iterable<Map.Entry<String, List<Strin
     @NonNull List<@NonNull String> get(@NonNull String name);
 
     /**
-     * Checks if headers contains one with given name.
+     * Checks whether a header with the given name exists.
      *
      * @param name Header name.
-     * @return True if header exists.
+     * @return True if a header with the given name exists.
      */
     default boolean contains(@NonNull String name) {
         return !get(name).isEmpty();

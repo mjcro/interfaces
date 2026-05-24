@@ -9,11 +9,15 @@ import org.jspecify.annotations.NonNull;
  */
 public interface AmqpResponse extends Packet, WithElapsed {
     /**
-     * @return Queue name.
+     * Returns the AMQP response queue name.
+     *
+     * @return AMQP response queue name.
      */
     @NonNull String getQueue();
 
     /**
+     * Returns the AMQP message properties.
+     *
      * @return AMQP properties.
      */
     @NonNull Properties getProperties();

@@ -7,7 +7,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
- * Defines behavior like {@link BiFunction} but able to throw checked exception.
+ * Defines {@link BiFunction}-like behavior that can throw checked exceptions.
  *
  * @param <T> First input type.
  * @param <U> Second input type.

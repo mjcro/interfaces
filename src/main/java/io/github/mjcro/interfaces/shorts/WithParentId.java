@@ -5,15 +5,17 @@ package io.github.mjcro.interfaces.shorts;
  */
 public interface WithParentId {
     /**
+     * Returns the parent entity identifier.
+     *
      * @return Parent identifier.
      */
     short getParentId();
 
     /**
-     * Checks if entity parent id equals to given one.
+     * Checks whether the entity parent identifier equals the given identifier.
      *
      * @param given Given parent identifier.
-     * @return True if parent identifiers are equal.
+     * @return True if the parent identifiers are equal.
      */
     default boolean hasParentId(short given) {
         return getParentId() == given;

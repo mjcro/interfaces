@@ -10,7 +10,9 @@ import org.jspecify.annotations.NonNull;
  */
 public interface SelfTyped<T extends SelfTyped<T>> {
     /**
-     * @return Self instance.
+     * Returns this instance as its self type.
+     *
+     * @return This instance as the self type.
      */
     @NonNull T self();
 }

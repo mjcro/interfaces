@@ -4,7 +4,7 @@ import org.jspecify.annotations.NonNull;
 
 
 /**
- * Extension of {@link java.util.function.BiFunction} design but with three arguments.
+ * Three-argument counterpart to {@link java.util.function.BiFunction}.
  *
  * @param <A> First argument type.
  * @param <B> Second argument type.

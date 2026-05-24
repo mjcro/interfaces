@@ -22,11 +22,15 @@ import java.time.temporal.Temporal;
  */
 public interface WithCreatedAt<T extends Temporal> {
     /**
+     * Returns the creation timestamp.
+     *
      * @return Entity creation time.
      */
     @NonNull T getCreatedAt();
 
     /**
+     * Converts the creation timestamp to an instant.
+     *
      * @return Entity creation time as instant.
      */
     default @NonNull Instant getCreatedAtInstant() {
@@ -34,6 +38,8 @@ public interface WithCreatedAt<T extends Temporal> {
     }
 
     /**
+     * Returns the creation timestamp as epoch seconds.
+     *
      * @return Entity creation time in epoch seconds.
      */
     default long getCreatedAtEpochSeconds() {
@@ -41,6 +47,8 @@ public interface WithCreatedAt<T extends Temporal> {
     }
 
     /**
+     * Returns the creation timestamp as epoch milliseconds.
+     *
      * @return Entity creation time in epoch milliseconds.
      */
     default long getCreatedAtEpochMilli() {
@@ -48,6 +56,8 @@ public interface WithCreatedAt<T extends Temporal> {
     }
 
     /**
+     * Formats the creation timestamp as an ISO-8601 instant string.
+     *
      * @return Entity creation time in ISO_INSTANT string representation.
      */
     default @NonNull String formatCreatedAtISOInstant() {

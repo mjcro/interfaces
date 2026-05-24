@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 /**
- * Defines components able to convert data from one type to another.
+ * Defines components that convert data from one type to another.
  *
  * @param <S> Source type.
  * @param <T> Target type.

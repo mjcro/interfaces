@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.function.Function;
 
 /**
- * Defines behavior like {@link Function} but able to throw checked exception.
+ * Defines {@link Function}-like behavior that can throw checked exceptions.
  *
  * @param <T> Input type.
  * @param <R> Result type.

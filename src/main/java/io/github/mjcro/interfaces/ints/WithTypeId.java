@@ -5,15 +5,17 @@ package io.github.mjcro.interfaces.ints;
  */
 public interface WithTypeId {
     /**
+     * Returns the type identifier.
+     *
      * @return Type identifier.
      */
     int getTypeId();
 
     /**
-     * Checks if entity type identifier equals to given one.
+     * Checks whether the entity type identifier equals the given identifier.
      *
      * @param given Type to compare to.
-     * @return True if types are equal.
+     * @return True if the types are equal.
      */
     default boolean hasTypeId(int given) {
         return getTypeId() == given;

@@ -15,7 +15,7 @@ public interface AmqpAsyncTransport<T extends Future<AmqpResponse>> extends Asyn
     /**
      * Publishes request and does not wait for response.
      *
-     * @param request Data to send.
+     * @param request Request to send.
      * @param options Transport options.
      */
     void publish(@NonNull AmqpRequest request, @NonNull Option... options);

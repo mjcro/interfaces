@@ -8,6 +8,8 @@ import io.github.mjcro.interfaces.booleans.WithEmpty;
  */
 public interface WithSize extends WithEmpty {
     /**
+     * Returns the entity size or count.
+     *
      * @return Size/count.
      */
     int size();

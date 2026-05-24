@@ -5,15 +5,17 @@ package io.github.mjcro.interfaces.ints;
  */
 public interface WithScopeId {
     /**
+     * Returns the scope identifier.
+     *
      * @return Scope identifier.
      */
     int getScopeId();
 
     /**
-     * Checks if entity scope equals to given one.
+     * Checks whether the entity scope equals the given scope.
      *
      * @param given Scope to compare to.
-     * @return True if scopes are equal.
+     * @return True if the scopes are equal.
      */
     default boolean hasScopeId(int given) {
         return getScopeId() == given;

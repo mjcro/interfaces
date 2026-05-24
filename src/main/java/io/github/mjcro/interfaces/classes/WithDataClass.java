@@ -8,7 +8,9 @@ import org.jspecify.annotations.NonNull;
  */
 public interface WithDataClass {
     /**
-     * @return Data class.
+     * Returns the data class represented by this object.
+     *
+     * @return Data class represented by this object.
      */
     @NonNull Class<?> getDataClass();
 }

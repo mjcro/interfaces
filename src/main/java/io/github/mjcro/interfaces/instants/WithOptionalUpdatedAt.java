@@ -24,48 +24,62 @@ import java.util.Optional;
  */
 public interface WithOptionalUpdatedAt<T extends Temporal> {
     /**
-     * @return Entity modification time.
+     * Returns the update timestamp.
+     *
+     * @return Entity update time.
      */
     @NonNull Optional<@NonNull T> getUpdatedAt();
 
     /**
-     * @return Entity modification time as instant.
+     * Converts the update timestamp to an instant.
+     *
+     * @return Entity update time as instant.
      */
     default @NonNull Optional<@NonNull Instant> getUpdatedAtInstant() {
         return getUpdatedAt().map(Instant::from);
     }
 
     /**
-     * @return True if entity has modification time.
+     * Checks whether an update timestamp is present.
+     *
+     * @return True if the entity has an update time.
      */
     default boolean hasUpdatedAt() {
         return getUpdatedAt().isPresent();
     }
 
     /**
-     * @return Entity modification time.
-     * @throws NoSuchElementException If no update time present.
+     * Returns the update timestamp or fails when it is absent.
+     *
+     * @return Entity update time.
+     * @throws NoSuchElementException If no update time is present.
      */
     default @NonNull T mustGetUpdatedAt() {
         return getUpdatedAt().orElseThrow(NoSuchElementException::new);
     }
 
     /**
-     * @return Entity modification time in epoch seconds.
+     * Returns the update timestamp as epoch seconds.
+     *
+     * @return Entity update time in epoch seconds.
      */
     default @NonNull Optional<@NonNull Long> getUpdatedAtEpochSeconds() {
         return getUpdatedAtInstant().map(Instant::getEpochSecond);
     }
 
     /**
-     * @return Entity modification time in epoch milliseconds.
+     * Returns the update timestamp as epoch milliseconds.
+     *
+     * @return Entity update time in epoch milliseconds.
      */
     default @NonNull Optional<@NonNull Long> getUpdatedAtEpochMilli() {
         return getUpdatedAtInstant().map(Instant::toEpochMilli);
     }
 
     /**
-     * @return Entity modification time in ISO_INSTANT string representation.
+     * Formats the update timestamp as an ISO-8601 instant string.
+     *
+     * @return Entity update time in ISO_INSTANT string representation.
      */
     default @NonNull Optional<@NonNull String> formatUpdatedAtISOInstant() {
         return getUpdatedAtInstant().map(DateTimeFormatter.ISO_INSTANT::format);

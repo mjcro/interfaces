@@ -5,13 +5,13 @@ import org.jspecify.annotations.NonNull;
 import java.util.concurrent.Future;
 
 /**
- * Defines transport able to send requests and receive responses,
+ * Defines a transport that can send requests and receive responses,
  * working over futures.
- * Every implementation of this interface should be immutable and thread safe.
+ * Every implementation of this interface should be immutable and thread-safe.
  *
  * @param <Req> Request type.
  * @param <Res> Response type.
- * @param <T>   Should be either {@link Future} or {@link java.util.concurrent.CompletableFuture},
+ * @param <T>   Must be either {@link Future} or {@link java.util.concurrent.CompletableFuture},
  *              or other implementors of {@link Future} interface.
  */
 @FunctionalInterface

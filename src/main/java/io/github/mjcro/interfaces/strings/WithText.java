@@ -8,15 +8,17 @@ import org.jspecify.annotations.NonNull;
  */
 public interface WithText {
     /**
+     * Returns the entity text.
+     *
      * @return Entity text.
      */
     @NonNull String getText();
 
     /**
-     * Checks if entity text equals to given one.
+     * Checks whether the entity text equals the given text.
      *
      * @param given Text to compare to.
-     * @return True if texts are equal.
+     * @return True if the texts are equal.
      */
     default boolean hasText(@NonNull String given) {
         return getText().equals(given);

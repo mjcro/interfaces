@@ -22,21 +22,29 @@ import java.util.function.Consumer;
  */
 public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed, Meta, T extends Temporal> extends WithOptionalException, WithCreatedAt<T> {
     /**
-     * @return Request.
+     * Returns the telemetry request.
+     *
+     * @return Telemetry request.
      */
     @NonNull Req getRequest();
 
     /**
+     * Returns the telemetry metadata.
+     *
      * @return Arbitrary metadata.
      */
     @NonNull Optional<@NonNull Meta> getMetadata();
 
     /**
+     * Returns the telemetry response.
+     *
      * @return Response.
      */
     @NonNull Optional<@NonNull Res> getResponse();
 
     /**
+     * Checks whether telemetry metadata is present.
+     *
      * @return True if metadata is present.
      */
     default boolean hasMetadata() {
@@ -44,14 +52,16 @@ public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed,
     }
 
     /**
-     * @return True if response is present.
+     * Checks whether a telemetry response is present.
+     *
+     * @return True if a response is present.
      */
     default boolean hasResponse() {
         return getResponse().isPresent();
     }
 
     /**
-     * Invokes consumer if telemetry contains response.
+     * Invokes the consumer when telemetry contains a response.
      *
      * @param consumer Response consumer.
      */
@@ -60,6 +70,8 @@ public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed,
     }
 
     /**
+     * Returns the elapsed duration.
+     *
      * @return Elapsed time.
      */
     default @NonNull Optional<@NonNull Duration> getElapsed() {
@@ -67,8 +79,8 @@ public interface Telemetry<Req extends Packet, Res extends Packet & WithElapsed,
     }
 
     /**
-     * Sends current telemetry instance to given telemetry consumer.
-     * If null is given this method does nothing.
+     * Sends this telemetry instance to the given telemetry consumer.
+     * If {@code null} is given, this method does nothing.
      *
      * @param consumer Telemetry consumer, may be null.
      */

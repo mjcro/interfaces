@@ -5,15 +5,17 @@ package io.github.mjcro.interfaces.longs;
  */
 public interface WithGateId {
     /**
+     * Returns the gate identifier.
+     *
      * @return Gate identifier.
      */
     long getGateId();
 
     /**
-     * Checks if entity gate equals to given one.
+     * Checks whether the entity gate equals the given gate.
      *
      * @param given Gate to compare to.
-     * @return True if gates are equal.
+     * @return True if the gates are equal.
      */
     default boolean hasGateId(long given) {
         return getGateId() == given;

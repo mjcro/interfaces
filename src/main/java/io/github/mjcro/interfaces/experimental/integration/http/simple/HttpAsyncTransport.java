@@ -6,9 +6,9 @@ import java.util.concurrent.Future;
 
 /**
  * Asynchronous HTTP transport.
- * Every implementation of this interface should be immutable and thread safe.
+ * Every implementation of this interface should be immutable and thread-safe.
  *
- * @param <T> Should be either {@link Future} or {@link java.util.concurrent.CompletableFuture},
+ * @param <T> Must be either {@link Future} or {@link java.util.concurrent.CompletableFuture},
  *            or other implementors of {@link Future} interface.
  */
 public interface HttpAsyncTransport<T extends Future<HttpResponse>>

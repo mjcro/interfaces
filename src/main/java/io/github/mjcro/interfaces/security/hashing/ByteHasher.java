@@ -11,30 +11,32 @@ import java.util.Base64;
  */
 public interface ByteHasher {
     /**
-     * @return Byte size length of produced hash.
+     * Returns the hash size.
+     *
+     * @return Length of produced hashes in bytes.
      */
     int getHashSize();
 
     /**
-     * Performs hashing of given bytes.
+     * Hashes the given bytes.
      *
      * @param source Source bytes.
-     * @return Hash.
+     * @return Hash bytes.
      */
     byte @NonNull [] hash(byte @NonNull [] source);
 
     /**
-     * Performs hashing of given string.
+     * Hashes the given string.
      *
      * @param source Source string.
-     * @return Hash.
+     * @return Hash bytes.
      */
     default byte @NonNull [] hash(@NonNull String source) {
         return source.getBytes(getStringCharset());
     }
 
     /**
-     * Performs hashing of given bytes.
+     * Hashes the given bytes.
      *
      * @param source Source bytes.
      * @return Hash in Base64.
@@ -44,7 +46,7 @@ public interface ByteHasher {
     }
 
     /**
-     * Performs hashing of given string.
+     * Hashes the given string.
      *
      * @param source Source bytes.
      * @return Hash in Base64.
@@ -54,7 +56,9 @@ public interface ByteHasher {
     }
 
     /**
-     * @return Charset to use
+     * Returns the charset used to hash strings.
+     *
+     * @return Charset used to encode strings before hashing.
      */
     default @NonNull Charset getStringCharset() {
         return StandardCharsets.UTF_8;

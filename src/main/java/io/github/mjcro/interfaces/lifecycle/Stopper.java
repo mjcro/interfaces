@@ -1,16 +1,16 @@
 package io.github.mjcro.interfaces.lifecycle;
 
 /**
- * Defines component capable to start.
+ * Defines a component that can stop.
  */
 @FunctionalInterface
 public interface Stopper {
     /**
-     * Stops component.
-     * Under stop procedure component may clear it's state,
+     * Stops the component.
+     * During shutdown, the component may clear its state,
      * close connections, flush data, etc.
      *
-     * @throws Exception On exception.
+     * @throws Exception If the operation fails.
      */
     void stop() throws Exception;
 }

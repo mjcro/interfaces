@@ -22,11 +22,15 @@ import java.time.temporal.Temporal;
  */
 public interface WithTime<T extends Temporal> {
     /**
+     * Returns the timestamp.
+     *
      * @return Entity time.
      */
     @NonNull T getTime();
 
     /**
+     * Converts the timestamp to an instant.
+     *
      * @return Entity time as instant.
      */
     default @NonNull Instant getTimeInstant() {
@@ -34,6 +38,8 @@ public interface WithTime<T extends Temporal> {
     }
 
     /**
+     * Returns the timestamp as epoch seconds.
+     *
      * @return Entity time in epoch seconds.
      */
     default long getTimeEpochSeconds() {
@@ -41,6 +47,8 @@ public interface WithTime<T extends Temporal> {
     }
 
     /**
+     * Returns the timestamp as epoch milliseconds.
+     *
      * @return Entity time in epoch milliseconds.
      */
     default long getTimeEpochMilli() {
@@ -48,6 +56,8 @@ public interface WithTime<T extends Temporal> {
     }
 
     /**
+     * Formats the timestamp as an ISO-8601 instant string.
+     *
      * @return Entity time in ISO_INSTANT string representation.
      */
     default @NonNull String formatTimeISOInstant() {

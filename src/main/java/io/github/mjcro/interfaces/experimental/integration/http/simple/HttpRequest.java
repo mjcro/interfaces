@@ -19,12 +19,14 @@ public interface HttpRequest extends Packet, WithUrl {
             DELETE = "DELETE";
 
     /**
+     * Returns the HTTP request method.
+     *
      * @return HTTP request method.
      */
     @NonNull String getMethod();
 
     /**
-     * Sends current request to using transport.
+     * Sends this request using the given transport.
      *
      * @param transport Transport to use.
      * @param options   Transport options.
@@ -35,7 +37,7 @@ public interface HttpRequest extends Packet, WithUrl {
     }
 
     /**
-     * Sends current request to using async transport transport.
+     * Sends this request using the given async transport.
      *
      * @param transport Transport to use.
      * @param options   Transport options.

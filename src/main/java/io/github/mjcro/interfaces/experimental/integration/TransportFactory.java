@@ -4,7 +4,7 @@ import org.jspecify.annotations.NonNull;
 
 
 /**
- * Defines factories able to produce transports.
+ * Defines factories that produce transports.
  *
  * @param <Req> Request type.
  * @param <Res> Response type.

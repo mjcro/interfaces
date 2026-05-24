@@ -5,6 +5,8 @@ package io.github.mjcro.interfaces.ints;
  */
 public interface WithOrder {
     /**
+     * Returns the entity ordering value.
+     *
      * @return Order of entity
      */
     int getOrder();

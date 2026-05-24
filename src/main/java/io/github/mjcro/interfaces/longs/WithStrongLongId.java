@@ -11,25 +11,27 @@ import java.util.Objects;
  */
 public interface WithStrongLongId<I extends StrongLongId> {
     /**
-     * @return Identifier of entity
+     * Returns the entity identifier.
+     *
+     * @return Entity identifier.
      */
     @NonNull I getId();
 
     /**
-     * Checks if entity identifier equals to given one.
+     * Checks whether the entity identifier equals the given identifier.
      *
      * @param given Identifier to compare to.
-     * @return True if identifiers are equal.
+     * @return True if the identifiers are equal.
      */
     default boolean hasId(@NonNull I given) {
         return Objects.equals(getId(), given);
     }
 
     /**
-     * Checks if entity identifier equals to given one.
+     * Checks whether the entity identifier equals the given identifier.
      *
      * @param given Identifier to compare to.
-     * @return True if identifiers are equal.
+     * @return True if the identifiers are equal.
      */
     default boolean hasId(long given) {
         return getId().hasId(given);

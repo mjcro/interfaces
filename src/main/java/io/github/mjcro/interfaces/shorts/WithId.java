@@ -5,15 +5,17 @@ package io.github.mjcro.interfaces.shorts;
  */
 public interface WithId {
     /**
-     * @return Identifier of entity
+     * Returns the entity identifier.
+     *
+     * @return Entity identifier.
      */
     short getId();
 
     /**
-     * Checks if entity identifier equals to given one.
+     * Checks whether the entity identifier equals the given identifier.
      *
      * @param given Identifier to compare to.
-     * @return True if identifiers are equal.
+     * @return True if the identifiers are equal.
      */
     default boolean hasId(short given) {
         return getId() == given;

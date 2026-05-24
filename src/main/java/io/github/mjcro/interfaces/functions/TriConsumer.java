@@ -5,7 +5,7 @@ import org.jspecify.annotations.NonNull;
 import java.util.Objects;
 
 /**
- * Extension of {@link java.util.function.BiConsumer} design but with three arguments.
+ * Three-argument counterpart to {@link java.util.function.BiConsumer}.
  *
  * @param <A> First argument type.
  * @param <B> Second argument type.

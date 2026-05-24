@@ -13,65 +13,67 @@ import java.util.Objects;
  */
 public interface WithState<T extends Enum<T>> {
     /**
+     * Returns the entity state.
+     *
      * @return Entity state.
      */
     @NonNull T getState();
 
     /**
-     * Checks if entity state is equal to given one.
+     * Checks whether the entity state equals the given state.
      *
-     * @param given State to compare with.
-     * @return True is states are equal.
+     * @param given Value to compare with.
+     * @return True if the states are equal.
      */
     default boolean hasState(@NonNull T given) {
         return Objects.equals(getState(), given);
     }
 
     /**
-     * Checks if entity state is not equal to given one.
+     * Checks whether the entity state differs from the given state.
      *
-     * @param given State to compare with.
-     * @return True is states are not equal.
+     * @param given Value to compare with.
+     * @return True if the states are different.
      */
     default boolean notHasState(@NonNull T given) {
         return !hasState(given);
     }
 
     /**
-     * Checks if entity state is equal to given one.
+     * Checks whether the entity state equals the given state.
      *
      * @param given State container to compare with, may be null.
-     * @return True if states are equal.
+     * @return True if the states are equal.
      */
     default boolean hasState(@Nullable WithState<@NonNull T> given) {
         return given != null && given.hasState(getState());
     }
 
     /**
-     * Checks if entity state is not equal to given one.
+     * Checks whether the entity state differs from the given state.
      *
      * @param given State container to compare with, may be null.
-     * @return True if states are not equal.
+     * @return True if the states are different.
      */
     default boolean notHasState(@Nullable WithState<@NonNull T> given) {
         return !hasState(given);
     }
 
     /**
-     * Checks if entity's state is contained in given states collection.
+     * Checks whether the entity state is contained in the given state collection.
      *
      * @param collection Collection of states to match against, may be null.
-     * @return True if entity's state is contained in the given collection.
+     * @return True if the entity state is contained in the given collection.
      */
     default boolean hasStateOneOf(@Nullable Collection<@NonNull T> collection) {
         return collection != null && collection.contains(getState());
     }
 
     /**
-     * Checks if entity's state is not contained in given states collection.
+     * Checks whether the entity state is absent from the given state collection.
      *
      * @param collection Collection of states to match against, may be null.
-     * @return True if entity's state is not contained in the given collection.
+     * @return True if the entity state is absent from the given collection.
      */
     default boolean notHasStateOneOf(@Nullable Collection<@NonNull T> collection) {
         return !hasStateOneOf(collection);

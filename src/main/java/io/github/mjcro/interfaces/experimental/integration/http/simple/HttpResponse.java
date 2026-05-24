@@ -10,22 +10,26 @@ import io.github.mjcro.interfaces.strings.WithUrl;
  */
 public interface HttpResponse extends Packet, WithElapsed, WithUrl {
     /**
+     * Returns the HTTP status code.
+     *
      * @return HTTP response status code.
      */
     int getStatusCode();
 
     /**
-     * Compares status code to given.
+     * Compares the status code to the given value.
      *
      * @param given Status code to check against.
-     * @return True if codes matches.
+     * @return True if the status codes match.
      */
     default boolean hasStatusCode(int given) {
         return given == getStatusCode();
     }
 
     /**
-     * @return True if status code is 200.
+     * Checks whether the HTTP response status is OK.
+     *
+     * @return True if the status code is 200.
      */
     default boolean hasStatusCode200() {
         return hasStatusCode(200);

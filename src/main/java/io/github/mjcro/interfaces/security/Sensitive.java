@@ -19,7 +19,7 @@ package io.github.mjcro.interfaces.security;
  * // Container with a sensitive field
  * class UserCredentials implements Sensitive {
  *     private final String username;
- *     private final SensitiveStrongType&lt;char[]&gt; password;
+ *     private final SensitiveStrongType<char[]> password;
  *     …
  * }
  * }</pre>

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 /**
  * Container for {@link java.lang.Object} with ability
- * to convert to other type.
+ * to convert to another type.
  */
 public interface Mixed extends WithEmpty {
     /**
@@ -23,19 +23,19 @@ public interface Mixed extends WithEmpty {
     }
 
     /**
-     * Converts stored in mixed container value.
+     * Converts the value stored in this mixed container.
      *
-     * @param clazz Class to convert to.
+     * @param clazz Target class.
      * @return Optional converted value.
      */
     <T> @NonNull Optional<@NonNull T> getAs(@NonNull Class<@NonNull T> clazz);
 
     /**
-     * Converts stored in mixed container value.
+     * Converts the value stored in this mixed container.
      *
-     * @param clazz Class to convert to.
+     * @param clazz Target class.
      * @return Converted value, never null.
-     * @throws java.util.NoSuchElementException If value was null.
+     * @throws java.util.NoSuchElementException If the value is absent.
      */
     default <T> @NonNull T mustGetAs(@NonNull Class<@NonNull T> clazz) {
         return getAs(clazz).get();

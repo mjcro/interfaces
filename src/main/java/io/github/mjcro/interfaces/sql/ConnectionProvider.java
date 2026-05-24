@@ -36,16 +36,16 @@ public interface ConnectionProvider {
     }
 
     /**
-     * Constructs or pools database connection.
+     * Creates, obtains, or pools a database connection.
      *
-     * @return Connection to use.
+     * @return Database connection to use.
      * @throws SQLException On connection error.
      */
     @NonNull Connection getConnection() throws SQLException;
 
     /**
-     * Runs given function passing database connection to it.
-     * After invocation connection will be closed by default implementation.
+     * Runs the given function with a database connection.
+     * After invocation, the default implementation closes the connection.
      *
      * @param function Function to invoke.
      * @param <T>      Response type.
@@ -58,8 +58,8 @@ public interface ConnectionProvider {
     }
 
     /**
-     * Runs given consumer passing database connection to it.
-     * After invocation connection will be closed by default implementation.
+     * Runs the given consumer with a database connection.
+     * After invocation, the default implementation closes the connection.
      *
      * @param consumer Consumer to invoke.
      */

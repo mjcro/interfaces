@@ -22,11 +22,15 @@ import java.time.temporal.Temporal;
  */
 public interface WithModifiedAt<T extends Temporal> {
     /**
+     * Returns the modification timestamp.
+     *
      * @return Entity modification time.
      */
     @NonNull T getModifiedAt();
 
     /**
+     * Converts the modification timestamp to an instant.
+     *
      * @return Entity modification time as instant.
      */
     default @NonNull Instant getModifiedAtInstant() {
@@ -34,6 +38,8 @@ public interface WithModifiedAt<T extends Temporal> {
     }
 
     /**
+     * Returns the modification timestamp as epoch seconds.
+     *
      * @return Entity modification time in epoch seconds.
      */
     default long getModifiedAtEpochSeconds() {
@@ -41,6 +47,8 @@ public interface WithModifiedAt<T extends Temporal> {
     }
 
     /**
+     * Returns the modification timestamp as epoch milliseconds.
+     *
      * @return Entity modification time in epoch milliseconds.
      */
     default long getModifiedAtEpochMilli() {
@@ -48,6 +56,8 @@ public interface WithModifiedAt<T extends Temporal> {
     }
 
     /**
+     * Formats the modification timestamp as an ISO-8601 instant string.
+     *
      * @return Entity modification time in ISO_INSTANT string representation.
      */
     default @NonNull String formatModifiedAtISOInstant() {

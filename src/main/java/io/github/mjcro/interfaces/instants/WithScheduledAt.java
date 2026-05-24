@@ -22,33 +22,43 @@ import java.time.temporal.Temporal;
  */
 public interface WithScheduledAt<T extends Temporal> {
     /**
-     * @return Entity schedule time.
+     * Returns the scheduled timestamp.
+     *
+     * @return Entity scheduled time.
      */
     @NonNull T getScheduledAt();
 
     /**
-     * @return Entity schedule time as instant.
+     * Converts the scheduled timestamp to an instant.
+     *
+     * @return Entity scheduled time as instant.
      */
     default @NonNull Instant getScheduledAtInstant() {
         return Instant.from(getScheduledAt());
     }
 
     /**
-     * @return Entity schedule time in epoch seconds.
+     * Returns the scheduled timestamp as epoch seconds.
+     *
+     * @return Entity scheduled time in epoch seconds.
      */
     default long getScheduledAtEpochSeconds() {
         return getScheduledAtInstant().getEpochSecond();
     }
 
     /**
-     * @return Entity schedule time in epoch milliseconds.
+     * Returns the scheduled timestamp as epoch milliseconds.
+     *
+     * @return Entity scheduled time in epoch milliseconds.
      */
     default long getScheduledAtEpochMilli() {
         return getScheduledAtInstant().toEpochMilli();
     }
 
     /**
-     * @return Entity schedule time in ISO_INSTANT string representation.
+     * Formats the scheduled timestamp as an ISO-8601 instant string.
+     *
+     * @return Entity scheduled time in ISO_INSTANT string representation.
      */
     default @NonNull String formatScheduledAtISOInstant() {
         return DateTimeFormatter.ISO_INSTANT.format(getScheduledAtInstant());

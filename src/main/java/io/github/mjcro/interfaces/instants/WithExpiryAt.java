@@ -25,11 +25,15 @@ import java.time.temporal.Temporal;
  */
 public interface WithExpiryAt<T extends Temporal> {
     /**
+     * Returns the expiration timestamp.
+     *
      * @return Entity expiration time.
      */
     @NonNull T getExpiryAt();
 
     /**
+     * Converts the expiration timestamp to an instant.
+     *
      * @return Entity expiration time as instant.
      */
     default @NonNull Instant getExpiryAtInstant() {
@@ -37,6 +41,8 @@ public interface WithExpiryAt<T extends Temporal> {
     }
 
     /**
+     * Returns the expiration timestamp as epoch seconds.
+     *
      * @return Entity expiration time in epoch seconds.
      */
     default long getExpiryAtEpochSeconds() {
@@ -44,6 +50,8 @@ public interface WithExpiryAt<T extends Temporal> {
     }
 
     /**
+     * Returns the expiration timestamp as epoch milliseconds.
+     *
      * @return Entity expiration time in epoch milliseconds.
      */
     default long getExpiryAtEpochMilli() {
@@ -51,6 +59,8 @@ public interface WithExpiryAt<T extends Temporal> {
     }
 
     /**
+     * Formats the expiration timestamp as an ISO-8601 instant string.
+     *
      * @return Entity expiration time in ISO_INSTANT string representation.
      */
     default @NonNull String formatExpiryAtISOInstant() {
@@ -58,10 +68,10 @@ public interface WithExpiryAt<T extends Temporal> {
     }
 
     /**
-     * Checks if entity is expired according to its expiration time.
+     * Checks whether the entity is expired according to its expiration time.
      *
-     * @param against Time to check expiration against (for most cases - current time).
-     * @return True if expired, false otherwise.
+     * @param against Time to compare with the expiration timestamp, typically the current time.
+     * @return True if the entity is expired, false otherwise.
      */
     default boolean isExpired(@NonNull Temporal against) {
         Duration remaining = Duration.between(against, getExpiryAt());
@@ -69,28 +79,28 @@ public interface WithExpiryAt<T extends Temporal> {
     }
 
     /**
-     * Checks if entity is expired according to its expiration time.
+     * Checks whether the entity is expired according to its expiration time.
      *
-     * @param against Time to check expiration against (for most cases - current time).
-     * @return True if not expired, false otherwise.
+     * @param against Time to compare with the expiration timestamp, typically the current time.
+     * @return True if the entity is not expired, false otherwise.
      */
     default boolean isNotExpired(@NonNull Temporal against) {
         return !isExpired(against);
     }
 
     /**
-     * Checks if entity is expired according to its expiration time.
+     * Checks whether the entity is expired according to its expiration time.
      *
-     * @return True if expired, false otherwise.
+     * @return True if the entity is expired, false otherwise.
      */
     default boolean isExpired() {
         return isExpired(Instant.now());
     }
 
     /**
-     * Checks if entity is expired according to its expiration time.
+     * Checks whether the entity is expired according to its expiration time.
      *
-     * @return True if not expired, false otherwise.
+     * @return True if the entity is not expired, false otherwise.
      */
     default boolean isNotExpired() {
         return isNotExpired(Instant.now());

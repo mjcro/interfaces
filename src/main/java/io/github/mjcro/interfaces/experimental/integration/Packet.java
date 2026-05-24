@@ -8,6 +8,8 @@ import org.jspecify.annotations.NonNull;
  */
 public interface Packet extends WithByteBody {
     /**
+     * Returns the packet headers.
+     *
      * @return Envelope request/response headers.
      */
     @NonNull Headers getHeaders();

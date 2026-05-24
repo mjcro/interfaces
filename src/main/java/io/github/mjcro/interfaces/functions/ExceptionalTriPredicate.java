@@ -5,7 +5,7 @@ import org.jspecify.annotations.NonNull;
 import java.util.Objects;
 
 /**
- * Defines behavior like {@link TriPredicate} but able to throw checked exception.
+ * Defines {@link TriPredicate}-like behavior that can throw checked exceptions.
  *
  * @param <A> First argument type.
  * @param <B> Second argument type.

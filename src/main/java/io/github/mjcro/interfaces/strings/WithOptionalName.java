@@ -10,22 +10,26 @@ import java.util.Optional;
  */
 public interface WithOptionalName {
     /**
+     * Returns the entity name.
+     *
      * @return Entity name.
      */
     @NonNull Optional<@NonNull String> getName();
 
     /**
-     * @return True if entity has name set.
+     * Checks whether a name is present.
+     *
+     * @return True if the entity has a name.
      */
     default boolean hasName() {
         return getName().isPresent();
     }
 
     /**
-     * Checks if entity name equals to given one.
+     * Checks whether the entity name equals the given name.
      *
      * @param given Name to compare to.
-     * @return True if names are equal.
+     * @return True if the names are equal.
      */
     default boolean hasName(@NonNull String given) {
         Optional<String> name = getName();
@@ -33,8 +37,10 @@ public interface WithOptionalName {
     }
 
     /**
+     * Returns the name or fails when it is absent.
+     *
      * @return Entity name.
-     * @throws NoSuchElementException If no name present.
+     * @throws NoSuchElementException If no name is present.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     default @NonNull String mustGetName() {

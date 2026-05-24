@@ -14,10 +14,10 @@ import java.util.function.UnaryOperator;
 @FunctionalInterface
 public interface HttpRequestPreProcessor {
     /**
-     * Constructs HTTP response pre-processor from given function.
+     * Constructs an HTTP request preprocessor from the given function.
      *
      * @param function Function.
-     * @return HTTP request pre-processor.
+     * @return HTTP request preprocessor.
      */
     static @NonNull HttpRequestPreProcessor fromFunction(@NonNull Function<@NonNull HttpRequest, @NonNull HttpRequest> function) {
         Objects.requireNonNull(function, "function");
@@ -25,10 +25,10 @@ public interface HttpRequestPreProcessor {
     }
 
     /**
-     * Constructs HTTP request pre-processor from given unary operator.
+     * Constructs an HTTP request preprocessor from the given unary operator.
      *
      * @param unaryOperator Unary operator.
-     * @return HTTP request pre-processor.
+     * @return HTTP request preprocessor.
      */
     static @NonNull HttpRequestPreProcessor fromUnary(@NonNull UnaryOperator<@NonNull HttpRequest> unaryOperator) {
         Objects.requireNonNull(unaryOperator, "unaryOperator");
@@ -36,12 +36,12 @@ public interface HttpRequestPreProcessor {
     }
 
     /**
-     * Constructs HTTP request pre-processor over given consumer.
-     * Constructed pre-processor will pass HTTP request to consumer and then
+     * Constructs an HTTP request preprocessor from the given consumer.
+     * The constructed preprocessor passes the HTTP request to the consumer and then
      * return it unmodified.
      *
-     * @param consumer Consumer to pass HTTP request into.
-     * @return HTTP request pre-processor.
+     * @param consumer Consumer that receives the HTTP request.
+     * @return HTTP request preprocessor.
      */
     static @NonNull HttpRequestPreProcessor fromConsumer(@NonNull Consumer<@NonNull HttpRequest> consumer) {
         Objects.requireNonNull(consumer, "consumer");
@@ -52,11 +52,11 @@ public interface HttpRequestPreProcessor {
     }
 
     /**
-     * Performs pre-processing tasks, injecting or modifying
-     * data inside HTTP request.
+     * Performs preprocessing tasks, injecting or modifying
+     * data inside the HTTP request.
      *
      * @param request HTTP request with original data.
-     * @return Altered HTTP request.
+     * @return Modified HTTP request.
      */
     @NonNull HttpRequest preProcess(@NonNull HttpRequest request);
 }

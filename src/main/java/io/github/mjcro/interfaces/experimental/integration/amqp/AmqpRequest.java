@@ -11,16 +11,22 @@ import java.util.Optional;
  */
 public interface AmqpRequest extends Packet {
     /**
-     * @return Exchange name to send packet to.
+     * Returns the AMQP exchange name.
+     *
+     * @return Exchange name to send the packet to.
      */
     @NonNull Optional<@NonNull String> getExchange();
 
     /**
+     * Returns the AMQP routing key.
+     *
      * @return Routing key.
      */
     @NonNull Optional<@NonNull String> getRoutingKey();
 
     /**
+     * Returns the AMQP message properties.
+     *
      * @return Request properties.
      */
     @NonNull Optional<@NonNull Properties> getProperties();
@@ -37,7 +43,7 @@ public interface AmqpRequest extends Packet {
     }
 
     /**
-     * Publishes request to given transport.
+     * Publishes this request using the given transport.
      *
      * @param transport Transport to use.
      * @param options   Transport options.

@@ -9,24 +9,26 @@ import org.jspecify.annotations.Nullable;
  */
 public interface Tuple extends WithSize, Comparable<Tuple> {
     /**
+     * Returns the number of elements in this tuple.
+     *
      * @return Amount of elements within tuple.
      */
     @Override
     int size();
 
     /**
-     * Returns i-th element from tuple.
+     * Returns the element at the given tuple index.
      *
      * @param i Index of element.
      * @return Tuple element, may be null.
-     * @throws ArrayIndexOutOfBoundsException If incorrect index given.
+     * @throws ArrayIndexOutOfBoundsException If the index is out of bounds.
      */
     @Nullable Object get(int i);
 
     /**
-     * Compares this tuple to given one.
+     * Compares this tuple to another tuple.
      *
-     * @param that Tuple to compare data with.
+     * @param that Tuple to compare with.
      * @return Comparison result.
      * @throws ClassCastException If tuple elements are not {@link Comparable}.
      */

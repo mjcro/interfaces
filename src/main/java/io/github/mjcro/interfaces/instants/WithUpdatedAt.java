@@ -22,33 +22,43 @@ import java.time.temporal.Temporal;
  */
 public interface WithUpdatedAt<T extends Temporal> {
     /**
-     * @return Entity modification time.
+     * Returns the update timestamp.
+     *
+     * @return Entity update time.
      */
     @NonNull T getUpdatedAt();
 
     /**
-     * @return Entity modification time as instant.
+     * Converts the update timestamp to an instant.
+     *
+     * @return Entity update time as instant.
      */
     default @NonNull Instant getUpdatedAtInstant() {
         return Instant.from(getUpdatedAt());
     }
 
     /**
-     * @return Entity modification time in epoch seconds.
+     * Returns the update timestamp as epoch seconds.
+     *
+     * @return Entity update time in epoch seconds.
      */
     default long getUpdatedAtEpochSeconds() {
         return getUpdatedAtInstant().getEpochSecond();
     }
 
     /**
-     * @return Entity modification time in epoch milliseconds.
+     * Returns the update timestamp as epoch milliseconds.
+     *
+     * @return Entity update time in epoch milliseconds.
      */
     default long getUpdatedAtEpochMilli() {
         return getUpdatedAtInstant().toEpochMilli();
     }
 
     /**
-     * @return Entity modification time in ISO_INSTANT string representation.
+     * Formats the update timestamp as an ISO-8601 instant string.
+     *
+     * @return Entity update time in ISO_INSTANT string representation.
      */
     default @NonNull String formatUpdatedAtISOInstant() {
         return DateTimeFormatter.ISO_INSTANT.format(getUpdatedAtInstant());

@@ -10,22 +10,26 @@ import java.util.Optional;
  */
 public interface WithOptionalParentId {
     /**
+     * Returns the parent entity identifier.
+     *
      * @return Parent identifier.
      */
     @NonNull Optional<@NonNull Short> getParentId();
 
     /**
-     * @return True if entity has parent identifier.
+     * Checks whether a parent identifier is present.
+     *
+     * @return True if the entity has a parent identifier.
      */
     default boolean hasParentId() {
         return getParentId().isPresent();
     }
 
     /**
-     * Checks if entity parent identifier equals to given one.
+     * Checks whether the entity parent identifier equals the given identifier.
      *
      * @param given Identifier to compare to.
-     * @return True if identifiers are equal.
+     * @return True if the identifiers are equal.
      */
     default boolean hasParentId(short given) {
         Optional<Short> id = getParentId();
@@ -33,8 +37,10 @@ public interface WithOptionalParentId {
     }
 
     /**
-     * @return Parent identifier of entity
-     * @throws NoSuchElementException If no id present.
+     * Returns the parent identifier or fails when it is absent.
+     *
+     * @return Parent entity identifier.
+     * @throws NoSuchElementException If no identifier is present.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     default short mustGetParentId() {

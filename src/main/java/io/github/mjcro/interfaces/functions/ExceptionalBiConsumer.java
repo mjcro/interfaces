@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.function.BiConsumer;
 
 /**
- * Defines behavior like {@link BiConsumer} but able to throw checked exception.
+ * Defines {@link BiConsumer}-like behavior that can throw checked exceptions.
  *
  * @param <T> First input type.
  * @param <U> Second input type.

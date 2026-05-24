@@ -8,15 +8,17 @@ import org.jspecify.annotations.NonNull;
  */
 public interface WithUri {
     /**
+     * Returns the entity URI.
+     *
      * @return Entity URI.
      */
     @NonNull String getURI();
 
     /**
-     * Checks if entity URI equals to given one.
+     * Checks whether the entity URI equals the given URI.
      *
      * @param given URI to compare to.
-     * @return True if URI are equal.
+     * @return True if the URIs are equal.
      */
     default boolean hasURI(@NonNull String given) {
         return getURI().equals(given);

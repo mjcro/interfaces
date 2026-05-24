@@ -9,11 +9,15 @@ import java.time.Duration;
  */
 public interface WithElapsed {
     /**
+     * Returns the elapsed duration.
+     *
      * @return Elapsed time.
      */
     @NonNull Duration getElapsed();
 
     /**
+     * Returns the elapsed duration in seconds.
+     *
      * @return Elapsed time in seconds.
      */
     default long getElapsedSeconds() {
@@ -21,6 +25,8 @@ public interface WithElapsed {
     }
 
     /**
+     * Returns the elapsed duration in milliseconds.
+     *
      * @return Elapsed time in milliseconds.
      */
     default long getElapsedMillis() {
@@ -28,6 +34,8 @@ public interface WithElapsed {
     }
 
     /**
+     * Returns the elapsed duration in nanoseconds.
+     *
      * @return Elapsed time in nanoseconds.
      */
     default long getElapsedNanos() {

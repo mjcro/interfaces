@@ -10,11 +10,15 @@ import org.jspecify.annotations.NonNull;
  */
 public interface Decorator<T> {
     /**
+     * Returns the object being decorated.
+     *
      * @return Object being decorated.
      */
     @NonNull T getDecorated();
 
     /**
+     * Returns the decorated object with nested decorators unwrapped.
+     *
      * @return Object being decorated, recursively unwrapped if it is also a decorator.
      */
     @SuppressWarnings("unchecked")

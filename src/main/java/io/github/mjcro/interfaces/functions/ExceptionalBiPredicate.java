@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.function.BiPredicate;
 
 /**
- * Defines behavior like {@link BiPredicate} but able to throw checked exception.
+ * Defines {@link BiPredicate}-like behavior that can throw checked exceptions.
  *
  * @param <T> First input type.
  * @param <U> Second input type.
