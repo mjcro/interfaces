@@ -1,5 +1,5 @@
 /**
- * Database statement contracts for agents passing SQL text and parameters between layers.
+ * Contracts for SQL statements, JDBC connection providers, and connection-scoped operations.
  */
 @NullUnmarked
 package io.github.mjcro.interfaces.database;
