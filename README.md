@@ -13,7 +13,7 @@ A zero-dependency collection of lightweight Java interfaces designed for interop
 - **Java 8 compatible** — tested against Java 8, 11, 17, 21, and 25
 - **Mix-in friendly** — small, single-purpose interfaces meant to be composed
 - **Rich default methods** — each interface ships with derived helpers (e.g. `isNotEmpty`, `mustGetId`, `getTimeEpochMilli`)
-- **Strong typing utilities** — `StrongType<T>`, `StrongLong`, `StrongInt` for value-object patterns
+- **Strong typing utilities** — `StrongType<T>`, `StrongString`, `StrongLong`, and `StrongInt` for value-object patterns
 - **Functional extras** — tri-arity and exception-aware mirrors of `java.util.function.*`
 
 ## Installation
@@ -122,6 +122,7 @@ boolean valid = email.hasValueOneOf("a@b.com", "c@d.com");
 | Interface          | Underlying type | Key methods                               |
 |--------------------|-----------------|-------------------------------------------|
 | `StrongType<T>`    | generic `T`     | `value()`, `hasValue()`, `hasValueOneOf()`|
+| `StrongString`     | `String`        | extends `StrongType<String>`               |
 | `StrongLong`       | `long`          | `value()`, `hasValue()`                   |
 | `StrongInt`        | `int`           | `value()`, `hasValue()`                   |
 | `StrongLongId`     | `long`          | extends `StrongLong` + `WithId`           |
@@ -159,8 +160,23 @@ boolean valid = email.hasValueOneOf("a@b.com", "c@d.com");
 | `Invalidator`         | `cache`                | Cache invalidation                                         |
 | `NamedCacheFactory`   | `cache`                | Creates named cache instances                              |
 | `Statement`           | `database`             | Database statement abstraction                             |
+| `WithException<T>`    | `exceptions`           | Exposes a required exception of a specific `Throwable` type |
+| `WithOptionalException<T>` | `exceptions`      | Exposes an optional exception plus presence helpers         |
 | `Tuple` / `Pair<F,S>` / `OptionalPair<F,S>` | `tuples` | Immutable tuple types                     |
 | `IdRepository<T>`     | `longs`                | CRUD repository keyed by `long` ID                         |
+
+### Database connections (`io.github.mjcro.interfaces.database`)
+
+| Interface                 | Purpose |
+|---------------------------|---------|
+| `ConnectionProvider`      | Acquires JDBC connections and offers try-with-resources invocation helpers |
+| `ConnectionConsumer<C>`   | JDBC consumer that may throw `SQLException` |
+| `ConnectionFunction<C,R>` | JDBC function that may throw `SQLException` |
+| `Statement`               | Carries SQL text and bound parameters |
+
+`ConnectionProvider.ofConnection(connection)` always returns the supplied connection. Its invocation helpers close that connection after use, so a provider created this way is intended for a single connection lifecycle. Use `ofSupplier(...)` when each invocation should acquire a fresh connection.
+
+The connection interfaces previously under `io.github.mjcro.interfaces.sql` now live in `io.github.mjcro.interfaces.database`; update imports when moving to a release containing this change.
 
 ### Security (`io.github.mjcro.interfaces.security`)
 
@@ -168,7 +184,7 @@ boolean valid = email.hasValueOneOf("a@b.com", "c@d.com");
 |--------------------------|--------------------|-------------------------------------------------------------------------|
 | `Sensitive`              | `security`         | Marker interface for any object that holds or contains sensitive data    |
 | `SensitiveStrongType<T>` | `security`        | `AutoCloseable` wrapper for sensitive values (passwords, tokens, keys); erases the underlying data on `close()` and throws `NoSuchElementException` on any subsequent `value()` call |
-| `ByteHasher`             | `security.hashing` | Byte-array hashing contract                                            |
+| `ByteHasher`             | `security.hashing` | Byte-array hashing contract; string helpers encode with UTF-8 by default before hashing |
 
 ```java
 try (SensitiveStrongType<char[]> password = acquirePassword()) {
