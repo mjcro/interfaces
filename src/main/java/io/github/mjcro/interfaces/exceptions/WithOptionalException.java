@@ -7,13 +7,13 @@ import java.util.Optional;
 /**
  * Mixin interface for objects that optionally carry an associated exception.
  */
-public interface WithOptionalException {
+public interface WithOptionalException<T extends Throwable> {
     /**
      * Returns the associated exception.
      *
      * @return Exception, optional.
      */
-    @NonNull Optional<@NonNull Throwable> getException();
+    @NonNull Optional<@NonNull T> getException();
 
     /**
      * Checks whether an exception is present.
