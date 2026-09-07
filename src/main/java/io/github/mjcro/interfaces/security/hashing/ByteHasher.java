@@ -32,7 +32,7 @@ public interface ByteHasher {
      * @return Hash bytes.
      */
     default byte @NonNull [] hash(@NonNull String source) {
-        return source.getBytes(getStringCharset());
+        return hash(source.getBytes(getStringCharset()));
     }
 
     /**
