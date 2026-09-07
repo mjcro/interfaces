@@ -1,5 +1,6 @@
 package io.github.mjcro.interfaces;
 
+import org.jspecify.annotations.NonNull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.jspecify.annotations.Nullable;
@@ -64,7 +65,7 @@ class StrongTypeTest {
         }
 
         @Override
-        public SimpleEnum value() {
+        public @NonNull SimpleEnum value() {
             return this.value;
         }
     }
@@ -77,7 +78,7 @@ class StrongTypeTest {
         }
 
         @Override
-        public String value() {
+        public @NonNull String value() {
             return this.value;
         }
 
